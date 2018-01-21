@@ -1,3 +1,5 @@
+**NOTE**: This is a fork of the original IdleMaster (**discontinued**) master branch. There are no guarantees for this version of the software to work and Valve may update how the Steam API functions, how cards are dropped while playing games, how badges are crafted, etc.
+
 Idle Master
 ===========
 
