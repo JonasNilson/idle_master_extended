@@ -1,5 +1,11 @@
 **NOTE**: This is a fork of the original IdleMaster (**discontinued**) master branch. There are no guarantees for this version of the software to work and Valve may update how the Steam API functions, how cards are dropped while playing games, how badges are crafted, etc.
 
+**Extended UI**: Added the possibility to change the UI colors (dark theme) and icon colors (black or white). The theme can be changed at runtime throught the Settings menu (File -> Settings -> Dark theme / White icons).
+
+<p align="center">
+  <img src ="https://i.imgur.com/gJZW5Bx.png"/>
+</p>
+
 Idle Master
 ===========
 
