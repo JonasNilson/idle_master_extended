@@ -638,10 +638,10 @@ namespace IdleMaster
         private ToolStripSeparator toolStripMenuItem3;
         private Timer tmrBadgeReload;
         private Label lblSignedOnAs;
-    private ListView GamesState;
-    private ColumnHeader GameName;
-    private ColumnHeader Hours;
-    private Label lblHoursPlayed;
+        private ListView GamesState;
+        private ColumnHeader GameName;
+        private ColumnHeader Hours;
+        private Label lblHoursPlayed;
         private Timer tmrStatistics;
         private ToolStripMenuItem statisticsToolStripMenuItem;
     }

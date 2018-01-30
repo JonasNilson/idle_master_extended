@@ -12,7 +12,7 @@ namespace IdleMaster.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.5.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -226,6 +226,90 @@ namespace IdleMaster.Properties {
             }
             set {
                 this["OneThenMany"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool customTheme {
+            get {
+                return ((bool)(this["customTheme"]));
+            }
+            set {
+                this["customTheme"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("38, 38, 38")]
+        public global::System.Drawing.Color colorBgd {
+            get {
+                return ((global::System.Drawing.Color)(this["colorBgd"]));
+            }
+            set {
+                this["colorBgd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("196, 196, 196")]
+        public global::System.Drawing.Color colorTxt {
+            get {
+                return ((global::System.Drawing.Color)(this["colorTxt"]));
+            }
+            set {
+                this["colorTxt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool whiteIcons {
+            get {
+                return ((bool)(this["whiteIcons"]));
+            }
+            set {
+                this["whiteIcons"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Control")]
+        public global::System.Drawing.Color colorBgdOriginal {
+            get {
+                return ((global::System.Drawing.Color)(this["colorBgdOriginal"]));
+            }
+            set {
+                this["colorBgdOriginal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ControlText")]
+        public global::System.Drawing.Color colorTxtOriginal {
+            get {
+                return ((global::System.Drawing.Color)(this["colorTxtOriginal"]));
+            }
+            set {
+                this["colorTxtOriginal"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool fastMode {
+            get {
+                return ((bool)(this["fastMode"]));
+            }
+            set {
+                this["fastMode"] = value;
             }
         }
     }

@@ -352,6 +352,13 @@ namespace IdleMaster
                 line.SubItems.Add(badge.HoursPlayed.ToString());
                 GamesState.Items.Add(line);
             }
+
+            // JN: Recolor the listview...
+            if (Properties.Settings.Default.customTheme)
+            {
+                GamesState.BackColor = Color.FromArgb(38, 38, 38);
+                GamesState.ForeColor = Color.FromArgb(196, 196, 196);
+            }
         }
 
         public void StopIdle()
@@ -561,6 +568,7 @@ namespace IdleMaster
             UpdateStateInfo();
         }
 
+        // CONSTRUCTOR
         public frmMain()
         {
             InitializeComponent();
@@ -718,6 +726,115 @@ namespace IdleMaster
             lnkSignIn.Location = point;
             point = new Point(Convert.ToInt32(graphics.DpiX * 2.15), Convert.ToInt32(lnkResetCookies.Location.Y));
             lnkResetCookies.Location = point;
+
+            runtimeCustomThemeMain(); // JN: Apply the dark theme
+        }
+
+        /// <summary>
+        /// Changes the color of the main window components to match a Steam-like dark theme
+        /// </summary> 
+        private void runtimeCustomThemeMain()
+        {
+            // Read settings
+            var customTheme = Settings.Default.customTheme;
+            var whiteIcons = Settings.Default.whiteIcons;
+
+            // Define colors
+            FlatStyle buttonStyle = customTheme ? FlatStyle.Flat : FlatStyle.Standard;
+            Color colorBgd = customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+            Color colorTxt = customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
+
+            // --------------------------
+            // -- APPLY THEME SETTINGS --
+            // --------------------------
+
+            // Main frame window
+            this.BackColor = colorBgd;
+            this.ForeColor = colorTxt;
+
+            // Link colors
+            lnkSignIn.LinkColor = lnkResetCookies.LinkColor = lblCurrentRemaining.ForeColor = lblGameName.ForeColor = customTheme ? Color.GhostWhite : Color.Blue;
+
+            // ToolStripMenu Top
+            mnuTop.BackColor = colorBgd;
+            mnuTop.ForeColor = colorTxt;
+
+            // ToolStripMenuItem and the ToolStripMenuItem dropdowns
+            foreach (ToolStripMenuItem item in mnuTop.Items)
+            {
+                // Menu item coloring
+                item.BackColor = colorBgd;
+                item.ForeColor = colorTxt;
+
+                // Dropdown coloring
+                item.DropDown.BackColor = colorBgd;
+                item.DropDown.ForeColor = colorTxt;
+            }
+
+            // Game state list (needs to be colored in RefreshGamesStateListView)
+            GamesState.BackColor = colorBgd;
+            GamesState.ForeColor = colorTxt;
+
+            // Progress bar
+            if (customTheme)
+            {
+                pbIdle.BackColor = Color.Red;
+                pbIdle.ForeColor = Color.Blue;
+            }
+            
+            // lblTimer
+            lblTimer.BackColor = colorBgd;
+            lblTimer.ForeColor = colorTxt;
+
+            // toolStripStatusLabel1
+            toolStripStatusLabel1.BackColor = colorBgd;
+
+            // Footer
+            ssFooter.BackColor = colorBgd;
+
+            // Buttons
+            btnPause.FlatStyle = btnResume.FlatStyle = btnSkip.FlatStyle = buttonStyle;
+            btnPause.BackColor = btnResume.BackColor = btnSkip.BackColor = colorBgd;
+            btnPause.ForeColor = btnResume.ForeColor = btnSkip.ForeColor = colorTxt;
+
+            // Icon images
+            runtimeCustomIcons();
+        }
+
+        /// <summary>
+        /// Replaces the main frame window images with white ones for the dark theme
+        /// </summary> 
+        private void runtimeCustomIcons()
+        {
+            var customTheme = Settings.Default.customTheme;
+            var whiteIcons = Settings.Default.whiteIcons;
+
+            // TOOL STRIP MENU ITEMS
+            // File
+            settingsToolStripMenuItem.Image = whiteIcons ? Resources.imgSettings_w : Resources.imgSettings;
+            blacklistToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
+            exitToolStripMenuItem.Image = whiteIcons ? Resources.imgExit_w : Resources.imgExit;
+            // Game
+            pauseIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPause_w : Resources.imgPause;
+            resumeIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPlay_w : Resources.imgPlay;
+            skipGameToolStripMenuItem.Image = whiteIcons ? Resources.imgSkip_w : Resources.imgSkip;
+            blacklistCurrentGameToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
+            // Help
+            statisticsToolStripMenuItem.Image = whiteIcons ? Resources.imgStatistics_w : Resources.imgStatistics;
+            changelogToolStripMenuItem.Image = whiteIcons ? Resources.imgDocument_w : Resources.imgDocument;
+            officialGroupToolStripMenuItem.Image = whiteIcons ? Resources.imgGlobe_w : Resources.imgGlobe;
+            aboutToolStripMenuItem.Image = whiteIcons ? Resources.imgInfo_w : Resources.imgInfo;
+
+            // STATUS
+            // Handled in respective tick drawing functions
+
+            // BUTTONS
+            btnPause.Image = whiteIcons ? Resources.imgPauseSmall_w : Resources.imgPauseSmall;
+            btnResume.Image = whiteIcons ? Resources.imgPlaySmall_w : Resources.imgPlaySmall;
+            btnSkip.Image = whiteIcons ? Resources.imgSkipSmall_w : Resources.imgSkipSmall;
+
+            // LOADING GIF
+            //
         }
 
         private void frmMain_FormClose(object sender, FormClosedEventArgs e)
@@ -727,11 +844,17 @@ namespace IdleMaster
 
         private void tmrCheckCookieData_Tick(object sender, EventArgs e)
         {
+            // JN: White icons
+            var whiteIcons = Settings.Default.whiteIcons;
+            var imgFalse = whiteIcons ? Resources.imgFalse_w : Resources.imgFalse;
+            var imgTrue = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
+            runtimeCustomThemeMain();
+
             var connected = !string.IsNullOrWhiteSpace(Settings.Default.sessionid) && !string.IsNullOrWhiteSpace(Settings.Default.steamLogin);
 
             lblCookieStatus.Text = connected ? localization.strings.idle_master_connected : localization.strings.idle_master_notconnected;
-            lblCookieStatus.ForeColor = connected ? Color.Green : Color.Black;
-            picCookieStatus.Image = connected ? Resources.imgTrue : Resources.imgFalse;
+            lblCookieStatus.ForeColor = connected ? Color.Green : this.ForeColor; // JN: Changed the color of "not connected" message
+            picCookieStatus.Image = connected ? imgTrue : imgFalse; // JN: Supports dark theme
             lnkSignIn.Visible = !connected;
             lnkResetCookies.Visible = connected;
             IsCookieReady = connected;
@@ -739,10 +862,15 @@ namespace IdleMaster
 
         private void tmrCheckSteam_Tick(object sender, EventArgs e)
         {
+            // JN: White icons
+            var whiteIcons = Settings.Default.whiteIcons;
+            var imgFalse = whiteIcons ? Resources.imgFalse_w : Resources.imgFalse;
+            var imgTrue = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
+
             var isSteamRunning = SteamAPI.IsSteamRunning() || Settings.Default.ignoreclient;
             lblSteamStatus.Text = isSteamRunning ? (Settings.Default.ignoreclient ? localization.strings.steam_ignored : localization.strings.steam_running) : localization.strings.steam_notrunning;
-            lblSteamStatus.ForeColor = isSteamRunning ? Color.Green : Color.Black;
-            picSteamStatus.Image = isSteamRunning ? Resources.imgTrue : Resources.imgFalse;
+            lblSteamStatus.ForeColor = isSteamRunning ? Color.Green : this.ForeColor; // JN: Changed color of the not connected status
+            picSteamStatus.Image = isSteamRunning ? imgTrue : imgFalse; // JN: Supports dark theme
             tmrCheckSteam.Interval = isSteamRunning ? 5000 : 500;
             skipGameToolStripMenuItem.Enabled = isSteamRunning;
             pauseIdlingToolStripMenuItem.Enabled = isSteamRunning;

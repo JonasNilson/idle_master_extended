@@ -56,5 +56,26 @@
     <Setting Name="OneThenMany" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="customTheme" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="colorBgd" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">38, 38, 38</Value>
+    </Setting>
+    <Setting Name="colorTxt" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">196, 196, 196</Value>
+    </Setting>
+    <Setting Name="whiteIcons" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="colorBgdOriginal" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Control</Value>
+    </Setting>
+    <Setting Name="colorTxtOriginal" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">ControlText</Value>
+    </Setting>
+    <Setting Name="fastMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

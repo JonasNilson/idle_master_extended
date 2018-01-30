@@ -131,7 +131,6 @@ namespace IdleMaster
             this.grpAdd.ResumeLayout(false);
             this.grpAdd.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion
