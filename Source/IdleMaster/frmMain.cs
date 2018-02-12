@@ -33,6 +33,7 @@ namespace IdleMaster
         public bool IsCookieReady;
         public bool IsSteamReady;
         public int TimeLeft = 900;
+        public int TimeSet = 300;
         public int RetryCount = 0;
         public int ReloadCount = 0;
         public int CardsRemaining { get { return CanIdleBadges.Sum(b => b.RemainingCard); } }
@@ -102,6 +103,7 @@ namespace IdleMaster
             }
         }
 
+        // JN: This is where the simultaneous idling is started (??)
         public void UpdateIdleProcesses()
         {
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
@@ -110,7 +112,7 @@ namespace IdleMaster
                     badge.StopIdle();
 
                 if (badge.HoursPlayed < 2 && CanIdleBadges.Count(b => b.InIdle) < 30)
-                    badge.Idle();
+                    badge.Idle(); 
             }
 
             RefreshGamesStateListView();
@@ -223,10 +225,21 @@ namespace IdleMaster
                         }
                         else
                         {
-                            var multi = CanIdleBadges.Where(b => b.HoursPlayed < 2);
+                            // JN: Check if fastMode, start multi-dile, no matter the times
+                            // Idle simultaneous 5 minutes, stop, wait 1 min, idle games individually 10 sec, change back to simultaneous 30 min
+                            // var multi = CanIdleBadges.Where(b => b.HoursPlayed < 2);
+                            var multi = CanIdleBadges.Where(b => (b.HoursPlayed < 2 || Settings.Default.fastMode)); // JN: If fast mode, ignore simultaneous times
                             if (multi.Count() >= 2)
                             {
-                                StartMultipleIdle();
+                                // Idle multiple games at the same time
+                                if (Settings.Default.fastMode)
+                                {
+                                    StartFastIdleSimultaneous();
+                                }
+                                else
+                                {
+                                    StartMultipleIdle();
+                                }
                             }
                             else
                             {
@@ -306,6 +319,7 @@ namespace IdleMaster
 
         public void StartMultipleIdle()
         {
+            // Start the idling processes
             UpdateIdleProcesses();
 
             // Update label controls
@@ -341,6 +355,40 @@ namespace IdleMaster
 
             var scale = CreateGraphics().DpiY * 3.86;
             Height = Convert.ToInt32(scale);
+        }
+
+        // FAST MODE: Idle simultaneous 5 minutes, stop, wait 1 min, idle games individually 10 sec, change back to simultaneous 30 min
+        public void StartFastIdleSimultaneous()
+        {
+            // Start the idling processes
+            //UpdateIdleProcesses();
+            StartMultipleIdle();
+
+            // Reset the timer (5 minutes)
+            TimeLeft = 300; // Is set to 360 in StartMultipleIdle(), resets here
+        }
+
+        private void StartFastIdleIndividual()
+        {
+            // Stop the simultaneous idling games
+            StopIdle();
+
+            // Wait 1 minute
+            Thread.Sleep(60 * 1000);
+
+            // Idle games individually 10 sec each
+            foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
+            {
+                StartSoloIdle(badge); // Idle current game
+                Thread.Sleep(10 * 1000); // Wait 10 sec
+                NextIdle(); // Idle next game
+            }
+
+            // Go back to 30 min of idling (games typically drop in 30 min intervals)
+            StartMultipleIdle();
+            TimeLeft = 30 * 60;
+
+            // Hopefully this works okay
         }
 
         private void RefreshGamesStateListView()
@@ -991,7 +1039,16 @@ namespace IdleMaster
 
                     isMultipleIdle = CanIdleBadges.Any(b => b.HoursPlayed < 2 && b.InIdle);
                     if (isMultipleIdle)
-                        TimeLeft = 360;
+                    {
+                        if(Settings.Default.fastMode)
+                        {
+                            StartFastIdleIndividual();
+                        }
+                        else
+                        {
+                            TimeLeft = 360;
+                        }
+                    }
                 }
 
                 // Check if user is authenticated and if any badge left to idle
