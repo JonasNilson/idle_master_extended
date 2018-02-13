@@ -108,11 +108,22 @@ namespace IdleMaster
         {
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
             {
-                if (badge.HoursPlayed >= 2 && badge.InIdle)
-                    badge.StopIdle();
+                if(!Settings.Default.fastMode)
+                {
+                    // Original idle mode
+                    if (badge.HoursPlayed >= 2 && badge.InIdle)
+                        badge.StopIdle();
 
-                if (badge.HoursPlayed < 2 && CanIdleBadges.Count(b => b.InIdle) < 30)
-                    badge.Idle(); 
+                    if (badge.HoursPlayed < 2 && CanIdleBadges.Count(b => b.InIdle) < 30)
+                        badge.Idle();
+                }
+                else
+                {
+                    // Fast mode! (still limit to 30 (?))
+                    if (CanIdleBadges.Count(b => b.InIdle) < 30)
+                        badge.Idle();
+                }
+                
             }
 
             RefreshGamesStateListView();
@@ -373,8 +384,8 @@ namespace IdleMaster
             // Stop the simultaneous idling games
             StopIdle();
 
-            // Wait 1 minute
-            Thread.Sleep(60 * 1000);
+            // Wait 30 sec
+            Thread.Sleep(10 * 1000);
 
             // Idle games individually 10 sec each
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
@@ -384,8 +395,11 @@ namespace IdleMaster
                 NextIdle(); // Idle next game
             }
 
+            StopIdle();
+            CurrentBadge = null; // Resets the current badge to avoid idling all other badges but the last badge
+            //UpdateIdleProcesses(); // Starts the simultaneous idling again
             // Go back to 30 min of idling (games typically drop in 30 min intervals)
-            StartMultipleIdle();
+            StartFastIdleSimultaneous();
             TimeLeft = 30 * 60;
 
             // Hopefully this works okay

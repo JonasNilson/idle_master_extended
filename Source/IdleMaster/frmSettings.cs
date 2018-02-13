@@ -136,8 +136,12 @@ namespace IdleMaster
         radIdleLeastDrops.Text = localization.strings.order_least;
         ttHints.SetToolTip(radIdleLeastDrops, localization.strings.order_least);
         lblLanguage.Text = localization.strings.interface_language;
-
-        if (Settings.Default.OneThenMany)
+        
+        if (Settings.Default.fastMode)
+        {
+            radFastMode.Checked = true;
+        }
+        else if (Settings.Default.OneThenMany)
         {
             radOneThenMany.Checked = true;
         }
@@ -149,17 +153,17 @@ namespace IdleMaster
 
         if (Settings.Default.minToTray)
         {
-        chkMinToTray.Checked = true;
+            chkMinToTray.Checked = true;
         }
 
         if (Settings.Default.ignoreclient)
         {
-        chkIgnoreClientStatus.Checked = true;
+            chkIgnoreClientStatus.Checked = true;
         }
 
         if (Settings.Default.showUsername)
         {
-        chkShowUsername.Checked = true;
+            chkShowUsername.Checked = true;
         }
 
         runtimeCustomThemeSettings(); // JN: Apply theme colors and icons
