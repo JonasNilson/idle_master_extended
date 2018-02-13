@@ -379,19 +379,19 @@ namespace IdleMaster
             TimeLeft = 300; // Is set to 360 in StartMultipleIdle(), resets here
         }
 
-        private void StartFastIdleIndividual()
+        private async Task StartFastIdleIndividual()
         {
             // Stop the simultaneous idling games
             StopIdle();
 
-            // Wait 30 sec
-            Thread.Sleep(10 * 1000);
+            // Wait 10 sec
+            await Task.Delay(10 * 1000);
 
             // Idle games individually 10 sec each
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
             {
                 StartSoloIdle(badge); // Idle current game
-                Thread.Sleep(10 * 1000); // Wait 10 sec
+                await Task.Delay(10 * 1000); // Wait 10 sec
                 NextIdle(); // Idle next game
             }
 
