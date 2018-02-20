@@ -37,6 +37,7 @@ namespace IdleMaster
             this.lblSaving = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tmrCheck = new System.Windows.Forms.Timer(this.components);
+            this.lblWebBrowser = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,11 +78,24 @@ namespace IdleMaster
             this.tmrCheck.Interval = 1000;
             this.tmrCheck.Tick += new System.EventHandler(this.tmrCheck_Tick);
             // 
+            // lblWebBrowser
+            // 
+            this.lblWebBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblWebBrowser.BackColor = System.Drawing.SystemColors.WindowFrame;
+            this.lblWebBrowser.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblWebBrowser.Location = new System.Drawing.Point(10, 773);
+            this.lblWebBrowser.Name = "lblWebBrowser";
+            this.lblWebBrowser.Size = new System.Drawing.Size(952, 16);
+            this.lblWebBrowser.TabIndex = 3;
+            this.lblWebBrowser.Text = "Loading...";
+            this.lblWebBrowser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // frmBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(976, 798);
+            this.Controls.Add(this.lblWebBrowser);
             this.Controls.Add(this.wbAuth);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblSaving);
@@ -103,5 +117,6 @@ namespace IdleMaster
         private Label lblSaving;
         private PictureBox pictureBox1;
         private Timer tmrCheck;
+        private Label lblWebBrowser;
     }
 }

@@ -23,19 +23,13 @@ namespace IdleMaster
         }
         catch (Exception)
         {
-                // TODO: Display an error message
+                
         }
 
         Application.ThreadException += (o, a) => Logger.Exception(a.Exception);
         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
-
-        // TODO LIST:
-        // - Add card slots for cards idling [!][][] (fill in when card is dropped)
-        // - 
-        // - Discard the requirement for Steam login
-        // - Use the Steam API to find the currently logged in user (user me)
 
         Application.Run(new frmMain());
     }
