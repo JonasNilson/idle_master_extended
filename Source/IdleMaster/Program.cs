@@ -34,16 +34,9 @@ namespace IdleMaster
         // TODO LIST:
         // - Add card slots for cards idling [!][][] (fill in when card is dropped)
         // - 
-        // - Enable simultaneous idling (even if two hours have passed)
-        // - Enable fast mode where the idling is paused now and then
         // - Discard the requirement for Steam login
         // - Use the Steam API to find the currently logged in user (user me)
-        // - 
 
-        // DONE:
-        // + Change the UI style to better match Steam (gray tones, white text)
-        // + Does Steam really require you to spend 2 hours in-game for cards to drop? NOPE
-        // 
         Application.Run(new frmMain());
     }
   }
