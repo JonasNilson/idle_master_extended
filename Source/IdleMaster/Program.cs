@@ -23,13 +23,14 @@ namespace IdleMaster
         }
         catch (Exception)
         {
-
+                
         }
 
         Application.ThreadException += (o, a) => Logger.Exception(a.Exception);
         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
         Application.EnableVisualStyles();
         Application.SetCompatibleTextRenderingDefault(false);
+
         Application.Run(new frmMain());
     }
   }

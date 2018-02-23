@@ -118,8 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="imgBlacklist_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ban-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgStatistics_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bar-chart-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Changelog" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Changelog.rtf;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="imgTrue_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgSettings_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cog-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgDocument_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\document-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgView_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eye-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgGlobe_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\globe-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="imgBlacklist" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ban-2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -177,5 +198,38 @@
   </data>
   <data name="imgView" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye-2x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgInfo_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\info-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgLock_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\lock-locked-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgPause_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\media-pause-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgPauseSmall_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\media-pause_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgPlay_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\media-play-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgPlaySmall_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\media-play_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgSkip_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\media-step-forward-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgSkipSmall_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\media-step-forward_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgExit_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\power-standby-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgTrash_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trash-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="imgFalse_w" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\x-2x_w.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

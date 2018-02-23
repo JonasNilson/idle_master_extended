@@ -34,6 +34,8 @@ namespace IdleMaster
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.grpGeneral = new System.Windows.Forms.GroupBox();
+            this.whiteIconsCheckBox = new System.Windows.Forms.CheckBox();
+            this.darkThemeCheckBox = new System.Windows.Forms.CheckBox();
             this.cboLanguage = new System.Windows.Forms.ComboBox();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.chkShowUsername = new System.Windows.Forms.CheckBox();
@@ -49,9 +51,10 @@ namespace IdleMaster
             this.ttHints = new System.Windows.Forms.ToolTip(this.components);
             this.btnAdvanced = new System.Windows.Forms.Button();
             this.grpIdlingQuantity = new System.Windows.Forms.GroupBox();
+            this.radOneThenMany = new System.Windows.Forms.RadioButton();
             this.radManyThenOne = new System.Windows.Forms.RadioButton();
             this.radOneGameOnly = new System.Windows.Forms.RadioButton();
-            this.radOneThenMany = new System.Windows.Forms.RadioButton();
+            this.radFastMode = new System.Windows.Forms.RadioButton();
             this.grpGeneral.SuspendLayout();
             this.grpPriority.SuspendLayout();
             this.grpIdlingQuantity.SuspendLayout();
@@ -61,6 +64,8 @@ namespace IdleMaster
             // 
             this.grpGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpGeneral.Controls.Add(this.whiteIconsCheckBox);
+            this.grpGeneral.Controls.Add(this.darkThemeCheckBox);
             this.grpGeneral.Controls.Add(this.cboLanguage);
             this.grpGeneral.Controls.Add(this.lblLanguage);
             this.grpGeneral.Controls.Add(this.chkShowUsername);
@@ -72,6 +77,31 @@ namespace IdleMaster
             this.grpGeneral.TabIndex = 0;
             this.grpGeneral.TabStop = false;
             this.grpGeneral.Text = "General";
+            // 
+            // whiteIconsCheckBox
+            // 
+            this.whiteIconsCheckBox.AutoSize = true;
+            this.whiteIconsCheckBox.Checked = global::IdleMaster.Properties.Settings.Default.whiteIcons;
+            this.whiteIconsCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::IdleMaster.Properties.Settings.Default, "whiteIcons", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.whiteIconsCheckBox.Location = new System.Drawing.Point(305, 38);
+            this.whiteIconsCheckBox.Name = "whiteIconsCheckBox";
+            this.whiteIconsCheckBox.Size = new System.Drawing.Size(82, 17);
+            this.whiteIconsCheckBox.TabIndex = 7;
+            this.whiteIconsCheckBox.Text = "White icons";
+            this.whiteIconsCheckBox.UseVisualStyleBackColor = true;
+            this.whiteIconsCheckBox.CheckedChanged += new System.EventHandler(this.whiteIconsCheckBox_CheckedChanged);
+            // 
+            // darkThemeCheckBox
+            // 
+            this.darkThemeCheckBox.AutoSize = true;
+            this.darkThemeCheckBox.Checked = global::IdleMaster.Properties.Settings.Default.customTheme;
+            this.darkThemeCheckBox.Location = new System.Drawing.Point(305, 19);
+            this.darkThemeCheckBox.Name = "darkThemeCheckBox";
+            this.darkThemeCheckBox.Size = new System.Drawing.Size(81, 17);
+            this.darkThemeCheckBox.TabIndex = 6;
+            this.darkThemeCheckBox.Text = "Dark theme";
+            this.darkThemeCheckBox.UseVisualStyleBackColor = true;
+            this.darkThemeCheckBox.CheckedChanged += new System.EventHandler(this.darkThemeCheckBox_CheckedChanged);
             // 
             // cboLanguage
             // 
@@ -251,6 +281,7 @@ namespace IdleMaster
             // 
             this.grpIdlingQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpIdlingQuantity.Controls.Add(this.radFastMode);
             this.grpIdlingQuantity.Controls.Add(this.radOneThenMany);
             this.grpIdlingQuantity.Controls.Add(this.radManyThenOne);
             this.grpIdlingQuantity.Controls.Add(this.radOneGameOnly);
@@ -262,6 +293,17 @@ namespace IdleMaster
             this.grpIdlingQuantity.TabIndex = 5;
             this.grpIdlingQuantity.TabStop = false;
             this.grpIdlingQuantity.Text = "Idling Behavior";
+            // 
+            // radOneThenMany
+            // 
+            this.radOneThenMany.AutoSize = true;
+            this.radOneThenMany.Location = new System.Drawing.Point(7, 53);
+            this.radOneThenMany.Name = "radOneThenMany";
+            this.radOneThenMany.Size = new System.Drawing.Size(338, 17);
+            this.radOneThenMany.TabIndex = 6;
+            this.radOneThenMany.TabStop = true;
+            this.radOneThenMany.Text = "Idle games with more than 2 hours individually, then simultaneously";
+            this.radOneThenMany.UseVisualStyleBackColor = true;
             // 
             // radManyThenOne
             // 
@@ -288,16 +330,16 @@ namespace IdleMaster
             this.radOneGameOnly.Text = "Idle each game individually";
             this.radOneGameOnly.UseVisualStyleBackColor = true;
             // 
-            // radOneThenMany
+            // radFastMode
             // 
-            this.radOneThenMany.AutoSize = true;
-            this.radOneThenMany.Location = new System.Drawing.Point(7, 53);
-            this.radOneThenMany.Name = "radOneThenMany";
-            this.radOneThenMany.Size = new System.Drawing.Size(338, 17);
-            this.radOneThenMany.TabIndex = 6;
-            this.radOneThenMany.TabStop = true;
-            this.radOneThenMany.Text = "Idle games with more than 2 hours individually, then simultaneously";
-            this.radOneThenMany.UseVisualStyleBackColor = true;
+            this.radFastMode.AutoSize = true;
+            this.radFastMode.Location = new System.Drawing.Point(305, 18);
+            this.radFastMode.Name = "radFastMode";
+            this.radFastMode.Size = new System.Drawing.Size(74, 17);
+            this.radFastMode.TabIndex = 7;
+            this.radFastMode.TabStop = true;
+            this.radFastMode.Text = "Fast mode";
+            this.radFastMode.UseVisualStyleBackColor = true;
             // 
             // frmSettings
             // 
@@ -349,5 +391,8 @@ namespace IdleMaster
     private ComboBox cboLanguage;
     private Label lblLanguage;
     private RadioButton radOneThenMany;
-  }
+        private CheckBox darkThemeCheckBox;
+        private CheckBox whiteIconsCheckBox;
+        private RadioButton radFastMode;
+    }
 }

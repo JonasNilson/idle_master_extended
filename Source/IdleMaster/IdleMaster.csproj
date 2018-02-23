@@ -44,11 +44,11 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -164,6 +164,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Statistics.cs" />
     <Compile Include="SteamProfile.cs" />
     <EmbeddedResource Include="frmAbout.resx">
@@ -278,6 +279,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo1.ico" />
+    <None Include="Resources\x-2x_w.png" />
+    <None Include="Resources\trash-2x_w.png" />
+    <None Include="Resources\power-standby-2x_w.png" />
+    <None Include="Resources\media-step-forward-2x_w.png" />
+    <None Include="Resources\media-step-forward_w.png" />
+    <None Include="Resources\media-play-2x_w.png" />
+    <None Include="Resources\media-play_w.png" />
+    <None Include="Resources\media-pause-2x_w.png" />
+    <None Include="Resources\media-pause_w.png" />
+    <None Include="Resources\lock-locked-2x_w.png" />
+    <None Include="Resources\info-2x_w.png" />
+    <None Include="Resources\globe-2x_w.png" />
+    <None Include="Resources\eye-2x_w.png" />
+    <None Include="Resources\document-2x_w.png" />
+    <None Include="Resources\cog-2x_w.png" />
+    <None Include="Resources\check-2x_w.png" />
+    <None Include="Resources\bar-chart-2x_w.png" />
+    <None Include="Resources\ban-2x_w.png" />
     <None Include="Resources\bar-chart-2x.png" />
     <None Include="Resources\globe-2x.png" />
     <None Include="Resources\document-2x.png" />

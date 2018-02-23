@@ -64,6 +64,8 @@ namespace IdleMaster
       // Get the URL of the page that just finished loading
       var url = wbAuth.Url.AbsoluteUri;
 
+      lblWebBrowser.Text = wbAuth.Url.AbsoluteUri + " ---> Authority: " + wbAuth.Url.Authority + " ---> Encryption level: " + wbAuth.EncryptionLevel; // JN: Display URL and URL info
+
       // If the page it just finished loading is the login page
       if (url == "https://steamcommunity.com/login/home/?goto=my/profile" ||
           url == "https://store.steampowered.com/login/transfer" ||

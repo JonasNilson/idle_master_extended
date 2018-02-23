@@ -33,6 +33,7 @@ namespace IdleMaster
         public bool IsCookieReady;
         public bool IsSteamReady;
         public int TimeLeft = 900;
+        public int TimeSet = 300;
         public int RetryCount = 0;
         public int ReloadCount = 0;
         public int CardsRemaining { get { return CanIdleBadges.Sum(b => b.RemainingCard); } }
@@ -104,13 +105,25 @@ namespace IdleMaster
 
         public void UpdateIdleProcesses()
         {
+            // JN: Loop through all badges that can be idled (still has card drops)
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
             {
-                if (badge.HoursPlayed >= 2 && badge.InIdle)
-                    badge.StopIdle();
+                if(!Settings.Default.fastMode)
+                {
+                    // JN: Original idle mode
+                    if (badge.HoursPlayed >= 2 && badge.InIdle)
+                        badge.StopIdle();
 
-                if (badge.HoursPlayed < 2 && CanIdleBadges.Count(b => b.InIdle) < 30)
-                    badge.Idle();
+                    if (badge.HoursPlayed < 2 && CanIdleBadges.Count(b => b.InIdle) < 30)
+                        badge.Idle();
+                }
+                else
+                {
+                    // JN: Fast mode (still limit to 30 (?))
+                    if (CanIdleBadges.Count(b => b.InIdle) < 30)
+                        badge.Idle();
+                }
+                
             }
 
             RefreshGamesStateListView();
@@ -223,10 +236,21 @@ namespace IdleMaster
                         }
                         else
                         {
-                            var multi = CanIdleBadges.Where(b => b.HoursPlayed < 2);
+                            // JN: Check if fastMode, start multi-dile, no matter the times
+                            // Idle simultaneous 5 minutes, stop, wait 1 min, idle games individually 10 sec, change back to simultaneous 30 min
+                            // var multi = CanIdleBadges.Where(b => b.HoursPlayed < 2);
+                            var multi = CanIdleBadges.Where(b => (b.HoursPlayed < 2 || Settings.Default.fastMode)); // JN: If fast mode, ignore simultaneous times
                             if (multi.Count() >= 2)
                             {
-                                StartMultipleIdle();
+                                // Idle multiple games at the same time
+                                if (Settings.Default.fastMode)
+                                {
+                                    StartFastIdleSimultaneous();
+                                }
+                                else
+                                {
+                                    StartMultipleIdle();
+                                }
                             }
                             else
                             {
@@ -306,6 +330,7 @@ namespace IdleMaster
 
         public void StartMultipleIdle()
         {
+            // Start the idling processes
             UpdateIdleProcesses();
 
             // Update label controls
@@ -343,6 +368,42 @@ namespace IdleMaster
             Height = Convert.ToInt32(scale);
         }
 
+        /// <summary>
+        /// FAST MODE: Idle simultaneous 5 minutes
+        /// </summary>
+        public void StartFastIdleSimultaneous()
+        {
+            // Start the simultaneous idling processes
+            StartMultipleIdle();                // Start simultaneous idling (max 30 games at once?)
+            TimeLeft = 5 * 60;                  // Time before switching to individual idling (fast mode)
+        }
+
+        /// <summary>
+        /// FAST MODE: Stop (simultaneous idling), wait, idle games individually 10 sec, change back to simultaneous idling
+        /// </summary>
+        private async Task StartFastIdleIndividual()
+        {
+            // Stop the idling and wait for Steam to register the stop
+            StopIdle();                         // Stop the simultaneous idling games
+            lblCurrentStatus.Text = "Please wait...";
+            await Task.Delay(10 * 1000);        // Wait 10 sec
+
+            // Idle all games individually 10 sec each
+            foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
+            {
+                StartSoloIdle(badge);           // Idle current game
+                TimeLeft = 10;                  // Set the timer to 10 sec
+                await Task.Delay(10 * 1000);    // Wait 10 sec
+                StopIdle();                     // Stop idling before moving on to the next game
+                UpdateStateInfo();              // Update information labels
+            }
+
+            // Reset and go back to idling simultaneously
+            CurrentBadge = null;                // Resets the current badge
+            StartFastIdleSimultaneous();        // Start the simultaneous idling
+            TimeLeft = 15 * 60;                 // Time before the next individual idling (fast mode)
+        }
+
         private void RefreshGamesStateListView()
         {
             GamesState.Items.Clear();
@@ -351,6 +412,13 @@ namespace IdleMaster
                 var line = new ListViewItem(badge.Name);
                 line.SubItems.Add(badge.HoursPlayed.ToString());
                 GamesState.Items.Add(line);
+            }
+
+            // JN: Recolor the listview
+            if (Settings.Default.customTheme)
+            {
+                GamesState.BackColor = Color.FromArgb(38, 38, 38);
+                GamesState.ForeColor = Color.FromArgb(196, 196, 196);
             }
         }
 
@@ -561,6 +629,7 @@ namespace IdleMaster
             UpdateStateInfo();
         }
 
+        // CONSTRUCTOR
         public frmMain()
         {
             InitializeComponent();
@@ -718,6 +787,115 @@ namespace IdleMaster
             lnkSignIn.Location = point;
             point = new Point(Convert.ToInt32(graphics.DpiX * 2.15), Convert.ToInt32(lnkResetCookies.Location.Y));
             lnkResetCookies.Location = point;
+
+            runtimeCustomThemeMain(); // JN: Apply the dark theme
+        }
+
+        /// <summary>
+        /// Changes the color of the main window components to match a Steam-like dark theme
+        /// </summary> 
+        private void runtimeCustomThemeMain()
+        {
+            // Read settings
+            var customTheme = Settings.Default.customTheme;
+            var whiteIcons = Settings.Default.whiteIcons;
+
+            // Define colors
+            FlatStyle buttonStyle = customTheme ? FlatStyle.Flat : FlatStyle.Standard;
+            Color colorBgd = customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+            Color colorTxt = customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
+
+            // --------------------------
+            // -- APPLY THEME SETTINGS --
+            // --------------------------
+
+            // Main frame window
+            this.BackColor = colorBgd;
+            this.ForeColor = colorTxt;
+
+            // Link colors
+            lnkSignIn.LinkColor = lnkResetCookies.LinkColor = lblCurrentRemaining.ForeColor = lblGameName.ForeColor = customTheme ? Color.GhostWhite : Color.Blue;
+
+            // ToolStripMenu Top
+            mnuTop.BackColor = colorBgd;
+            mnuTop.ForeColor = colorTxt;
+
+            // ToolStripMenuItem and the ToolStripMenuItem dropdowns
+            foreach (ToolStripMenuItem item in mnuTop.Items)
+            {
+                // Menu item coloring
+                item.BackColor = colorBgd;
+                item.ForeColor = colorTxt;
+
+                // Dropdown coloring
+                item.DropDown.BackColor = colorBgd;
+                item.DropDown.ForeColor = colorTxt;
+            }
+
+            // Game state list (needs to be colored in RefreshGamesStateListView)
+            GamesState.BackColor = colorBgd;
+            GamesState.ForeColor = colorTxt;
+
+            // Progress bar
+            if (customTheme)
+            {
+                pbIdle.BackColor = Color.Red;
+                pbIdle.ForeColor = Color.Blue;
+            }
+            
+            // lblTimer
+            lblTimer.BackColor = colorBgd;
+            lblTimer.ForeColor = colorTxt;
+
+            // toolStripStatusLabel1
+            toolStripStatusLabel1.BackColor = colorBgd;
+
+            // Footer
+            ssFooter.BackColor = colorBgd;
+
+            // Buttons
+            btnPause.FlatStyle = btnResume.FlatStyle = btnSkip.FlatStyle = buttonStyle;
+            btnPause.BackColor = btnResume.BackColor = btnSkip.BackColor = colorBgd;
+            btnPause.ForeColor = btnResume.ForeColor = btnSkip.ForeColor = colorTxt;
+
+            // Icon images
+            runtimeCustomIcons();
+        }
+
+        /// <summary>
+        /// Replaces the main frame window images with white ones for the dark theme
+        /// </summary> 
+        private void runtimeCustomIcons()
+        {
+            var customTheme = Settings.Default.customTheme;
+            var whiteIcons = Settings.Default.whiteIcons;
+
+            // TOOL STRIP MENU ITEMS
+            // File
+            settingsToolStripMenuItem.Image = whiteIcons ? Resources.imgSettings_w : Resources.imgSettings;
+            blacklistToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
+            exitToolStripMenuItem.Image = whiteIcons ? Resources.imgExit_w : Resources.imgExit;
+            // Game
+            pauseIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPause_w : Resources.imgPause;
+            resumeIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPlay_w : Resources.imgPlay;
+            skipGameToolStripMenuItem.Image = whiteIcons ? Resources.imgSkip_w : Resources.imgSkip;
+            blacklistCurrentGameToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
+            // Help
+            statisticsToolStripMenuItem.Image = whiteIcons ? Resources.imgStatistics_w : Resources.imgStatistics;
+            changelogToolStripMenuItem.Image = whiteIcons ? Resources.imgDocument_w : Resources.imgDocument;
+            officialGroupToolStripMenuItem.Image = whiteIcons ? Resources.imgGlobe_w : Resources.imgGlobe;
+            aboutToolStripMenuItem.Image = whiteIcons ? Resources.imgInfo_w : Resources.imgInfo;
+
+            // STATUS
+            // Handled in respective tick drawing functions
+
+            // BUTTONS
+            btnPause.Image = whiteIcons ? Resources.imgPauseSmall_w : Resources.imgPauseSmall;
+            btnResume.Image = whiteIcons ? Resources.imgPlaySmall_w : Resources.imgPlaySmall;
+            btnSkip.Image = whiteIcons ? Resources.imgSkipSmall_w : Resources.imgSkipSmall;
+
+            // LOADING GIF
+            //
         }
 
         private void frmMain_FormClose(object sender, FormClosedEventArgs e)
@@ -727,11 +905,17 @@ namespace IdleMaster
 
         private void tmrCheckCookieData_Tick(object sender, EventArgs e)
         {
+            // JN: White icons
+            var whiteIcons = Settings.Default.whiteIcons;
+            var imgFalse = whiteIcons ? Resources.imgFalse_w : Resources.imgFalse;
+            var imgTrue = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
+            runtimeCustomThemeMain();
+
             var connected = !string.IsNullOrWhiteSpace(Settings.Default.sessionid) && !string.IsNullOrWhiteSpace(Settings.Default.steamLogin);
 
             lblCookieStatus.Text = connected ? localization.strings.idle_master_connected : localization.strings.idle_master_notconnected;
-            lblCookieStatus.ForeColor = connected ? Color.Green : Color.Black;
-            picCookieStatus.Image = connected ? Resources.imgTrue : Resources.imgFalse;
+            lblCookieStatus.ForeColor = connected ? Color.Green : this.ForeColor; // JN: Changed the color of "not connected" message
+            picCookieStatus.Image = connected ? imgTrue : imgFalse; // JN: Supports dark theme
             lnkSignIn.Visible = !connected;
             lnkResetCookies.Visible = connected;
             IsCookieReady = connected;
@@ -739,10 +923,15 @@ namespace IdleMaster
 
         private void tmrCheckSteam_Tick(object sender, EventArgs e)
         {
+            // JN: White icons
+            var whiteIcons = Settings.Default.whiteIcons;
+            var imgFalse = whiteIcons ? Resources.imgFalse_w : Resources.imgFalse;
+            var imgTrue = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
+
             var isSteamRunning = SteamAPI.IsSteamRunning() || Settings.Default.ignoreclient;
             lblSteamStatus.Text = isSteamRunning ? (Settings.Default.ignoreclient ? localization.strings.steam_ignored : localization.strings.steam_running) : localization.strings.steam_notrunning;
-            lblSteamStatus.ForeColor = isSteamRunning ? Color.Green : Color.Black;
-            picSteamStatus.Image = isSteamRunning ? Resources.imgTrue : Resources.imgFalse;
+            lblSteamStatus.ForeColor = isSteamRunning ? Color.Green : this.ForeColor; // JN: Changed color of the not connected status
+            picSteamStatus.Image = isSteamRunning ? imgTrue : imgFalse; // JN: Supports dark theme
             tmrCheckSteam.Interval = isSteamRunning ? 5000 : 500;
             skipGameToolStripMenuItem.Enabled = isSteamRunning;
             pauseIdlingToolStripMenuItem.Enabled = isSteamRunning;
@@ -859,11 +1048,20 @@ namespace IdleMaster
                 if (isMultipleIdle)
                 {
                     await LoadBadgesAsync();
-                    UpdateIdleProcesses();
 
-                    isMultipleIdle = CanIdleBadges.Any(b => b.HoursPlayed < 2 && b.InIdle);
-                    if (isMultipleIdle)
-                        TimeLeft = 360;
+                    // If the fast mode is enabled, switch from simultaneous idling to individual idling
+                    if (Settings.Default.fastMode)
+                    {
+                        await StartFastIdleIndividual(); // JN: Switch from multiple idle to individual and then back to simultaneous
+                    }
+                    else
+                    {
+                        UpdateIdleProcesses();
+
+                        isMultipleIdle = CanIdleBadges.Any(b => b.HoursPlayed < 2 && b.InIdle);
+                        if (isMultipleIdle)
+                            TimeLeft = 360;
+                    }
                 }
 
                 // Check if user is authenticated and if any badge left to idle

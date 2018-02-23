@@ -105,6 +105,7 @@ namespace IdleMaster
             UpdateStats(remaining, hours);
         }
 
+        // CONSTRUCTOR
         public Badge()
         { }
     }
