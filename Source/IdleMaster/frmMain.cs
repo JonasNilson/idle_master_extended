@@ -103,14 +103,14 @@ namespace IdleMaster
             }
         }
 
-        // JN: This is where the simultaneous idling is started (??)
         public void UpdateIdleProcesses()
         {
+            // JN: Loop through all badges that can be idled (still has card drops)
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
             {
                 if(!Settings.Default.fastMode)
                 {
-                    // Original idle mode
+                    // JN: Original idle mode
                     if (badge.HoursPlayed >= 2 && badge.InIdle)
                         badge.StopIdle();
 
@@ -119,7 +119,7 @@ namespace IdleMaster
                 }
                 else
                 {
-                    // Fast mode! (still limit to 30 (?))
+                    // JN: Fast mode (still limit to 30 (?))
                     if (CanIdleBadges.Count(b => b.InIdle) < 30)
                         badge.Idle();
                 }
@@ -368,41 +368,40 @@ namespace IdleMaster
             Height = Convert.ToInt32(scale);
         }
 
-        // FAST MODE: Idle simultaneous 5 minutes, stop, wait 1 min, idle games individually 10 sec, change back to simultaneous 30 min
+        /// <summary>
+        /// FAST MODE: Idle simultaneous 5 minutes
+        /// </summary>
         public void StartFastIdleSimultaneous()
         {
-            // Start the idling processes
-            //UpdateIdleProcesses();
-            StartMultipleIdle();
-
-            // Reset the timer (5 minutes)
-            TimeLeft = 300; // Is set to 360 in StartMultipleIdle(), resets here
+            // Start the simultaneous idling processes
+            StartMultipleIdle();                // Start simultaneous idling (max 30 games at once?)
+            TimeLeft = 5 * 60;                  // Time before switching to individual idling (fast mode)
         }
 
+        /// <summary>
+        /// FAST MODE: Stop (simultaneous idling), wait, idle games individually 10 sec, change back to simultaneous idling
+        /// </summary>
         private async Task StartFastIdleIndividual()
         {
-            // Stop the simultaneous idling games
-            StopIdle();
+            // Stop the idling and wait for Steam to register the stop
+            StopIdle();                         // Stop the simultaneous idling games
+            lblCurrentStatus.Text = "Please wait...";
+            await Task.Delay(10 * 1000);        // Wait 10 sec
 
-            // Wait 10 sec
-            await Task.Delay(10 * 1000);
-
-            // Idle games individually 10 sec each
+            // Idle all games individually 10 sec each
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
             {
-                StartSoloIdle(badge); // Idle current game
-                await Task.Delay(10 * 1000); // Wait 10 sec
-                NextIdle(); // Idle next game
+                StartSoloIdle(badge);           // Idle current game
+                TimeLeft = 10;                  // Set the timer to 10 sec
+                await Task.Delay(10 * 1000);    // Wait 10 sec
+                StopIdle();                     // Stop idling before moving on to the next game
+                UpdateStateInfo();              // Update information labels
             }
 
-            StopIdle();
-            CurrentBadge = null; // Resets the current badge to avoid idling all other badges but the last badge
-            //UpdateIdleProcesses(); // Starts the simultaneous idling again
-            // Go back to 30 min of idling (games typically drop in 30 min intervals)
-            StartFastIdleSimultaneous();
-            TimeLeft = 30 * 60;
-
-            // Hopefully this works okay
+            // Reset and go back to idling simultaneously
+            CurrentBadge = null;                // Resets the current badge
+            StartFastIdleSimultaneous();        // Start the simultaneous idling
+            TimeLeft = 15 * 60;                 // Time before the next individual idling (fast mode)
         }
 
         private void RefreshGamesStateListView()
@@ -415,8 +414,8 @@ namespace IdleMaster
                 GamesState.Items.Add(line);
             }
 
-            // JN: Recolor the listview...
-            if (Properties.Settings.Default.customTheme)
+            // JN: Recolor the listview
+            if (Settings.Default.customTheme)
             {
                 GamesState.BackColor = Color.FromArgb(38, 38, 38);
                 GamesState.ForeColor = Color.FromArgb(196, 196, 196);
@@ -1049,19 +1048,19 @@ namespace IdleMaster
                 if (isMultipleIdle)
                 {
                     await LoadBadgesAsync();
-                    UpdateIdleProcesses();
 
-                    isMultipleIdle = CanIdleBadges.Any(b => b.HoursPlayed < 2 && b.InIdle);
-                    if (isMultipleIdle)
+                    // If the fast mode is enabled, switch from simultaneous idling to individual idling
+                    if (Settings.Default.fastMode)
                     {
-                        if(Settings.Default.fastMode)
-                        {
-                            StartFastIdleIndividual();
-                        }
-                        else
-                        {
+                        await StartFastIdleIndividual(); // JN: Switch from multiple idle to individual and then back to simultaneous
+                    }
+                    else
+                    {
+                        UpdateIdleProcesses();
+
+                        isMultipleIdle = CanIdleBadges.Any(b => b.HoursPlayed < 2 && b.InIdle);
+                        if (isMultipleIdle)
                             TimeLeft = 360;
-                        }
                     }
                 }
 
