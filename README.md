@@ -1,4 +1,18 @@
-**NOTE**: This is a fork of the original IdleMaster (**discontinued**) master branch. There are no guarantees for this version of the software to work and Valve may update how the Steam API functions, how cards are dropped while playing games, how badges are crafted, etc.
+**IDLE MASTER EXTENDED**
+
+This is a fork of the original IdleMaster (**discontinued**) master branch, with a few extensions:
+
+* **Fast mode** (File > Settings > Fast mode): Get your cards faster by automagically switching between simultaneous and individual idling (based on: https://steamcommunity.com/groups/idlemastery/discussions/0/1485487749771924917/)
+<p align="center">
+  <img src ="https://i.imgur.com/5DSvi3e.jpg"/>
+</p>
+
+* **Dark theme** (File > Settings > Dark theme): Applies color changes to several of the interface components to better match the Steam interface color scheme.
+<p align="center">
+  <img src ="https://i.imgur.com/qitDMjm.png"/>
+</p>
+
+*The following was included in the original Idle Master README:*
 
 Idle Master
 ===========

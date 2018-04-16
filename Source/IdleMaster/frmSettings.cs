@@ -51,18 +51,23 @@ namespace IdleMaster
         {
             Settings.Default.OnlyOneGameIdle = false;
             Settings.Default.OneThenMany = true;
+            Settings.Default.fastMode = false; // Disable fast mode
         }
         else
         {
             Settings.Default.OnlyOneGameIdle = radOneGameOnly.Checked && !radManyThenOne.Checked;
             Settings.Default.OneThenMany = false;
 
-                // JN: Check fast mode
-                if (radFastMode.Checked)
-                {
-                    Settings.Default.OnlyOneGameIdle = false;
-                    Settings.Default.fastMode = true;
-                }
+            // JN: Enable/disable fast mode
+            if (radFastMode.Checked)
+            {
+                Settings.Default.OnlyOneGameIdle = false;
+                Settings.Default.fastMode = true;
+            }
+            else
+            {
+                Settings.Default.fastMode = false;
+            }
         }        
         Settings.Default.minToTray = chkMinToTray.Checked;
         Settings.Default.ignoreclient = chkIgnoreClientStatus.Checked;
@@ -136,8 +141,12 @@ namespace IdleMaster
         radIdleLeastDrops.Text = localization.strings.order_least;
         ttHints.SetToolTip(radIdleLeastDrops, localization.strings.order_least);
         lblLanguage.Text = localization.strings.interface_language;
-
-        if (Settings.Default.OneThenMany)
+        
+        if (Settings.Default.fastMode)
+        {
+            radFastMode.Checked = true;
+        }
+        else if (Settings.Default.OneThenMany)
         {
             radOneThenMany.Checked = true;
         }
@@ -149,17 +158,17 @@ namespace IdleMaster
 
         if (Settings.Default.minToTray)
         {
-        chkMinToTray.Checked = true;
+            chkMinToTray.Checked = true;
         }
 
         if (Settings.Default.ignoreclient)
         {
-        chkIgnoreClientStatus.Checked = true;
+            chkIgnoreClientStatus.Checked = true;
         }
 
         if (Settings.Default.showUsername)
         {
-        chkShowUsername.Checked = true;
+            chkShowUsername.Checked = true;
         }
 
         runtimeCustomThemeSettings(); // JN: Apply theme colors and icons

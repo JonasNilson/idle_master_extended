@@ -157,7 +157,7 @@
     <value>ώρες στη καταγραφή</value>
   </data>
   <data name="idle_master_connected" xml:space="preserve">
-    <value>Idle Master συνδέεται με Steam</value>
+    <value>Το Idle Master συνδέθηκε με το Steam</value>
   </data>
   <data name="idle_master_notconnected" xml:space="preserve">
     <value>Το Idle Master δεν είναι συνδεδεμένο με το Steam</value>
@@ -205,7 +205,7 @@
     <value>&amp;Ρυθμίσεις</value>
   </data>
   <data name="signed_in_as" xml:space="preserve">
-    <value>Συνδεθείτε ως</value>
+    <value>Συνδεθήκατε ως</value>
   </data>
   <data name="sign_in" xml:space="preserve">
     <value>Σύνδεση</value>
