@@ -14,12 +14,6 @@ This is a fork of the original IdleMaster (**discontinued**) master branch, with
 
 *The following was included in the original Idle Master README:*
 
-**Extended UI**: Added the possibility to change the UI colors (dark theme) and icon colors (black or white). The theme can be changed at runtime throught the Settings menu (File -> Settings -> Dark theme / White icons).
-
-<p align="center">
-  <img src ="https://i.imgur.com/gJZW5Bx.png"/>
-</p>
-
 Idle Master
 ===========
 
