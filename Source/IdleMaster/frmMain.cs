@@ -814,7 +814,7 @@ namespace IdleMaster
             this.ForeColor = colorTxt;
 
             // Link colors
-            lnkSignIn.LinkColor = lnkResetCookies.LinkColor = lblCurrentRemaining.ForeColor = lblGameName.ForeColor = customTheme ? Color.GhostWhite : Color.Blue;
+            lnkSignIn.LinkColor = lnkResetCookies.LinkColor = lblCurrentRemaining.ForeColor = lblGameName.LinkColor = customTheme ? Color.GhostWhite : Color.Blue;
 
             // ToolStripMenu Top
             mnuTop.BackColor = colorBgd;
