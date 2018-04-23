@@ -956,6 +956,7 @@ namespace IdleMaster
             // Clear the settings
             Settings.Default.sessionid = string.Empty;
             Settings.Default.steamLogin = string.Empty;
+            Settings.Default.steamLoginSecure = string.Empty;
             Settings.Default.myProfileURL = string.Empty;
             Settings.Default.steamparental = string.Empty;
             Settings.Default.Save();
