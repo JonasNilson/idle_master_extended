@@ -63,8 +63,12 @@ namespace IdleMaster
 
       // Get the URL of the page that just finished loading
       var url = wbAuth.Url.AbsoluteUri;
-
-      lblWebBrowser.Text = wbAuth.Url.AbsoluteUri + " ---> Authority: " + wbAuth.Url.Authority + " ---> Encryption level: " + wbAuth.EncryptionLevel; // JN: Display URL and URL info
+      
+      // JN: The following extracts and displays information about the browser URL, domain, and protocol (https)
+      pbWebBrowserLock.Image = wbAuth.Url.Scheme == "https" ? Resources.imgLock_w : Resources.imgLock;
+      lblWebBrowserAuth.Text = wbAuth.Document.Domain + " (" + wbAuth.Url.Scheme + ")"; //wbAuth.Url.Authority; // JN: Display DNS hostname
+      if (wbAuth.Url.Scheme == "https") { lblWebBrowserAuth.BackColor = System.Drawing.Color.FromArgb(126, 166, 75); lblWebBrowserAuth.ForeColor = System.Drawing.Color.FromArgb(38, 38, 38); }
+      lblWebBrowser.Text = wbAuth.Url.AbsoluteUri; // JN: Display URL
 
       // If the page it just finished loading is the login page
       if (url == "https://steamcommunity.com/login/home/?goto=my/profile" ||
