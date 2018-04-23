@@ -243,7 +243,6 @@
     <None Include="Resources\x-2x.png" />
     <None Include="Resources\cog-2x.png" />
     <None Include="Resources\check-2x.png" />
-    <EmbeddedResource Include="Resources\CSteamworks.dll" />
     <None Include="Resources\power-standby-2x.png" />
     <None Include="Resources\info-2x.png" />
     <None Include="Resources\media-pause-2x.png" />

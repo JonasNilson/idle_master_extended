@@ -37,6 +37,7 @@ namespace IdleMaster
                     {
                         Settings.Default.sessionid = string.Empty;
                         Settings.Default.steamLogin = string.Empty;
+                        Settings.Default.steamLoginSecure = string.Empty;
                         Settings.Default.steamparental = string.Empty;
                         Settings.Default.steamMachineAuth = string.Empty;
                         Settings.Default.steamRememberLogin = string.Empty;
@@ -57,9 +58,10 @@ namespace IdleMaster
         public static CookieContainer GenerateCookies()
         {
             var cookies = new CookieContainer();
-            var target = new Uri("http://steamcommunity.com");
+            var target = new Uri("https://steamcommunity.com");
             cookies.Add(new Cookie("sessionid", Settings.Default.sessionid) { Domain = target.Host });
             cookies.Add(new Cookie("steamLogin", Settings.Default.steamLogin) { Domain = target.Host });
+            cookies.Add(new Cookie("steamLoginSecure", Settings.Default.steamLoginSecure) { Domain = target.Host });
             cookies.Add(new Cookie("steamparental", Settings.Default.steamparental) { Domain = target.Host });
             cookies.Add(new Cookie("steamRememberLogin", Settings.Default.steamRememberLogin) { Domain = target.Host });
             cookies.Add(new Cookie(GetSteamMachineAuthCookieName(), Settings.Default.steamMachineAuth) { Domain = target.Host });
