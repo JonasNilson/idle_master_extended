@@ -106,7 +106,8 @@ namespace IdleMaster
         public void UpdateIdleProcesses()
         {
             // JN: Loop through all badges that can be idled (still has card drops)
-            foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
+            //foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
+            foreach (var badge in CanIdleBadges)
             {
                 if(!Settings.Default.fastMode)
                 {
@@ -308,7 +309,7 @@ namespace IdleMaster
             ssFooter.Visible = true;
 
             // Start the animated "working" gif
-            picIdleStatus.Image = Resources.imgSpin;
+            picIdleStatus.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             // Start the timer that will check if drops remain
             tmrCardDropCheck.Enabled = true;
@@ -343,7 +344,7 @@ namespace IdleMaster
             gameToolStripMenuItem.Enabled = false;
 
             // Start the animated "working" gif
-            picIdleStatus.Image = Resources.imgSpin;
+            picIdleStatus.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             // Start the timer that will check if drops remain
             tmrCardDropCheck.Enabled = true;
@@ -416,11 +417,8 @@ namespace IdleMaster
             }
 
             // JN: Recolor the listview
-            if (Settings.Default.customTheme)
-            {
-                GamesState.BackColor = Color.FromArgb(38, 38, 38);
-                GamesState.ForeColor = Color.FromArgb(196, 196, 196);
-            }
+            GamesState.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+            GamesState.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
         }
 
         public void StopIdle()
@@ -470,7 +468,8 @@ namespace IdleMaster
 
             lblGameName.Visible = false;
             btnPause.Visible = false;
-            btnSkip.Visible = false;
+            btnSkip.Visible = true;
+            // TODO: Refresh button?
 
             // Resize the form
             var graphics = CreateGraphics();
@@ -487,6 +486,9 @@ namespace IdleMaster
             var pages = new List<string>() { "?p=1" };
             var document = new HtmlDocument();
             int pagesCount = 1;
+
+            // Adjust the spinner gif based on the current color theme
+            picReadingPage.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             try
             {
@@ -1070,13 +1072,24 @@ namespace IdleMaster
             }
         }
 
-        private void btnSkip_Click(object sender, EventArgs e)
+        private async void btnSkip_Click(object sender, EventArgs e)
         {
             if (!IsSteamReady)
                 return;
 
             StopIdle();
             AllBadges.RemoveAll(b => Equals(b, CurrentBadge));
+            
+            if(!CanIdleBadges.Any())
+            {
+                // If there are no more games to idle, reload the badges
+                picReadingPage.Visible = true;
+                lblIdle.Visible = false;
+                lblDrops.Visible = true;
+                lblDrops.Text = localization.strings.reading_badge_page + ", " + localization.strings.please_wait;
+                await LoadBadgesAsync();
+            }
+
             StartIdle();
         }
 

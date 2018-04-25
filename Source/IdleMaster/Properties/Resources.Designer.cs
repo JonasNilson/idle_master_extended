@@ -363,6 +363,16 @@ namespace IdleMaster.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap imgSpinInv {
+            get {
+                object obj = ResourceManager.GetObject("imgSpinInv", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap imgStatistics {
             get {
                 object obj = ResourceManager.GetObject("imgStatistics", resourceCulture);
