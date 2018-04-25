@@ -9,7 +9,7 @@ This is a fork of the original IdleMaster (**discontinued**) master branch, with
 
 * **Dark theme** (File > Settings > Dark theme): Applies color changes to several of the interface components to better match the Steam interface color scheme.
 <p align="center">
-  <img src ="https://i.imgur.com/qitDMjm.png"/>
+  <img src ="https://i.imgur.com/TbT8kNq.png"/>
 </p>
 
 *The following was included in the original Idle Master README:*
