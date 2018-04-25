@@ -386,8 +386,10 @@ namespace IdleMaster
         {
             // Stop the idling and wait for Steam to register the stop
             StopIdle();                         // Stop the simultaneous idling games
-            lblCurrentStatus.Text = "Please wait...";
+            lblCurrentStatus.Text = localization.strings.please_wait;
+            lblIdle.Visible = lblDrops.Visible = false;
             await Task.Delay(10 * 1000);        // Wait 10 sec
+            lblIdle.Visible = lblDrops.Visible = true;
 
             // Idle all games individually 10 sec each
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
@@ -1044,6 +1046,10 @@ namespace IdleMaster
                 var isMultipleIdle = CanIdleBadges.Any(b => !Equals(b, CurrentBadge) && b.InIdle);
                 if (isMultipleIdle)
                 {
+                    lblDrops.Visible = true;
+                    lblDrops.Text = localization.strings.reading_badge_page + ", " + localization.strings.please_wait;
+                    lblIdle.Visible = false;
+                    picReadingPage.Visible = true;
                     await LoadBadgesAsync();
 
                     // If the fast mode is enabled, switch from simultaneous idling to individual idling
