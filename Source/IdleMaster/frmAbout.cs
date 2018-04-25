@@ -21,7 +21,15 @@ namespace IdleMaster
     {
       // Localize the form
       btnOK.Text = localization.strings.ok;
-        
+
+      // Color text and background according to the current theme
+      var defSettings = Properties.Settings.Default;
+      this.BackColor = defSettings.customTheme ? defSettings.colorBgd : defSettings.colorBgdOriginal;
+      this.ForeColor = defSettings.customTheme ? defSettings.colorTxt : defSettings.colorTxtOriginal;
+      FlatStyle buttonStyle = defSettings.customTheme ? FlatStyle.Flat : FlatStyle.Standard;
+      btnOK.FlatStyle = buttonStyle; btnOK.BackColor = this.BackColor; btnOK.ForeColor = this.ForeColor; 
+      
+
       if (ApplicationDeployment.IsNetworkDeployed)
       {
         var version = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();

@@ -32,6 +32,20 @@ namespace IdleMaster
       this.Text = localization.strings.auth_data;
       ttHelp.SetToolTip(btnView, localization.strings.cookie_warning);
 
+      // Read settings
+      var customTheme = Settings.Default.customTheme;
+      var whiteIcons = Settings.Default.whiteIcons;
+
+      // Define colors
+      this.BackColor = customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+      this.ForeColor = customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
+
+      // Buttons
+      FlatStyle buttonStyle = customTheme ? FlatStyle.Flat : FlatStyle.Standard;
+      btnView.FlatStyle = btnUpdate.FlatStyle = buttonStyle;
+      btnView.BackColor = btnUpdate.BackColor = this.BackColor;
+      btnView.ForeColor = btnUpdate.ForeColor = this.ForeColor;
+      btnView.Image = customTheme ? Resources.imgView_w : Resources.imgView;
         
       if (!string.IsNullOrWhiteSpace(Settings.Default.sessionid))
       {

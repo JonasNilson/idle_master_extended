@@ -40,6 +40,9 @@ namespace IdleMaster
 
       // When the form is loaded, navigate to the Steam login page using the web browser control
       wbAuth.Navigate("https://steamcommunity.com/login/home/?goto=my/profile", "_self", null, "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko");
+
+      this.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+      this.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
     }
 
     // This code block executes each time a new document is loaded into the web browser control
@@ -69,6 +72,7 @@ namespace IdleMaster
       lblWebBrowserAuth.Text = wbAuth.Document.Domain + " (" + wbAuth.Url.Scheme + ")"; //wbAuth.Url.Authority; // JN: Display DNS hostname
       if (wbAuth.Url.Scheme == "https") { lblWebBrowserAuth.BackColor = System.Drawing.Color.FromArgb(126, 166, 75); lblWebBrowserAuth.ForeColor = System.Drawing.Color.FromArgb(38, 38, 38); }
       lblWebBrowser.Text = wbAuth.Url.AbsoluteUri; // JN: Display URL
+      pictureBox1.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
       // If the page it just finished loading is the login page
       if (url == "https://steamcommunity.com/login/home/?goto=my/profile" ||
@@ -206,6 +210,8 @@ namespace IdleMaster
     // This code executes each time the web browser control is in the process of navigating
     private void wbAuth_Navigating(object sender, WebBrowserNavigatingEventArgs e)
     {
+      pbWebBrowserLock.Visible = lblWebBrowserAuth.Visible = lblWebBrowser.Visible = false; // Hide the lock, protocol/auth and url
+
       // Get the url that's being navigated to
       var url = e.Url.AbsoluteUri;
 

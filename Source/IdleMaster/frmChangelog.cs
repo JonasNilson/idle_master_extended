@@ -15,8 +15,11 @@ namespace IdleMaster
     {
       // Localize Form
       this.Text = localization.strings.release_notes_title;
-
+      
       rtbChangelog.Rtf = Resources.Changelog;
+
+      rtbChangelog.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+      rtbChangelog.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
     }
   }
 }
