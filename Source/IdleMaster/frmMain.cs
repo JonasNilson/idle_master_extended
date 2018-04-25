@@ -303,8 +303,8 @@ namespace IdleMaster
             lblHoursPlayed.Text = CurrentBadge.HoursPlayed + " " + localization.strings.hrs_on_record;
 
             // Set progress bar values and show the footer
-            pbIdle.Maximum = CurrentBadge.RemainingCard;
-            pbIdle.Value = 0;
+            pbIdle.Maximum = CardsRemaining > pbIdle.Maximum ? CardsRemaining : pbIdle.Maximum;//CurrentBadge.RemainingCard;
+            //pbIdle.Value = 0;
             ssFooter.Visible = true;
 
             // Start the animated "working" gif
@@ -396,6 +396,7 @@ namespace IdleMaster
                 await Task.Delay(10 * 1000);    // Wait 10 sec
                 StopIdle();                     // Stop idling before moving on to the next game
                 UpdateStateInfo();              // Update information labels
+                pbIdle.Value = pbIdle.Maximum - CardsRemaining;
             }
 
             // Reset and go back to idling simultaneously
@@ -624,7 +625,7 @@ namespace IdleMaster
             }
 
             lblCurrentRemaining.Text = badge.RemainingCard + " " + localization.strings.card_drops_remaining;
-            pbIdle.Value = pbIdle.Maximum - badge.RemainingCard;
+            pbIdle.Value = pbIdle.Maximum - CardsRemaining; //badge.RemainingCard;
             lblHoursPlayed.Text = badge.HoursPlayed + " " + localization.strings.hrs_on_record;
             UpdateStateInfo();
         }
@@ -835,13 +836,6 @@ namespace IdleMaster
             // Game state list (needs to be colored in RefreshGamesStateListView)
             GamesState.BackColor = colorBgd;
             GamesState.ForeColor = colorTxt;
-
-            // Progress bar
-            if (customTheme)
-            {
-                pbIdle.BackColor = Color.Red;
-                pbIdle.ForeColor = Color.Blue;
-            }
             
             // lblTimer
             lblTimer.BackColor = colorBgd;

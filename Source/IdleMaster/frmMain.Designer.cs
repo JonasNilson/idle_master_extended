@@ -380,8 +380,10 @@ namespace IdleMaster
             // 
             // pbIdle
             // 
+            this.pbIdle.Maximum = 1;
             this.pbIdle.Name = "pbIdle";
             this.pbIdle.Size = new System.Drawing.Size(130, 16);
+            this.pbIdle.Step = 1;
             // 
             // toolStripStatusLabel1
             // 
