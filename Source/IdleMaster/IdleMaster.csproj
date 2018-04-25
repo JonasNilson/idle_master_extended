@@ -278,6 +278,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo1.ico" />
+    <None Include="Resources\select2-spinner_inverted.gif" />
     <None Include="Resources\green_lock_shadow.png" />
     <None Include="Resources\x-2x_w.png" />
     <None Include="Resources\trash-2x_w.png" />

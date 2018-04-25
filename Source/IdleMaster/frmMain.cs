@@ -106,7 +106,8 @@ namespace IdleMaster
         public void UpdateIdleProcesses()
         {
             // JN: Loop through all badges that can be idled (still has card drops)
-            foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
+            //foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
+            foreach (var badge in CanIdleBadges)
             {
                 if(!Settings.Default.fastMode)
                 {
@@ -303,12 +304,12 @@ namespace IdleMaster
             lblHoursPlayed.Text = CurrentBadge.HoursPlayed + " " + localization.strings.hrs_on_record;
 
             // Set progress bar values and show the footer
-            pbIdle.Maximum = CurrentBadge.RemainingCard;
-            pbIdle.Value = 0;
+            pbIdle.Maximum = CardsRemaining > pbIdle.Maximum ? CardsRemaining : pbIdle.Maximum;//CurrentBadge.RemainingCard;
+            //pbIdle.Value = 0;
             ssFooter.Visible = true;
 
             // Start the animated "working" gif
-            picIdleStatus.Image = Resources.imgSpin;
+            picIdleStatus.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             // Start the timer that will check if drops remain
             tmrCardDropCheck.Enabled = true;
@@ -343,7 +344,7 @@ namespace IdleMaster
             gameToolStripMenuItem.Enabled = false;
 
             // Start the animated "working" gif
-            picIdleStatus.Image = Resources.imgSpin;
+            picIdleStatus.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             // Start the timer that will check if drops remain
             tmrCardDropCheck.Enabled = true;
@@ -385,8 +386,10 @@ namespace IdleMaster
         {
             // Stop the idling and wait for Steam to register the stop
             StopIdle();                         // Stop the simultaneous idling games
-            lblCurrentStatus.Text = "Please wait...";
+            lblCurrentStatus.Text = localization.strings.please_wait;
+            lblIdle.Visible = lblDrops.Visible = false;
             await Task.Delay(10 * 1000);        // Wait 10 sec
+            lblIdle.Visible = lblDrops.Visible = true;
 
             // Idle all games individually 10 sec each
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
@@ -396,6 +399,7 @@ namespace IdleMaster
                 await Task.Delay(10 * 1000);    // Wait 10 sec
                 StopIdle();                     // Stop idling before moving on to the next game
                 UpdateStateInfo();              // Update information labels
+                pbIdle.Value = pbIdle.Maximum - CardsRemaining;
             }
 
             // Reset and go back to idling simultaneously
@@ -415,11 +419,8 @@ namespace IdleMaster
             }
 
             // JN: Recolor the listview
-            if (Settings.Default.customTheme)
-            {
-                GamesState.BackColor = Color.FromArgb(38, 38, 38);
-                GamesState.ForeColor = Color.FromArgb(196, 196, 196);
-            }
+            GamesState.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+            GamesState.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
         }
 
         public void StopIdle()
@@ -469,7 +470,8 @@ namespace IdleMaster
 
             lblGameName.Visible = false;
             btnPause.Visible = false;
-            btnSkip.Visible = false;
+            btnSkip.Visible = true;
+            // TODO: Refresh button?
 
             // Resize the form
             var graphics = CreateGraphics();
@@ -486,6 +488,9 @@ namespace IdleMaster
             var pages = new List<string>() { "?p=1" };
             var document = new HtmlDocument();
             int pagesCount = 1;
+
+            // Adjust the spinner gif based on the current color theme
+            picReadingPage.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             try
             {
@@ -624,7 +629,7 @@ namespace IdleMaster
             }
 
             lblCurrentRemaining.Text = badge.RemainingCard + " " + localization.strings.card_drops_remaining;
-            pbIdle.Value = pbIdle.Maximum - badge.RemainingCard;
+            pbIdle.Value = pbIdle.Maximum - CardsRemaining; //badge.RemainingCard;
             lblHoursPlayed.Text = badge.HoursPlayed + " " + localization.strings.hrs_on_record;
             UpdateStateInfo();
         }
@@ -835,13 +840,6 @@ namespace IdleMaster
             // Game state list (needs to be colored in RefreshGamesStateListView)
             GamesState.BackColor = colorBgd;
             GamesState.ForeColor = colorTxt;
-
-            // Progress bar
-            if (customTheme)
-            {
-                pbIdle.BackColor = Color.Red;
-                pbIdle.ForeColor = Color.Blue;
-            }
             
             // lblTimer
             lblTimer.BackColor = colorBgd;
@@ -1048,6 +1046,10 @@ namespace IdleMaster
                 var isMultipleIdle = CanIdleBadges.Any(b => !Equals(b, CurrentBadge) && b.InIdle);
                 if (isMultipleIdle)
                 {
+                    lblDrops.Visible = true;
+                    lblDrops.Text = localization.strings.reading_badge_page + ", " + localization.strings.please_wait;
+                    lblIdle.Visible = false;
+                    picReadingPage.Visible = true;
                     await LoadBadgesAsync();
 
                     // If the fast mode is enabled, switch from simultaneous idling to individual idling
@@ -1076,13 +1078,24 @@ namespace IdleMaster
             }
         }
 
-        private void btnSkip_Click(object sender, EventArgs e)
+        private async void btnSkip_Click(object sender, EventArgs e)
         {
             if (!IsSteamReady)
                 return;
 
             StopIdle();
             AllBadges.RemoveAll(b => Equals(b, CurrentBadge));
+            
+            if(!CanIdleBadges.Any())
+            {
+                // If there are no more games to idle, reload the badges
+                picReadingPage.Visible = true;
+                lblIdle.Visible = false;
+                lblDrops.Visible = true;
+                lblDrops.Text = localization.strings.reading_badge_page + ", " + localization.strings.please_wait;
+                await LoadBadgesAsync();
+            }
+
             StartIdle();
         }
 
