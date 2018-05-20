@@ -22,6 +22,9 @@ namespace IdleMaster
     {
       // This initializes the components on the form
       InitializeComponent();
+
+      // TODO: Move this somewhere else (changes the loading spinner depending on the theme)
+      pictureBox1.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
     }
 
     private void frmBrowser_Load(object sender, EventArgs e)
@@ -36,6 +39,7 @@ namespace IdleMaster
       // Delete Steam cookie data from the browser control
       InternetSetCookie("https://steamcommunity.com", "sessionid", ";expires=Mon, 01 Jan 0001 00:00:00 GMT");
       InternetSetCookie("https://steamcommunity.com", "steamLogin", ";expires=Mon, 01 Jan 0001 00:00:00 GMT");
+      InternetSetCookie("https://steamcommunity.com", "steamLoginSecure", ";expires=Mon, 01 Jan 0001 00:00:00 GMT");
       InternetSetCookie("https://steamcommunity.com", "steamRememberLogin", ";expires=Mon, 01 Jan 0001 00:00:00 GMT");
 
       // When the form is loaded, navigate to the Steam login page using the web browser control
@@ -66,21 +70,8 @@ namespace IdleMaster
 
       // Get the URL of the page that just finished loading
       var url = wbAuth.Url.AbsoluteUri;
-      
-      // JN: The following extracts and displays information about the browser URL, domain, and protocol (https)
-      pbWebBrowserLock.Visible = lblWebBrowserAuth.Visible = lblWebBrowser.Visible = true; // Display the lock, protocol/auth and url
-      pbWebBrowserLock.Image = wbAuth.Url.Scheme == "https" ? Resources.imgLock_w : Resources.imgLock;
-      lblWebBrowserAuth.Text = wbAuth.Document.Domain + " (" + wbAuth.Url.Scheme + ")"; //wbAuth.Url.Authority; // JN: Display DNS hostname
-      if (wbAuth.Url.Scheme == "https") { lblWebBrowserAuth.BackColor = System.Drawing.Color.FromArgb(126, 166, 75); lblWebBrowserAuth.ForeColor = System.Drawing.Color.FromArgb(38, 38, 38); }
-      lblWebBrowser.Text = wbAuth.Url.AbsoluteUri; // JN: Display URL
-      pictureBox1.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
-      // Set the "Remember me" checkbox
-      dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
-      if(rememberMeCheckBox != null)
-      {
-        rememberMeCheckBox.Checked = true;
-      }
+      browserBarVisibility(true); // Display the browser bar (lock, protocol, url)
 
       // If the page it just finished loading is the login page
       if (url == "https://steamcommunity.com/login/home/?goto=my/profile" ||
@@ -95,11 +86,17 @@ namespace IdleMaster
               if (cookie.Name.StartsWith("steamMachineAuth"))
                   Settings.Default.steamMachineAuth = cookie.Value;
           }
+
+        // Set the "Remember me" checkbox
+        dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
+        if(rememberMeCheckBox != null)
+        {
+          rememberMeCheckBox.Checked = true;
+        }
       }
       // If the page it just finished loading isn't the login page
       else if (url.StartsWith("javascript:") == false && url.StartsWith("about:") == false)
       {
-
         try
         {
             dynamic parentalNotice = htmldoc.GetElementById("parental_notice");
@@ -164,6 +161,22 @@ namespace IdleMaster
       }
     }
 
+    // Extract and display information about the browser URL, protocol and domain
+    private void browserBarVisibility(bool visibility)
+    {
+      // Toggle visibility of the browser bar
+      pbWebBrowserLock.Visible = lblWebBrowserAuth.Visible = lblWebBrowser.Visible = visibility;
+
+      if(visibility)
+      {
+        // Update browser bar content
+        pbWebBrowserLock.Image = wbAuth.Url.Scheme == "https" ? Resources.imgLock_w : Resources.imgLock;
+        lblWebBrowserAuth.Text = wbAuth.Document.Domain + " (" + wbAuth.Url.Scheme + ")";
+        if (wbAuth.Url.Scheme == "https") { lblWebBrowserAuth.BackColor = System.Drawing.Color.FromArgb(126, 166, 75); lblWebBrowserAuth.ForeColor = System.Drawing.Color.FromArgb(38, 38, 38); }
+        lblWebBrowser.Text = wbAuth.Url.AbsoluteUri;
+      }
+    }
+
     // Imports the InternetGetCookieEx function from wininet.dll which allows the application to access the cookie data from the web browser control
     // Reference: http://stackoverflow.com/questions/3382498/is-it-possible-to-transfer-authentication-from-webbrowser-to-webrequest
     [DllImport("wininet.dll", SetLastError = true)]
@@ -218,8 +231,6 @@ namespace IdleMaster
     // This code executes each time the web browser control is in the process of navigating
     private void wbAuth_Navigating(object sender, WebBrowserNavigatingEventArgs e)
     {
-      pbWebBrowserLock.Visible = lblWebBrowserAuth.Visible = lblWebBrowser.Visible = false; // Hide the lock, protocol/auth and url
-
       // Get the url that's being navigated to
       var url = e.Url.AbsoluteUri;
 
