@@ -249,6 +249,8 @@ namespace IdleMaster
         var scaleX = graphics.DpiX * 2.84;
         Height = Convert.ToInt32(scaleY);
         Width = Convert.ToInt32(scaleX);
+
+        browserBarVisibility(false); // Hide the browser bar
       }
     }
 
