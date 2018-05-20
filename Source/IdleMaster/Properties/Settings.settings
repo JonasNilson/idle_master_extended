@@ -80,5 +80,8 @@
     <Setting Name="steamLoginSecure" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="colorSteamGreen" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">126, 166, 75</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

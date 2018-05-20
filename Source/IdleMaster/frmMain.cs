@@ -911,8 +911,10 @@ namespace IdleMaster
 
             var connected = !string.IsNullOrWhiteSpace(Settings.Default.sessionid) && !string.IsNullOrWhiteSpace(Settings.Default.steamLogin);
 
+            var colorGreen = Settings.Default.customTheme ? Settings.Default.colorSteamGreen : Color.Green; // Adjust the green depending on the theme
+            
             lblCookieStatus.Text = connected ? localization.strings.idle_master_connected : localization.strings.idle_master_notconnected;
-            lblCookieStatus.ForeColor = connected ? Color.Green : this.ForeColor; // JN: Changed the color of "not connected" message
+            lblCookieStatus.ForeColor = connected ? colorGreen : this.ForeColor; // JN: Changed the color of "not connected" message
             picCookieStatus.Image = connected ? imgTrue : imgFalse; // JN: Supports dark theme
             lnkSignIn.Visible = !connected;
             lnkResetCookies.Visible = connected;
@@ -926,9 +928,11 @@ namespace IdleMaster
             var imgFalse = whiteIcons ? Resources.imgFalse_w : Resources.imgFalse;
             var imgTrue = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
 
+            var colorGreen = Settings.Default.customTheme ? Settings.Default.colorSteamGreen : Color.Green; // Adjust the green depending on the theme
+            
             var isSteamRunning = SteamAPI.IsSteamRunning() || Settings.Default.ignoreclient;
             lblSteamStatus.Text = isSteamRunning ? (Settings.Default.ignoreclient ? localization.strings.steam_ignored : localization.strings.steam_running) : localization.strings.steam_notrunning;
-            lblSteamStatus.ForeColor = isSteamRunning ? Color.Green : this.ForeColor; // JN: Changed color of the not connected status
+            lblSteamStatus.ForeColor = isSteamRunning ? colorGreen : this.ForeColor; // JN: Changed color of the not connected status
             picSteamStatus.Image = isSteamRunning ? imgTrue : imgFalse; // JN: Supports dark theme
             tmrCheckSteam.Interval = isSteamRunning ? 5000 : 500;
             skipGameToolStripMenuItem.Enabled = isSteamRunning;

@@ -324,5 +324,17 @@ namespace IdleMaster.Properties {
                 this["steamLoginSecure"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("126, 166, 75")]
+        public global::System.Drawing.Color colorSteamGreen {
+            get {
+                return ((global::System.Drawing.Color)(this["colorSteamGreen"]));
+            }
+            set {
+                this["colorSteamGreen"] = value;
+            }
+        }
     }
 }

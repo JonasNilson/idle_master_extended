@@ -71,21 +71,21 @@ namespace IdleMaster
       // Get the URL of the page that just finished loading
       var url = wbAuth.Url.AbsoluteUri;
 
-      browserBarVisibility(true); // Display the browser bar (lock, protocol, url)
-
       // If the page it just finished loading is the login page
       if (url == "https://steamcommunity.com/login/home/?goto=my/profile" ||
           url == "https://store.steampowered.com/login/transfer" ||
           url == "https://store.steampowered.com//login/transfer")
       {
-          // Get a list of cookies from the current page
-          CookieContainer container = GetUriCookieContainer(wbAuth.Url);
-          var cookies = container.GetCookies(wbAuth.Url);
-          foreach (Cookie cookie in cookies)
-          {
-              if (cookie.Name.StartsWith("steamMachineAuth"))
-                  Settings.Default.steamMachineAuth = cookie.Value;
-          }
+        // Get a list of cookies from the current page
+        CookieContainer container = GetUriCookieContainer(wbAuth.Url);
+        var cookies = container.GetCookies(wbAuth.Url);
+        foreach (Cookie cookie in cookies)
+        {
+            if (cookie.Name.StartsWith("steamMachineAuth"))
+                Settings.Default.steamMachineAuth = cookie.Value;
+        }
+
+        browserBarVisibility(true); // Display the browser bar (lock, protocol, url)
 
         // Set the "Remember me" checkbox
         dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
@@ -172,7 +172,7 @@ namespace IdleMaster
         // Update browser bar content
         pbWebBrowserLock.Image = wbAuth.Url.Scheme == "https" ? Resources.imgLock_w : Resources.imgLock;
         lblWebBrowserAuth.Text = wbAuth.Document.Domain + " (" + wbAuth.Url.Scheme + ")";
-        if (wbAuth.Url.Scheme == "https") { lblWebBrowserAuth.BackColor = System.Drawing.Color.FromArgb(126, 166, 75); lblWebBrowserAuth.ForeColor = System.Drawing.Color.FromArgb(38, 38, 38); }
+        if (wbAuth.Url.Scheme == "https") { lblWebBrowserAuth.BackColor = Settings.Default.colorSteamGreen; lblWebBrowserAuth.ForeColor = Settings.Default.colorBgd; }
         lblWebBrowser.Text = wbAuth.Url.AbsoluteUri;
       }
     }
