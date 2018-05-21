@@ -10,7 +10,7 @@ This is a fork of the original [Idle Master](https://github.com/jshackles/idle_m
 
 * **Dark theme** (File > Settings > Dark theme): Applies color changes to several of the interface components to better match the Steam interface color scheme.
 <p align="center">
-  <img src ="https://i.imgur.com/TbT8kNq.png"/>
+  <img src ="https://i.imgur.com/DM8wnbm.png"/>
 </p>
 
 * **Updated Steamworks.NET** (https://steamworks.github.io): Includes the latest version of Steamworks.NET (v11.0.0) (available here: https://github.com/rlabrecque/Steamworks.NET/releases), which no longer requires CSteamworks.dll.
