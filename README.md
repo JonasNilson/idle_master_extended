@@ -1,6 +1,13 @@
 Idle Master Extended
 ===========
+Get your Steam Trading Cards the Fast Way (Fast Mode Extension)
 
+Download
+-------
+The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
+
+Features
+-------
 This is a fork of the original [Idle Master](https://github.com/jshackles/idle_master) (**discontinued** in early 2017) master branch, with a few extensions:
 
 * **Fast mode** (File > Settings > Fast mode): Get your cards faster by automagically switching between simultaneous and individual idling (based on: https://steamcommunity.com/groups/idlemastery/discussions/0/1485487749771924917/)
