@@ -2,6 +2,8 @@ Idle Master Extended
 ===========
 Get your Steam Trading Cards the Fast Way (Fast Mode Extension)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)
+
 Download
 -------
 The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
