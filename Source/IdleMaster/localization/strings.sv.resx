@@ -166,7 +166,7 @@
     <value>idla nu</value>
   </data>
   <data name="idling_complete" xml:space="preserve">
-    <value>Tomgång klar, finns inte fler kort</value>
+    <value>Tomgång klar, inga fler kort finns</value>
   </data>
   <data name="idling_paused" xml:space="preserve">
     <value>Idling pausad</value>
@@ -223,7 +223,7 @@
     <value>&amp;Statistik</value>
   </data>
   <data name="steam_ignored" xml:space="preserve">
-    <value>Steam-klienten status ignorerades</value>
+    <value>Steam-klient status ignorerades</value>
   </data>
   <data name="steam_notrunning" xml:space="preserve">
     <value>Steam körs inte</value>
@@ -254,7 +254,7 @@
   </data>
   <data name="cookie_warning" xml:space="preserve">
     <value>Visa informationen ovan
-[WARNING]
+[VARNING]
 Dela inte denna information med någon, 
 obehöriga kan logga in på ditt Steam-konto.</value>
   </data>
