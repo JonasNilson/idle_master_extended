@@ -1,16 +1,6 @@
-Idle Master Extended
+Idle Master Extended [![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)
 ===========
-Get your Steam Trading Cards the Fast Way (Fast Mode Extension)
-
-[![GitHub stars](https://img.shields.io/github/stars/JonasNilson/idle_master_extended.svg?style=flat-square)](https://github.com/JonasNilson/idle_master_extended/stargazers)
-[![GitHub release](https://img.shields.io/github/release/JonasNilson/idle_master_extended.svg?style=flat-square)](https://github.com/JonasNilson/idle_master_extended/releases)
-[![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended) 
-
-
-
-
-
-
+ Get your Steam Trading Cards the Fast Way (Fast Mode Extension)
 
 Download
 -------
