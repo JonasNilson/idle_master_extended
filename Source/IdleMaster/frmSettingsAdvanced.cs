@@ -57,9 +57,9 @@ namespace IdleMaster
         txtSessionID.PasswordChar = '\0';
       }
 
-      if (!string.IsNullOrWhiteSpace(Settings.Default.steamLogin))
+      if (!string.IsNullOrWhiteSpace(Settings.Default.steamLoginSecure))
       {
-        txtSteamLogin.Text = Settings.Default.steamLogin;
+        txtSteamLogin.Text = Settings.Default.steamLoginSecure;
         txtSteamLogin.Enabled = false;
       }
       else
@@ -105,10 +105,11 @@ namespace IdleMaster
       try
       {
         Settings.Default.sessionid = txtSessionID.Text.Trim();
-        Settings.Default.steamLogin = txtSteamLogin.Text.Trim();
+        Settings.Default.steamLoginSecure = txtSteamLogin.Text.Trim();
         Settings.Default.myProfileURL = SteamProfile.GetSteamUrl();
         Settings.Default.steamparental = txtSteamParental.Text.Trim();
 
+        // Test if the cookie data is valid
         if (await CookieClient.IsLogined())
         {
           Settings.Default.Save();

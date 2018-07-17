@@ -909,7 +909,7 @@ namespace IdleMaster
             var imgTrue = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
             runtimeCustomThemeMain();
 
-            var connected = !string.IsNullOrWhiteSpace(Settings.Default.sessionid) && !string.IsNullOrWhiteSpace(Settings.Default.steamLogin);
+            var connected = !string.IsNullOrWhiteSpace(Settings.Default.sessionid) && !string.IsNullOrWhiteSpace(Settings.Default.steamLoginSecure);
 
             var colorGreen = Settings.Default.customTheme ? Settings.Default.colorSteamGreen : Color.Green; // Adjust the green depending on the theme
             

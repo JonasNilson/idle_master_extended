@@ -10,7 +10,7 @@ namespace IdleMaster
   {
     internal static string GetSteamId()
     {
-      var steamid = WebUtility.UrlDecode(Settings.Default.steamLogin);
+      var steamid = WebUtility.UrlDecode(Settings.Default.steamLoginSecure);
       var index = steamid.IndexOfAny(new[] { '|' }, 0);
       return index != -1 ? steamid.Remove(index) : steamid;
     }

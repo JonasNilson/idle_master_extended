@@ -60,7 +60,7 @@ namespace IdleMaster
             var cookies = new CookieContainer();
             var target = new Uri("https://steamcommunity.com");
             cookies.Add(new Cookie("sessionid", Settings.Default.sessionid) { Domain = target.Host });
-            cookies.Add(new Cookie("steamLogin", Settings.Default.steamLogin) { Domain = target.Host });
+            //cookies.Add(new Cookie("steamLogin", Settings.Default.steamLogin) { Domain = target.Host });
             cookies.Add(new Cookie("steamLoginSecure", Settings.Default.steamLoginSecure) { Domain = target.Host });
             cookies.Add(new Cookie("steamparental", Settings.Default.steamparental) { Domain = target.Host });
             cookies.Add(new Cookie("steamRememberLogin", Settings.Default.steamRememberLogin) { Domain = target.Host });
@@ -70,8 +70,8 @@ namespace IdleMaster
 
         public static string GetSteamMachineAuthCookieName()
         {
-            if (Settings.Default.steamLogin != null && Settings.Default.steamLogin.Length > 17)
-                return string.Format("steamMachineAuth{0}", Settings.Default.steamLogin.Substring(0, 17));
+            if (Settings.Default.steamLoginSecure != null && Settings.Default.steamLoginSecure.Length > 17)
+                return string.Format("steamMachineAuth{0}", Settings.Default.steamLoginSecure.Substring(0, 17));
             return "steamMachineAuth";
         }
 
