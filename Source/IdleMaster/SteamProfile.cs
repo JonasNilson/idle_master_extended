@@ -17,7 +17,7 @@ namespace IdleMaster
 
     internal static string GetSteamUrl()
     {
-      return "http://steamcommunity.com/profiles/" + GetSteamId();
+      return "https://steamcommunity.com/profiles/" + GetSteamId();
     }
 
     internal static string GetSignedAs()

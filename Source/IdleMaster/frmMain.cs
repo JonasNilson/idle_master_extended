@@ -81,7 +81,7 @@ namespace IdleMaster
                 case "mostvalue":
                     try
                     {
-                        var query = string.Format("http://api.enhancedsteam.com/market_data/average_card_prices/im.php?appids={0}",
+                        var query = string.Format("https://api.enhancedsteam.com/market_data/average_card_prices/im.php?appids={0}",
                         string.Join(",", AllBadges.Select(b => b.AppId)));
                         var json = new WebClient() { Encoding = Encoding.UTF8 }.DownloadString(query);
                         var convertedJson = JsonConvert.DeserializeObject<EnhancedsteamHelper>(json);
@@ -160,6 +160,8 @@ namespace IdleMaster
 
                     tmrStartNext.Interval = wait;
                     tmrStartNext.Enabled = true;
+
+                    UpdateStateInfo();
                 }
                 else
                 {
@@ -386,19 +388,21 @@ namespace IdleMaster
         {
             // Stop the idling and wait for Steam to register the stop
             StopIdle();                         // Stop the simultaneous idling games
-            lblCurrentStatus.Text = localization.strings.please_wait;
-            lblIdle.Visible = lblDrops.Visible = false;
-            await Task.Delay(10 * 1000);        // Wait 10 sec
+            lblDrops.Text = localization.strings.loading_next;
+            lblDrops.Visible = picReadingPage.Visible = true;
+            lblIdle.Visible = false;
+            await Task.Delay(5 * 1000);         // Wait 10 sec
+            picReadingPage.Visible = false;
             lblIdle.Visible = lblDrops.Visible = true;
 
             // Idle all games individually 10 sec each
             foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
             {
                 StartSoloIdle(badge);           // Idle current game
-                TimeLeft = 10;                  // Set the timer to 10 sec
-                await Task.Delay(10 * 1000);    // Wait 10 sec
-                StopIdle();                     // Stop idling before moving on to the next game
+                TimeLeft = 5;                   // Set the timer to 5 sec
                 UpdateStateInfo();              // Update information labels
+                await Task.Delay(5 * 1000);     // Wait 5 sec
+                StopIdle();                     // Stop idling before moving on to the next game
                 pbIdle.Value = pbIdle.Maximum - CardsRemaining;
             }
 
@@ -942,7 +946,7 @@ namespace IdleMaster
 
         private void lblGameName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://store.steampowered.com/app/" + CurrentBadge.AppId);
+            Process.Start("https://store.steampowered.com/app/" + CurrentBadge.AppId);
         }
 
         private void lnkResetCookies_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1244,7 +1248,7 @@ namespace IdleMaster
 
         private void officialGroupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("http://steamcommunity.com/groups/idlemastery");
+            Process.Start("https://steamcommunity.com/groups/idlemastery");
         }
 
         private void tmrBadgeReload_Tick(object sender, EventArgs e)
