@@ -83,5 +83,8 @@
     <Setting Name="colorSteamGreen" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">126, 166, 75</Value>
     </Setting>
+    <Setting Name="NoSleep" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

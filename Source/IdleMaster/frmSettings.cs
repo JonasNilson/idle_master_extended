@@ -72,6 +72,7 @@ namespace IdleMaster
         Settings.Default.minToTray = chkMinToTray.Checked;
         Settings.Default.ignoreclient = chkIgnoreClientStatus.Checked;
         Settings.Default.showUsername = chkShowUsername.Checked;
+        Settings.Default.NoSleep = noSleepBox.Checked;
         Settings.Default.Save();
         Close();
     }
@@ -170,7 +171,10 @@ namespace IdleMaster
         {
             chkShowUsername.Checked = true;
         }
-
+        if (Settings.Default.NoSleep)
+        {
+            noSleepBox.Checked = true;
+        }
         runtimeCustomThemeSettings(); // JN: Apply theme colors and icons
     }
 
@@ -251,5 +255,5 @@ namespace IdleMaster
         Settings.Default.whiteIcons = whiteIconsCheckBox.Checked; // Save the white icons setting
         runtimeWhiteIconsSettings(); // JN: Apply white icons
     }
-  }
+    }
 }

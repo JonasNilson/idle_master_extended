@@ -17,11 +17,33 @@ using Steamworks;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 using System.Globalization;
 using System.Security.Principal;
+using System.Runtime.InteropServices;
 
 namespace IdleMaster
 {
     public partial class frmMain : Form
     {
+        //Prevent Sleep Code
+        public static void PreventSleep()
+        {
+            SetThreadExecutionState(ExecutionState.EsContinuous | ExecutionState.EsSystemRequired);
+        }
+        public static void AllowSleep()
+        {
+            SetThreadExecutionState(ExecutionState.EsContinuous);
+        }
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        private static extern ExecutionState SetThreadExecutionState(ExecutionState esFlags);
+        [FlagsAttribute]
+        private enum ExecutionState : uint
+        {
+            EsAwaymodeRequired = 0x00000040,
+            EsContinuous = 0x80000000,
+            EsDisplayRequired = 0x00000002,
+            EsSystemRequired = 0x00000001
+        }
+
+
         private Statistics statistics = new Statistics();
         public List<Badge> AllBadges { get; set; }
 
@@ -481,7 +503,13 @@ namespace IdleMaster
             var graphics = CreateGraphics();
             var scale = graphics.DpiY * 1.9583;
             Height = Convert.ToInt32(scale);
-
+            if (shutdown.Checked)
+            {
+                var psi = new ProcessStartInfo("shutdown", "/s /t 0");
+                psi.CreateNoWindow = true;
+                psi.UseShellExecute = false;
+                Process.Start(psi);
+            }
         }
 
 
@@ -798,6 +826,13 @@ namespace IdleMaster
             lnkResetCookies.Location = point;
 
             runtimeCustomThemeMain(); // JN: Apply the dark theme
+
+
+            //Prevent Sleep
+            if (Settings.Default.NoSleep == true)
+            {
+                PreventSleep();
+            }
         }
 
         /// <summary>
@@ -1268,6 +1303,15 @@ namespace IdleMaster
         {
             statistics.increaseMinutesIdled();
             statistics.checkCardRemaining((uint)CardsRemaining);
+        }
+        private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //Restore Sleep Settings on close
+            if (Settings.Default.NoSleep == true)
+            {
+                AllowSleep();
+            }
+            this.Close();
         }
     }
 }
