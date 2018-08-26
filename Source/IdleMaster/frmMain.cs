@@ -505,10 +505,14 @@ namespace IdleMaster
             Height = Convert.ToInt32(scale);
             if (shutdown.Checked)
             {
-                var psi = new ProcessStartInfo("shutdown", "/s /t 0");
+                // Start a separate process to shut down Windows (30 sec timer)
+                var psi = new ProcessStartInfo("shutdown", "/s /t 30");
                 psi.CreateNoWindow = true;
                 psi.UseShellExecute = false;
                 Process.Start(psi);
+                
+                // Close the application
+                Form1_Closing(this, null);
             }
         }
 
