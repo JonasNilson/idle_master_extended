@@ -18,6 +18,8 @@ using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 using System.Globalization;
 using System.Security.Principal;
 using System.Runtime.InteropServices;
+using Microsoft.WindowsAPICodePack;
+using Microsoft.WindowsAPICodePack.Taskbar;
 
 namespace IdleMaster
 {
@@ -332,6 +334,12 @@ namespace IdleMaster
             //pbIdle.Value = 0;
             ssFooter.Visible = true;
 
+            //Add taskbar progress bar
+            if (TaskbarManager.IsPlatformSupported)//Check if taskbar progress bar is supported
+            {
+                TaskbarManager.Instance.SetProgressValue(pbIdle.Value, pbIdle.Maximum);
+            }
+
             // Start the animated "working" gif
             picIdleStatus.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
@@ -426,6 +434,12 @@ namespace IdleMaster
                 await Task.Delay(5 * 1000);     // Wait 5 sec
                 StopIdle();                     // Stop idling before moving on to the next game
                 pbIdle.Value = pbIdle.Maximum - CardsRemaining;
+
+                //Add taskbar progress bar
+                if (TaskbarManager.IsPlatformSupported)//Check if taskbar progress bar is supported
+                {
+                    TaskbarManager.Instance.SetProgressValue(pbIdle.Value, pbIdle.Maximum);
+                }
             }
 
             // Reset and go back to idling simultaneously
@@ -668,6 +682,12 @@ namespace IdleMaster
             pbIdle.Value = pbIdle.Maximum - CardsRemaining; //badge.RemainingCard;
             lblHoursPlayed.Text = badge.HoursPlayed + " " + localization.strings.hrs_on_record;
             UpdateStateInfo();
+
+            //Add taskbar progress bar
+            if (TaskbarManager.IsPlatformSupported)//Check if taskbar progress bar is supported
+            {
+                TaskbarManager.Instance.SetProgressValue(pbIdle.Value, pbIdle.Maximum);
+            }
         }
 
         // CONSTRUCTOR
