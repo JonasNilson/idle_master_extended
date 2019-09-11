@@ -1,3 +1,11 @@
+Idle Overlord
+===========
+A simple cmd extention to Idle Master Extended alowing to run groups of steam games at once.
+
+This is a fork of [Idle Master Extended] which is a fork of the original [Idle Master]
+
+You can create and run groups of steam games at once, or, one at a time.
+
 Idle Master Extended [![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)
 ===========
  Get your Steam Trading Cards the Fast Way (Fast Mode Extension)
