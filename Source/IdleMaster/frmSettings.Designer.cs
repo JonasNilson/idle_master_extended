@@ -35,6 +35,7 @@ namespace IdleMaster
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.grpGeneral = new System.Windows.Forms.GroupBox();
+            this.quickLoginBox = new System.Windows.Forms.CheckBox();
             this.noSleepBox = new System.Windows.Forms.CheckBox();
             this.whiteIconsCheckBox = new System.Windows.Forms.CheckBox();
             this.darkThemeCheckBox = new System.Windows.Forms.CheckBox();
@@ -66,6 +67,7 @@ namespace IdleMaster
             // 
             this.grpGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpGeneral.Controls.Add(this.quickLoginBox);
             this.grpGeneral.Controls.Add(this.noSleepBox);
             this.grpGeneral.Controls.Add(this.whiteIconsCheckBox);
             this.grpGeneral.Controls.Add(this.darkThemeCheckBox);
@@ -81,6 +83,17 @@ namespace IdleMaster
             this.grpGeneral.TabStop = false;
             this.grpGeneral.Text = "General";
             this.grpGeneral.Enter += new System.EventHandler(this.grpGeneral_Enter);
+            // 
+            // quickLoginBox
+            // 
+            this.quickLoginBox.AutoSize = true;
+            this.quickLoginBox.Location = new System.Drawing.Point(305, 56);
+            this.quickLoginBox.Name = "quickLoginBox";
+            this.quickLoginBox.Size = new System.Drawing.Size(79, 17);
+            this.quickLoginBox.TabIndex = 9;
+            this.quickLoginBox.Text = "Quick login";
+            this.quickLoginBox.UseVisualStyleBackColor = true;
+            this.quickLoginBox.CheckedChanged += new System.EventHandler(this.QuickLoginBox_CheckedChanged);
             // 
             // noSleepBox
             // 
@@ -414,5 +427,6 @@ namespace IdleMaster
         private CheckBox whiteIconsCheckBox;
         private RadioButton radFastMode;
         private CheckBox noSleepBox;
+        private CheckBox quickLoginBox;
     }
 }

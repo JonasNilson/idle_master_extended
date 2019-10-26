@@ -87,11 +87,25 @@ namespace IdleMaster
 
         browserBarVisibility(true); // Display the browser bar (lock, protocol, url)
 
-        // Set the "Remember me" checkbox
-        dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
-        if(rememberMeCheckBox != null)
+        // Tell steam client to generate keys to login on browser
+        if(Settings.Default.QuickLogin)
         {
-          rememberMeCheckBox.Checked = true;
+            // Overwrite cookie functions to ignore the auto login cookie checks
+            wbAuth.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
+            wbAuth.Document.InvokeScript("LoginUsingSteamClient", new object[] { "https://steamcommunity.com/" });
+        }
+        
+        try
+        {
+            // Set the "Remember me" checkbox
+            dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
+            if(rememberMeCheckBox != null)
+            {
+              rememberMeCheckBox.Checked = true;
+            }
+        }
+        catch(Exception)
+        { 
         }
       }
       // If the page it just finished loading isn't the login page
