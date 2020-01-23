@@ -5,9 +5,26 @@ Idle Master Extended [![Build status](https://ci.appveyor.com/api/projects/statu
  
 This is a fork of the original [Idle Master](https://github.com/jshackles/idle_master) project (**discontinued** in early 2017) by [jshackles](https://github.com/jshackles) (also known for [Enhanced Steam](https://github.com/jshackles/Enhanced_Steam)).
 
+Contribute
+-------
+
+Contribute directly to the code:
+1. [Clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
+1. Open the `.sln`-file with [Visual Studio](https://visualstudio.microsoft.com/)
+1. Make your code changes
+1. Test Idle Master with your code changes (run through Visual Studio)
+1. [Create a pull request with the code change](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/proposing-changes-to-your-work-with-pull-requests)
+
+Alternatively: 
+* [Open an issue](https://github.com/JonasNilson/idle_master_extended/issues)
+
 Download
 -------
 The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
+
+Troubleshooting
+-------
+* [How To Fix Most Idle Master + Steam problems](https://steamcommunity.com/groups/idlemastery/discussions/0/133257636766989675/)
 
 Features
 -------
@@ -31,7 +48,12 @@ Idle Master Extended comes with a few extensions and fixes:
 
 *Note*: the "Remember me on this computer" checkbox is automatically checked when using the login browser window due to user feedback. According to the Steam website this allows for automatic logins for **30 days** - but it is only valid for Steam Guard enabled users.
 
-*The following was included in the original Idle Master README:*
+
+---
+---
+---
+
+**The following was included in the original Idle Master README:**
 
 Idle Master
 ===========
