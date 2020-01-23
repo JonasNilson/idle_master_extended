@@ -54,6 +54,7 @@ namespace IdleMaster
 
         public bool IsCookieReady;
         public bool IsSteamReady;
+        public int MaxSimultanousCards = 30;
         public int TimeLeft = 900;
         public int TimeSet = 300;
         public int RetryCount = 0;
@@ -137,13 +138,13 @@ namespace IdleMaster
                     if (badge.HoursPlayed >= 2 && badge.InIdle)
                         badge.StopIdle();
 
-                    if (badge.HoursPlayed < 2 && CanIdleBadges.Count(b => b.InIdle) < 30)
+                    if (badge.HoursPlayed < 2 && CanIdleBadges.Count(b => b.InIdle) <= MaxSimultanousCards)
                         badge.Idle();
                 }
                 else
                 {
-                    // JN: Fast mode (still limit to 30 (?))
-                    if (CanIdleBadges.Count(b => b.InIdle) < 30)
+                    // JN: Fast mode
+                    if (CanIdleBadges.Count(b => b.InIdle) <= MaxSimultanousCards)
                         badge.Idle();
                 }
                 
@@ -399,7 +400,7 @@ namespace IdleMaster
         public void StartFastIdleSimultaneous()
         {
             // Start the simultaneous idling processes
-            StartMultipleIdle();                // Start simultaneous idling (max 30 games at once?)
+            StartMultipleIdle();                // Start simultaneous idling
             TimeLeft = 5 * 60;                  // Time before switching to individual idling (fast mode)
         }
 
@@ -418,7 +419,8 @@ namespace IdleMaster
             lblIdle.Visible = lblDrops.Visible = true;
 
             // Idle all games individually 10 sec each
-            foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
+            foreach (var badge in (CanIdleBadges.Where(b => (!Equals(b, CurrentBadge) 
+                                                            && CanIdleBadges.ToList().IndexOf(b) < MaxSimultanousCards))))
             {
                 StartSoloIdle(badge);           // Idle current game
                 TimeLeft = 5;                   // Set the timer to 5 sec
