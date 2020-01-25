@@ -24,7 +24,10 @@ The latest release is always available here: https://github.com/JonasNilson/idle
 
 Troubleshooting
 -------
-* [How To Fix Most Idle Master + Steam problems](https://steamcommunity.com/groups/idlemastery/discussions/0/133257636766989675/)
+* Idle Master Steam Group:
+  * [Read this Thread before posting, it saves time](https://steamcommunity.com/groups/idlemastery/discussions/0/152392786912268315/)
+  * [How To Fix Most Idle Master + Steam problems](https://steamcommunity.com/groups/idlemastery/discussions/0/133257636766989675/)
+  * [Temporary solution for IM can't login problem](https://steamcommunity.com/groups/idlemastery/discussions/0/1697168437864920721/)
 
 Features
 -------
