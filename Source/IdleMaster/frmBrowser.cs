@@ -10,7 +10,7 @@ namespace IdleMaster
   public partial class frmBrowser : Form
   {
 
-    public int SecondsWaiting = 30;
+    public int SecondsWaiting = 5;
 
     [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
     private static extern bool InternetSetOption(int hInternet, int dwOption, string lpBuffer, int dwBufferLength);
@@ -72,7 +72,7 @@ namespace IdleMaster
       var url = wbAuth.Url.AbsoluteUri;
 
       // If the page it just finished loading is the login page
-      if (url == "https://steamcommunity.com/login/home/?goto=my/profile" ||
+      if (url.StartsWith("https://steamcommunity.com/login/home/?goto=") ||
           url == "https://store.steampowered.com/login/transfer" ||
           url == "https://store.steampowered.com//login/transfer")
       {
@@ -86,14 +86,6 @@ namespace IdleMaster
         }
 
         browserBarVisibility(true); // Display the browser bar (lock, protocol, url)
-
-        // Tell steam client to generate keys to login on browser
-        if(Settings.Default.QuickLogin)
-        {
-            // Overwrite cookie functions to ignore the auto login cookie checks
-            wbAuth.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
-            wbAuth.Document.InvokeScript("LoginUsingSteamClient", new object[] { "https://steamcommunity.com/" });
-        }
         
         try
         {
@@ -105,78 +97,91 @@ namespace IdleMaster
             }
         }
         catch(Exception)
-        { 
+        {
+        }
+
+        // Tell steam client to generate keys to login on browser
+        if (Settings.Default.QuickLogin)
+        {
+            // Overwrite cookie functions to ignore the auto login cookie checks
+            wbAuth.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
+            wbAuth.Document.InvokeScript("LoginUsingSteamClient", new object[] { "https://steamcommunity.com/" });
         }
       }
       // If the page it just finished loading isn't the login page
       else if (url.StartsWith("javascript:") == false && url.StartsWith("about:") == false)
-      {
-        try
-        {
-            dynamic parentalNotice = htmldoc.GetElementById("parental_notice");
-            if (parentalNotice != null)
             {
-                if (parentalNotice.OuterHtml != "") 
+                try
                 {
-                    // Steam family options enabled
-                    wbAuth.Show();
-                    Width = 1000;
-                    Height = 350;
-                    return;
+                    dynamic parentalNotice = htmldoc.GetElementById("parental_notice");
+                    if (parentalNotice != null)
+                    {
+                        if (parentalNotice.OuterHtml != "")
+                        {
+                            // Steam family options enabled
+                            wbAuth.Show();
+                            Width = 1000;
+                            Height = 350;
+                            return;
+                        }
+                    }
                 }
+                catch (Exception)
+                {
+
+                }
+
+                extractSteamCookies();
+                Close();
             }
         }
-        catch (Exception)
+
+        private void extractSteamCookies()
         {
-        
+            // Get a list of cookies from the current page
+            var container = GetUriCookieContainer(wbAuth.Url);
+            var cookies = container.GetCookies(wbAuth.Url);
+
+            // Go through the cookie data so that we can extract the cookies we are looking for
+            foreach (Cookie cookie in cookies)
+            {
+                // Save the "sessionid" cookie
+                if (cookie.Name == "sessionid")
+                {
+                    Settings.Default.sessionid = cookie.Value;
+                }
+
+                // Save the "steamLogin" cookie and construct and save the user's profile link
+                else if (cookie.Name == "steamLogin")
+                {
+                    Settings.Default.steamLogin = cookie.Value;
+                    Settings.Default.myProfileURL = SteamProfile.GetSteamUrl();
+                }
+
+                else if (cookie.Name == "steamLoginSecure")
+                {
+                    Settings.Default.steamLoginSecure = cookie.Value;
+                    Settings.Default.myProfileURL = SteamProfile.GetSteamUrl();
+                }
+
+                // Save the "steamparental" cookie"
+                else if (cookie.Name == "steamparental")
+                {
+                    Settings.Default.steamparental = cookie.Value;
+                }
+
+                else if (cookie.Name == "steamRememberLogin")
+                {
+                    Settings.Default.steamRememberLogin = cookie.Value;
+                }
+            }
+
+            // Save all of the data to the program settings file, and close this form
+            Settings.Default.Save();
         }
 
-        // Get a list of cookies from the current page
-        var container = GetUriCookieContainer(wbAuth.Url);
-        var cookies = container.GetCookies(wbAuth.Url);
-
-        // Go through the cookie data so that we can extract the cookies we are looking for
-        foreach (Cookie cookie in cookies)
-        {
-          // Save the "sessionid" cookie
-          if (cookie.Name == "sessionid")
-          {
-            Settings.Default.sessionid = cookie.Value;
-          }
-
-          // Save the "steamLogin" cookie and construct and save the user's profile link
-          else if (cookie.Name == "steamLogin")
-          {
-            Settings.Default.steamLogin = cookie.Value;
-            Settings.Default.myProfileURL = SteamProfile.GetSteamUrl();
-          }
-
-          else if (cookie.Name == "steamLoginSecure")
-          {
-              Settings.Default.steamLoginSecure = cookie.Value;
-              Settings.Default.myProfileURL = SteamProfile.GetSteamUrl();
-          }
-
-          // Save the "steamparental" cookie"
-          else if (cookie.Name == "steamparental")
-          {
-            Settings.Default.steamparental = cookie.Value;
-          }
-
-          else if (cookie.Name == "steamRememberLogin")
-          {
-              Settings.Default.steamRememberLogin = cookie.Value;
-          }
-        }
-
-        // Save all of the data to the program settings file, and close this form
-        Settings.Default.Save();
-        Close();
-      }
-    }
-
-    // Extract and display information about the browser URL, protocol and domain
-    private void browserBarVisibility(bool visibility)
+        // Extract and display information about the browser URL, protocol and domain
+        private void browserBarVisibility(bool visibility)
     {
       // Toggle visibility of the browser bar
       pbWebBrowserLock.Visible = lblWebBrowserAuth.Visible = lblWebBrowser.Visible = visibility;
@@ -249,7 +254,11 @@ namespace IdleMaster
       var url = e.Url.AbsoluteUri;
 
       // Check to see if the page it's navigating to isn't the Steam login page or related calls
-      if (url != "https://steamcommunity.com/login/home/?goto=my/profile" && url != "https://store.steampowered.com/login/transfer" && url != "https://store.steampowered.com//login/transfer" && url.StartsWith("javascript:") == false && url.StartsWith("about:") == false)
+      if (url != "https://steamcommunity.com/login/home/?goto=my/profile" &&
+          url != "https://store.steampowered.com/login/transfer" &&
+          url != "https://store.steampowered.com//login/transfer" &&
+          url.StartsWith("javascript:") == false &&
+          url.StartsWith("about:") == false)
       {
         // start the sanity check timer
         tmrCheck.Enabled = true;
@@ -265,6 +274,11 @@ namespace IdleMaster
         Width = Convert.ToInt32(scaleX);
 
         browserBarVisibility(false); // Hide the browser bar
+      } 
+      else if (Settings.Default.QuickLogin &&
+               url.StartsWith("https://steamcommunity.com/login/home/?goto=my/profile"))
+      {
+                tmrCheck.Enabled = true;
       }
     }
 
@@ -273,12 +287,30 @@ namespace IdleMaster
       // Prevents the application from "saving" for more than 30 seconds and will attempt to save the cookie data after that time
       if (SecondsWaiting > 0)
       {
-        SecondsWaiting = SecondsWaiting - 1;
+        SecondsWaiting -= 1;
       }
       else
       {
-        tmrCheck.Enabled = false;
-        Close();
+        if(Settings.Default.QuickLogin &&
+           wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/"))
+        {
+            // The login is completed, and the profile is visible
+            extractSteamCookies();
+            tmrCheck.Enabled = false;
+            Close();
+        } 
+        else if (Settings.Default.QuickLogin &&
+                 wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/login/home?goto=my/profile"))
+        {
+            // For some reason the login is not completed yet
+            SecondsWaiting = 5;
+        }
+        else
+        {
+            // Original behavior
+            tmrCheck.Enabled = false;
+            Close();
+        }
       }
     }
   }
