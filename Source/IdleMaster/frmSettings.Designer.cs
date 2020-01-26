@@ -65,7 +65,7 @@ namespace IdleMaster
             // 
             // grpGeneral
             // 
-            this.grpGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpGeneral.Controls.Add(this.quickLoginBox);
             this.grpGeneral.Controls.Add(this.noSleepBox);
@@ -176,7 +176,7 @@ namespace IdleMaster
             // 
             // chkShowUsername
             // 
-            this.chkShowUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.chkShowUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chkShowUsername.Location = new System.Drawing.Point(8, 55);
             this.chkShowUsername.Name = "chkShowUsername";
@@ -187,7 +187,7 @@ namespace IdleMaster
             // 
             // chkIgnoreClientStatus
             // 
-            this.chkIgnoreClientStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.chkIgnoreClientStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chkIgnoreClientStatus.Location = new System.Drawing.Point(8, 38);
             this.chkIgnoreClientStatus.Name = "chkIgnoreClientStatus";
@@ -198,7 +198,7 @@ namespace IdleMaster
             // 
             // chkMinToTray
             // 
-            this.chkMinToTray.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.chkMinToTray.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chkMinToTray.Location = new System.Drawing.Point(8, 19);
             this.chkMinToTray.Name = "chkMinToTray";
@@ -209,7 +209,7 @@ namespace IdleMaster
             // 
             // grpPriority
             // 
-            this.grpPriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpPriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpPriority.Controls.Add(this.radIdleMostValue);
             this.grpPriority.Controls.Add(this.radIdleLeastDrops);
@@ -224,7 +224,7 @@ namespace IdleMaster
             // 
             // radIdleMostValue
             // 
-            this.radIdleMostValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.radIdleMostValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radIdleMostValue.Location = new System.Drawing.Point(7, 35);
             this.radIdleMostValue.Name = "radIdleMostValue";
@@ -236,7 +236,7 @@ namespace IdleMaster
             // 
             // radIdleLeastDrops
             // 
-            this.radIdleLeastDrops.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.radIdleLeastDrops.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radIdleLeastDrops.Location = new System.Drawing.Point(7, 69);
             this.radIdleLeastDrops.Name = "radIdleLeastDrops";
@@ -247,7 +247,7 @@ namespace IdleMaster
             // 
             // radIdleMostDrops
             // 
-            this.radIdleMostDrops.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.radIdleMostDrops.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radIdleMostDrops.Location = new System.Drawing.Point(7, 52);
             this.radIdleMostDrops.Name = "radIdleMostDrops";
@@ -258,7 +258,7 @@ namespace IdleMaster
             // 
             // radIdleDefault
             // 
-            this.radIdleDefault.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.radIdleDefault.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radIdleDefault.Checked = true;
             this.radIdleDefault.Location = new System.Drawing.Point(7, 18);
@@ -306,7 +306,7 @@ namespace IdleMaster
             // 
             // grpIdlingQuantity
             // 
-            this.grpIdlingQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpIdlingQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpIdlingQuantity.Controls.Add(this.radFastMode);
             this.grpIdlingQuantity.Controls.Add(this.radOneThenMany);
@@ -345,7 +345,7 @@ namespace IdleMaster
             // 
             // radManyThenOne
             // 
-            this.radManyThenOne.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.radManyThenOne.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radManyThenOne.Location = new System.Drawing.Point(7, 35);
             this.radManyThenOne.Name = "radManyThenOne";
@@ -357,7 +357,7 @@ namespace IdleMaster
             // 
             // radOneGameOnly
             // 
-            this.radOneGameOnly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.radOneGameOnly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radOneGameOnly.Checked = true;
             this.radOneGameOnly.Location = new System.Drawing.Point(7, 18);
@@ -417,12 +417,12 @@ namespace IdleMaster
         private ToolTip ttHints;
         private CheckBox chkIgnoreClientStatus;
         private CheckBox chkShowUsername;
-    private GroupBox grpIdlingQuantity;
-    private RadioButton radManyThenOne;
-    private RadioButton radOneGameOnly;
-    private ComboBox cboLanguage;
-    private Label lblLanguage;
-    private RadioButton radOneThenMany;
+        private GroupBox grpIdlingQuantity;
+        private RadioButton radManyThenOne;
+        private RadioButton radOneGameOnly;
+        private ComboBox cboLanguage;
+        private Label lblLanguage;
+        private RadioButton radOneThenMany;
         private CheckBox darkThemeCheckBox;
         private CheckBox whiteIconsCheckBox;
         private RadioButton radFastMode;
