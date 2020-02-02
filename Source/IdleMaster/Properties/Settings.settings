@@ -75,7 +75,7 @@
       <Value Profile="(Default)">ControlText</Value>
     </Setting>
     <Setting Name="fastMode" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="steamLoginSecure" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -87,7 +87,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="QuickLogin" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -19,7 +19,7 @@ namespace IdleMaster
             btnOK.Text = localization.strings.accept;
             lblSessionHeader.Text = localization.strings.this_session + ":";
             lblTotalHeader.Text = localization.strings.total + ":";
-            
+
             TimeSpan sessionMinutesIdled = TimeSpan.FromMinutes(statistics.getSessionMinutesIdled());
             TimeSpan totalMinutesIdled = TimeSpan.FromMinutes(Properties.Settings.Default.totalMinutesIdled);
 

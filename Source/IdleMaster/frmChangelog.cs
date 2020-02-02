@@ -4,22 +4,22 @@ using IdleMaster.Properties;
 
 namespace IdleMaster
 {
-  public partial class frmChangelog : Form
-  {
-    public frmChangelog()
+    public partial class frmChangelog : Form
     {
-      InitializeComponent();
-    }
+        public frmChangelog()
+        {
+            InitializeComponent();
+        }
 
-    private void frmChangelog_Load(object sender, EventArgs e)
-    {
-      // Localize Form
-      this.Text = localization.strings.release_notes_title;
-      
-      rtbChangelog.Rtf = Resources.Changelog;
+        private void frmChangelog_Load(object sender, EventArgs e)
+        {
+            // Localize Form
+            this.Text = localization.strings.release_notes_title;
 
-      rtbChangelog.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
-      rtbChangelog.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
+            rtbChangelog.Rtf = Resources.Changelog;
+
+            rtbChangelog.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+            rtbChangelog.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
+        }
     }
-  }
 }
