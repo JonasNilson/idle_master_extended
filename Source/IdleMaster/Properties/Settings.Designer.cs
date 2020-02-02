@@ -8,355 +8,443 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IdleMaster.Properties {
-    
-    
+namespace IdleMaster.Properties
+{
+
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.1.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
-        
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-        
-        public static Settings Default {
-            get {
+
+        public static Settings Default
+        {
+            get
+            {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string sessionid {
-            get {
+        public string sessionid
+        {
+            get
+            {
                 return ((string)(this["sessionid"]));
             }
-            set {
+            set
+            {
                 this["sessionid"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string steamLogin {
-            get {
+        public string steamLogin
+        {
+            get
+            {
                 return ((string)(this["steamLogin"]));
             }
-            set {
+            set
+            {
                 this["steamLogin"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string myProfileURL {
-            get {
+        public string myProfileURL
+        {
+            get
+            {
                 return ((string)(this["myProfileURL"]));
             }
-            set {
+            set
+            {
                 this["myProfileURL"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string steamparental {
-            get {
+        public string steamparental
+        {
+            get
+            {
                 return ((string)(this["steamparental"]));
             }
-            set {
+            set
+            {
                 this["steamparental"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string sort {
-            get {
+        public string sort
+        {
+            get
+            {
                 return ((string)(this["sort"]));
             }
-            set {
+            set
+            {
                 this["sort"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool minToTray {
-            get {
+        public bool minToTray
+        {
+            get
+            {
                 return ((bool)(this["minToTray"]));
             }
-            set {
+            set
+            {
                 this["minToTray"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool updateNeeded {
-            get {
+        public bool updateNeeded
+        {
+            get
+            {
                 return ((bool)(this["updateNeeded"]));
             }
-            set {
+            set
+            {
                 this["updateNeeded"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ignoreclient {
-            get {
+        public bool ignoreclient
+        {
+            get
+            {
                 return ((bool)(this["ignoreclient"]));
             }
-            set {
+            set
+            {
                 this["ignoreclient"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool showUsername {
-            get {
+        public bool showUsername
+        {
+            get
+            {
                 return ((bool)(this["showUsername"]));
             }
-            set {
+            set
+            {
                 this["showUsername"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
             "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
             "tring />\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection blacklist {
-            get {
+        public global::System.Collections.Specialized.StringCollection blacklist
+        {
+            get
+            {
                 return ((global::System.Collections.Specialized.StringCollection)(this["blacklist"]));
             }
-            set {
+            set
+            {
                 this["blacklist"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool OnlyOneGameIdle {
-            get {
+        public bool OnlyOneGameIdle
+        {
+            get
+            {
                 return ((bool)(this["OnlyOneGameIdle"]));
             }
-            set {
+            set
+            {
                 this["OnlyOneGameIdle"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string steamRememberLogin {
-            get {
+        public string steamRememberLogin
+        {
+            get
+            {
                 return ((string)(this["steamRememberLogin"]));
             }
-            set {
+            set
+            {
                 this["steamRememberLogin"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string steamMachineAuth {
-            get {
+        public string steamMachineAuth
+        {
+            get
+            {
                 return ((string)(this["steamMachineAuth"]));
             }
-            set {
+            set
+            {
                 this["steamMachineAuth"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public uint totalCardIdled {
-            get {
+        public uint totalCardIdled
+        {
+            get
+            {
                 return ((uint)(this["totalCardIdled"]));
             }
-            set {
+            set
+            {
                 this["totalCardIdled"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public uint totalMinutesIdled {
-            get {
+        public uint totalMinutesIdled
+        {
+            get
+            {
                 return ((uint)(this["totalMinutesIdled"]));
             }
-            set {
+            set
+            {
                 this["totalMinutesIdled"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string language {
-            get {
+        public string language
+        {
+            get
+            {
                 return ((string)(this["language"]));
             }
-            set {
+            set
+            {
                 this["language"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool OneThenMany {
-            get {
+        public bool OneThenMany
+        {
+            get
+            {
                 return ((bool)(this["OneThenMany"]));
             }
-            set {
+            set
+            {
                 this["OneThenMany"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool customTheme {
-            get {
+        public bool customTheme
+        {
+            get
+            {
                 return ((bool)(this["customTheme"]));
             }
-            set {
+            set
+            {
                 this["customTheme"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("38, 38, 38")]
-        public global::System.Drawing.Color colorBgd {
-            get {
+        public global::System.Drawing.Color colorBgd
+        {
+            get
+            {
                 return ((global::System.Drawing.Color)(this["colorBgd"]));
             }
-            set {
+            set
+            {
                 this["colorBgd"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("196, 196, 196")]
-        public global::System.Drawing.Color colorTxt {
-            get {
+        public global::System.Drawing.Color colorTxt
+        {
+            get
+            {
                 return ((global::System.Drawing.Color)(this["colorTxt"]));
             }
-            set {
+            set
+            {
                 this["colorTxt"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool whiteIcons {
-            get {
+        public bool whiteIcons
+        {
+            get
+            {
                 return ((bool)(this["whiteIcons"]));
             }
-            set {
+            set
+            {
                 this["whiteIcons"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Control")]
-        public global::System.Drawing.Color colorBgdOriginal {
-            get {
+        public global::System.Drawing.Color colorBgdOriginal
+        {
+            get
+            {
                 return ((global::System.Drawing.Color)(this["colorBgdOriginal"]));
             }
-            set {
+            set
+            {
                 this["colorBgdOriginal"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("ControlText")]
-        public global::System.Drawing.Color colorTxtOriginal {
-            get {
+        public global::System.Drawing.Color colorTxtOriginal
+        {
+            get
+            {
                 return ((global::System.Drawing.Color)(this["colorTxtOriginal"]));
             }
-            set {
+            set
+            {
                 this["colorTxtOriginal"] = value;
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool fastMode {
-            get {
-                return ((bool)(this["fastMode"]));
-            }
-            set {
-                this["fastMode"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string steamLoginSecure {
-            get {
-                return ((string)(this["steamLoginSecure"]));
-            }
-            set {
-                this["steamLoginSecure"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("126, 166, 75")]
-        public global::System.Drawing.Color colorSteamGreen {
-            get {
-                return ((global::System.Drawing.Color)(this["colorSteamGreen"]));
-            }
-            set {
-                this["colorSteamGreen"] = value;
-            }
-        }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool NoSleep {
-            get {
+        public bool fastMode
+        {
+            get
+            {
+                return ((bool)(this["fastMode"]));
+            }
+            set
+            {
+                this["fastMode"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string steamLoginSecure
+        {
+            get
+            {
+                return ((string)(this["steamLoginSecure"]));
+            }
+            set
+            {
+                this["steamLoginSecure"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("126, 166, 75")]
+        public global::System.Drawing.Color colorSteamGreen
+        {
+            get
+            {
+                return ((global::System.Drawing.Color)(this["colorSteamGreen"]));
+            }
+            set
+            {
+                this["colorSteamGreen"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool NoSleep
+        {
+            get
+            {
                 return ((bool)(this["NoSleep"]));
             }
-            set {
+            set
+            {
                 this["NoSleep"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool QuickLogin {
-            get {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool QuickLogin
+        {
+            get
+            {
                 return ((bool)(this["QuickLogin"]));
             }
-            set {
+            set
+            {
                 this["QuickLogin"] = value;
             }
         }

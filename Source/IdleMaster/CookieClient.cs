@@ -44,7 +44,7 @@ namespace IdleMaster
                 }
 
                 this.ResponseUri = baseResponse.ResponseUri;
-                return baseResponse;                
+                return baseResponse;
             }
             catch (Exception)
             {

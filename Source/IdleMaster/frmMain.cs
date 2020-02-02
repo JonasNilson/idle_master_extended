@@ -116,10 +116,10 @@ namespace IdleMaster
                         }
                         AllBadges = AllBadges.OrderByDescending(b => b.AveragePrice).ToList();
                     }
-                    catch  
+                    catch
                     {
 
-                    }                    
+                    }
                     break;
                 default:
                     return;
@@ -132,7 +132,7 @@ namespace IdleMaster
             //foreach (var badge in CanIdleBadges.Where(b => !Equals(b, CurrentBadge)))
             foreach (var badge in CanIdleBadges)
             {
-                if(!Settings.Default.fastMode)
+                if (!Settings.Default.fastMode)
                 {
                     // JN: Original idle mode
                     if (badge.HoursPlayed >= 2 && badge.InIdle)
@@ -147,7 +147,7 @@ namespace IdleMaster
                     if (CanIdleBadges.Count(b => b.InIdle) <= MaxSimultanousCards)
                         badge.Idle();
                 }
-                
+
             }
 
             RefreshGamesStateListView();
@@ -197,7 +197,7 @@ namespace IdleMaster
         {
             // Kill all existing processes before starting any new ones
             // This prevents rogue processes from interfering with idling time and slowing card drops
-            try 
+            try
             {
                 String username = WindowsIdentity.GetCurrent().Name;
                 foreach (var process in Process.GetProcessesByName("steam-idle"))
@@ -217,14 +217,14 @@ namespace IdleMaster
                             }
                         }
                     }
-                    
+
                 }
             }
             catch (Exception)
             {
 
             }
-            
+
             // Check if user is authenticated and if any badge left to idle
             // There should be check for IsCookieReady, but property is set in timer tick, so it could take some time to be set.
             if (string.IsNullOrWhiteSpace(Settings.Default.sessionid) || !IsSteamReady)
@@ -283,8 +283,8 @@ namespace IdleMaster
                                 StartSoloIdle(CanIdleBadges.First());
                             }
                         }
-                        
-                        
+
+
                     }
                 }
                 else
@@ -419,7 +419,7 @@ namespace IdleMaster
             lblIdle.Visible = lblDrops.Visible = true;
 
             // Idle all games individually 10 sec each
-            foreach (var badge in (CanIdleBadges.Where(b => (!Equals(b, CurrentBadge) 
+            foreach (var badge in (CanIdleBadges.Where(b => (!Equals(b, CurrentBadge)
                                                             && CanIdleBadges.ToList().IndexOf(b) < MaxSimultanousCards))))
             {
                 StartSoloIdle(badge);           // Idle current game
@@ -512,7 +512,7 @@ namespace IdleMaster
                 psi.CreateNoWindow = true;
                 psi.UseShellExecute = false;
                 Process.Start(psi);
-                
+
                 // Close the application
                 Form1_Closing(this, null);
             }
@@ -791,8 +791,8 @@ namespace IdleMaster
                         language_string = "en";
                         break;
                 }
-                Thread.CurrentThread.CurrentUICulture = new CultureInfo(language_string);                
-            }            
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(language_string);
+            }
 
             // Localize form elements
             fileToolStripMenuItem.Text = localization.strings.file;
@@ -813,7 +813,7 @@ namespace IdleMaster
             lnkResetCookies.Text = "(" + localization.strings.sign_out + ")";
             toolStripStatusLabel1.Text = localization.strings.next_check;
             toolStripStatusLabel1.ToolTipText = localization.strings.next_check;
-            
+
             lblSignedOnAs.Text = localization.strings.signed_in_as;
             GamesState.Columns[0].Text = localization.strings.name;
             GamesState.Columns[1].Text = localization.strings.hours;
@@ -885,7 +885,7 @@ namespace IdleMaster
             // Game state list (needs to be colored in RefreshGamesStateListView)
             GamesState.BackColor = colorBgd;
             GamesState.ForeColor = colorTxt;
-            
+
             // lblTimer
             lblTimer.BackColor = colorBgd;
             lblTimer.ForeColor = colorTxt;
@@ -957,7 +957,7 @@ namespace IdleMaster
             var connected = !string.IsNullOrWhiteSpace(Settings.Default.sessionid) && !string.IsNullOrWhiteSpace(Settings.Default.steamLoginSecure);
 
             var colorGreen = Settings.Default.customTheme ? Settings.Default.colorSteamGreen : Color.Green; // Adjust the green depending on the theme
-            
+
             lblCookieStatus.Text = connected ? localization.strings.idle_master_connected : localization.strings.idle_master_notconnected;
             lblCookieStatus.ForeColor = connected ? colorGreen : this.ForeColor; // JN: Changed the color of "not connected" message
             picCookieStatus.Image = connected ? imgTrue : imgFalse; // JN: Supports dark theme
@@ -974,7 +974,7 @@ namespace IdleMaster
             var imgTrue = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
 
             var colorGreen = Settings.Default.customTheme ? Settings.Default.colorSteamGreen : Color.Green; // Adjust the green depending on the theme
-            
+
             var isSteamRunning = SteamAPI.IsSteamRunning() || Settings.Default.ignoreclient;
             lblSteamStatus.Text = isSteamRunning ? (Settings.Default.ignoreclient ? localization.strings.steam_ignored : localization.strings.steam_running) : localization.strings.steam_notrunning;
             lblSteamStatus.ForeColor = isSteamRunning ? colorGreen : this.ForeColor; // JN: Changed color of the not connected status
@@ -1134,8 +1134,8 @@ namespace IdleMaster
 
             StopIdle();
             AllBadges.RemoveAll(b => Equals(b, CurrentBadge));
-            
-            if(!CanIdleBadges.Any())
+
+            if (!CanIdleBadges.Any())
             {
                 // If there are no more games to idle, reload the badges
                 picReadingPage.Visible = true;
@@ -1198,7 +1198,7 @@ namespace IdleMaster
             {
                 lblSignedOnAs.Text = SteamProfile.GetSignedAs();
                 lblSignedOnAs.Visible = Settings.Default.showUsername;
-            }            
+            }
         }
 
         private void pauseIdlingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1296,7 +1296,7 @@ namespace IdleMaster
         {
             ReloadCount = ReloadCount + 1;
             lblDrops.Text = localization.strings.badge_didnt_load.Replace("__num__", (10 - ReloadCount).ToString());
-            
+
             if (ReloadCount == 10)
             {
                 tmrBadgeReload.Enabled = false;
