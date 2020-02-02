@@ -89,12 +89,7 @@ namespace IdleMaster
 
                 try
                 {
-                    // Set the "Remember me" checkbox
-                    dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
-                    if (rememberMeCheckBox != null)
-                    {
-                        rememberMeCheckBox.Checked = true;
-                    }
+                    setRememberMeCheckbox(htmldoc);
                 }
                 catch (Exception)
                 {
@@ -103,6 +98,7 @@ namespace IdleMaster
                 // Tell steam client to generate keys to login on browser
                 if (Settings.Default.QuickLogin)
                 {
+                    setLoginButtonText(htmldoc, "Attempting to QuickLogin...");
                     executeQuickLoginScript();
                 }
             }
@@ -131,6 +127,26 @@ namespace IdleMaster
 
                 extractSteamCookies();
                 Close();
+            }
+        }
+
+        private void setLoginButtonText(dynamic htmldoc, string text)
+        {
+            // Set the "Sign in" button text
+            dynamic steamLoginButton = htmldoc.GetElementById("SteamLogin");
+            if (steamLoginButton != null)
+            {
+                steamLoginButton.Value = text;
+            }
+        }
+
+        private static void setRememberMeCheckbox(dynamic htmldoc)
+        {
+            // Set the "Remember me" checkbox
+            dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
+            if (rememberMeCheckBox != null)
+            {
+                rememberMeCheckBox.Checked = true;
             }
         }
 
@@ -311,6 +327,7 @@ namespace IdleMaster
                     SecondsWaiting = 5;
 
                     // Attempt to login again
+                    setLoginButtonText(wbAuth.Document.DomDocument, "Attempting to QuickLogin again...");
                     executeQuickLoginScript();
                 }
                 else
