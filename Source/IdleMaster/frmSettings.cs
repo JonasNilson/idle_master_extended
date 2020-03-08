@@ -72,8 +72,9 @@ namespace IdleMaster
             Settings.Default.minToTray = chkMinToTray.Checked;
             Settings.Default.ignoreclient = chkIgnoreClientStatus.Checked;
             Settings.Default.showUsername = chkShowUsername.Checked;
-            Settings.Default.NoSleep = noSleepBox.Checked;
+            Settings.Default.NoSleep = chkPreventSleep.Checked;
             Settings.Default.QuickLogin = quickLoginBox.Checked;
+            Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
             Settings.Default.Save();
             Close();
         }
@@ -174,7 +175,7 @@ namespace IdleMaster
             }
             if (Settings.Default.NoSleep)
             {
-                noSleepBox.Checked = true;
+                chkPreventSleep.Checked = true;
             }
             if (Settings.Default.QuickLogin)
             {
@@ -264,6 +265,11 @@ namespace IdleMaster
         private void QuickLoginBox_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.QuickLogin = quickLoginBox.Checked;
+        }
+
+        private void chkShutdown_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
         }
     }
 }
