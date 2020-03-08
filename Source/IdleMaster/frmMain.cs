@@ -505,7 +505,8 @@ namespace IdleMaster
             var graphics = CreateGraphics();
             var scale = graphics.DpiY * 1.9583;
             Height = Convert.ToInt32(scale);
-            if (shutdown.Checked)
+
+            if (Settings.Default.ShutdownWindowsOnDone)
             {
                 // Start a separate process to shut down Windows (30 sec timer)
                 var psi = new ProcessStartInfo("shutdown", "/s /t 30");
