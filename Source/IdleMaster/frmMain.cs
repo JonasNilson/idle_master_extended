@@ -23,15 +23,6 @@ namespace IdleMaster
 {
     public partial class frmMain : Form
     {
-        //Prevent Sleep Code
-        public static void PreventSleep()
-        {
-            SetThreadExecutionState(ExecutionState.EsContinuous | ExecutionState.EsSystemRequired);
-        }
-        public static void AllowSleep()
-        {
-            SetThreadExecutionState(ExecutionState.EsContinuous);
-        }
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern ExecutionState SetThreadExecutionState(ExecutionState esFlags);
         [FlagsAttribute]
@@ -42,7 +33,6 @@ namespace IdleMaster
             EsDisplayRequired = 0x00000002,
             EsSystemRequired = 0x00000001
         }
-
 
         private Statistics statistics = new Statistics();
         public List<Badge> AllBadges { get; set; }
@@ -65,28 +55,15 @@ namespace IdleMaster
 
         internal void UpdateStateInfo()
         {
-            // Update totals
             if (ReloadCount == 0)
             {
-                lblIdle.Text = string.Format("{0} " + localization.strings.games_left_to_idle + ", {1} " + localization.strings.idle_now + ".", GamesRemaining, CanIdleBadges.Count(b => b.InIdle));
+                lblIdle.Text = string.Format(
+                    "{0} " + localization.strings.games_left_to_idle + 
+                    ", {1} " + localization.strings.idle_now + 
+                    ".", GamesRemaining, CanIdleBadges.Count(b => b.InIdle));
                 lblDrops.Text = CardsRemaining + " " + localization.strings.card_drops_remaining;
                 lblIdle.Visible = GamesRemaining != 0;
                 lblDrops.Visible = CardsRemaining != 0;
-            }
-        }
-
-        private void CopyResource(string resourceName, string file)
-        {
-            using (var resource = GetType().Assembly.GetManifestResourceStream(resourceName))
-            {
-                if (resource == null)
-                {
-                    return;
-                }
-                using (Stream output = File.OpenWrite(file))
-                {
-                    resource.CopyTo(output);
-                }
             }
         }
 
@@ -291,6 +268,74 @@ namespace IdleMaster
             }
         }
 
+        public void StopIdle()
+        {
+            try
+            {
+                lblGameName.Visible = false;
+                picApp.Image = null;
+                picApp.Visible = false;
+                GamesState.Visible = false;
+                btnPause.Visible = false;
+                btnSkip.Visible = false;
+                lblCurrentStatus.Text = localization.strings.not_ingame;
+                lblHoursPlayed.Visible = false;
+                picIdleStatus.Image = null;
+
+                // Stop the card drop check timer
+                tmrCardDropCheck.Enabled = false;
+
+                // Stop the statistics timer
+                tmrStatistics.Stop();
+                tmrStatistics.Enabled = false;
+
+                // Hide the status bar
+                ssFooter.Visible = false;
+
+                // Resize the form
+                var graphics = CreateGraphics();
+                var scale = graphics.DpiY * 1.9583;
+                Height = Convert.ToInt32(scale);
+
+                // Kill the idling process
+                foreach (var badge in AllBadges.Where(b => b.InIdle))
+                    badge.StopIdle();
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex, "frmMain -> StopIdle");
+            }
+        }
+
+        public void IdleComplete()
+        {
+            // Deactivate the timer control and inform the user that the program is finished
+            tmrCardDropCheck.Enabled = false;
+            lblCurrentStatus.Text = localization.strings.idling_complete;
+
+            lblGameName.Visible = false;
+            btnPause.Visible = false;
+            btnSkip.Visible = true;
+            // TODO: Refresh button?
+
+            // Resize the form
+            var graphics = CreateGraphics();
+            var scale = graphics.DpiY * 1.9583;
+            Height = Convert.ToInt32(scale);
+
+            if (Settings.Default.ShutdownWindowsOnDone)
+            {
+                // Start a separate process to shut down Windows (30 sec timer)
+                var psi = new ProcessStartInfo("shutdown", "/s /t 30");
+                psi.CreateNoWindow = true;
+                psi.UseShellExecute = false;
+                Process.Start(psi);
+
+                // Close the application
+                Form1_Closing(this, null);
+            }
+        }
+
         public void StartSoloIdle(Badge badge)
         {
             // Set the currentAppID value
@@ -384,21 +429,10 @@ namespace IdleMaster
             Height = Convert.ToInt32(scale);
         }
 
-        private void HideAllInterruptiveButtons()
-        {
-            // Set the correct buttons on the form for pause / resume
-            btnResume.Visible = false;
-            btnPause.Visible = false;
-            btnSkip.Visible = false;
-            resumeIdlingToolStripMenuItem.Enabled = false;
-            pauseIdlingToolStripMenuItem.Enabled = false;
-            skipGameToolStripMenuItem.Enabled = false;
-        }
-
         /// <summary>
         /// FAST MODE: Idle simultaneous for a short period
         /// </summary>
-        public void StartMultipleIdleFastMode()
+        private void StartMultipleIdleFastMode()
         {
             StartMultipleIdle();
             TimeLeft = 5 * 60;
@@ -435,90 +469,6 @@ namespace IdleMaster
             StartMultipleIdleFastMode();            // Start the simultaneous idling
             TimeLeft = 5 * 60;                      // Time before the next individual idling
         }
-
-        private void RefreshGamesStateListView()
-        {
-            GamesState.Items.Clear();
-            foreach (var badge in CanIdleBadges.Where(b => b.InIdle))
-            {
-                var line = new ListViewItem(badge.Name);
-                line.SubItems.Add(badge.HoursPlayed.ToString());
-                GamesState.Items.Add(line);
-            }
-
-            // JN: Recolor the listview
-            GamesState.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
-            GamesState.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
-        }
-
-        public void StopIdle()
-        {
-            try
-            {
-                lblGameName.Visible = false;
-                picApp.Image = null;
-                picApp.Visible = false;
-                GamesState.Visible = false;
-                btnPause.Visible = false;
-                btnSkip.Visible = false;
-                lblCurrentStatus.Text = localization.strings.not_ingame;
-                lblHoursPlayed.Visible = false;
-                picIdleStatus.Image = null;
-
-                // Stop the card drop check timer
-                tmrCardDropCheck.Enabled = false;
-
-                // Stop the statistics timer
-                tmrStatistics.Stop();
-                tmrStatistics.Enabled = false;
-
-                // Hide the status bar
-                ssFooter.Visible = false;
-
-                // Resize the form
-                var graphics = CreateGraphics();
-                var scale = graphics.DpiY * 1.9583;
-                Height = Convert.ToInt32(scale);
-
-                // Kill the idling process
-                foreach (var badge in AllBadges.Where(b => b.InIdle))
-                    badge.StopIdle();
-            }
-            catch (Exception ex)
-            {
-                Logger.Exception(ex, "frmMain -> StopIdle");
-            }
-        }
-
-        public void IdleComplete()
-        {
-            // Deactivate the timer control and inform the user that the program is finished
-            tmrCardDropCheck.Enabled = false;
-            lblCurrentStatus.Text = localization.strings.idling_complete;
-
-            lblGameName.Visible = false;
-            btnPause.Visible = false;
-            btnSkip.Visible = true;
-            // TODO: Refresh button?
-
-            // Resize the form
-            var graphics = CreateGraphics();
-            var scale = graphics.DpiY * 1.9583;
-            Height = Convert.ToInt32(scale);
-
-            if (Settings.Default.ShutdownWindowsOnDone)
-            {
-                // Start a separate process to shut down Windows (30 sec timer)
-                var psi = new ProcessStartInfo("shutdown", "/s /t 30");
-                psi.CreateNoWindow = true;
-                psi.UseShellExecute = false;
-                Process.Start(psi);
-
-                // Close the application
-                Form1_Closing(this, null);
-            }
-        }
-
 
         public async Task LoadBadgesAsync()
         {
@@ -565,34 +515,6 @@ namespace IdleMaster
             document.LoadHtml(response);
 
             return document;
-        }
-
-        private void ResetRetryCountAndUpdateApplicationState()
-        {
-            RetryCount = 0;
-            SortBadges(Settings.Default.sort);
-
-            picReadingPage.Visible = false;
-            UpdateStateInfo();
-
-            if (CardsRemaining == 0)
-            {
-                IdleComplete();
-            }
-        }
-
-        private void ResetFormDesign()
-        {
-            picReadingPage.Image = null;
-            picIdleStatus.Image = null;
-            lblDrops.Text = localization.strings.badge_didnt_load.Replace("__num__", "10");
-            lblIdle.Text = "";
-
-            // Set the form height
-            var graphics = CreateGraphics();
-            var scale = graphics.DpiY * 1.625;
-            Height = Convert.ToInt32(scale);
-            ssFooter.Visible = false;
         }
 
         private static int ExtractTotalBadgePages(HtmlDocument document)
@@ -841,106 +763,6 @@ namespace IdleMaster
             {
                 PreventSleep();
             }
-        }
-
-        /// <summary>
-        /// Changes the color of the main window components to match a Steam-like dark theme
-        /// </summary> 
-        private void runtimeCustomThemeMain()
-        {
-            // Read settings
-            var customTheme = Settings.Default.customTheme;
-            var whiteIcons = Settings.Default.whiteIcons;
-
-            // Define colors
-            FlatStyle buttonStyle = customTheme ? FlatStyle.Flat : FlatStyle.Standard;
-            Color colorBgd = customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
-            Color colorTxt = customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
-
-            // --------------------------
-            // -- APPLY THEME SETTINGS --
-            // --------------------------
-
-            // Main frame window
-            this.BackColor = colorBgd;
-            this.ForeColor = colorTxt;
-
-            // Link colors
-            lnkSignIn.LinkColor = lnkResetCookies.LinkColor = lblCurrentRemaining.ForeColor = lblGameName.LinkColor = customTheme ? Color.GhostWhite : Color.Blue;
-
-            // ToolStripMenu Top
-            mnuTop.BackColor = colorBgd;
-            mnuTop.ForeColor = colorTxt;
-
-            // ToolStripMenuItem and the ToolStripMenuItem dropdowns
-            foreach (ToolStripMenuItem item in mnuTop.Items)
-            {
-                // Menu item coloring
-                item.BackColor = colorBgd;
-                item.ForeColor = colorTxt;
-
-                // Dropdown coloring
-                item.DropDown.BackColor = colorBgd;
-                item.DropDown.ForeColor = colorTxt;
-            }
-
-            // Game state list (needs to be colored in RefreshGamesStateListView)
-            GamesState.BackColor = colorBgd;
-            GamesState.ForeColor = colorTxt;
-
-            // lblTimer
-            lblTimer.BackColor = colorBgd;
-            lblTimer.ForeColor = colorTxt;
-
-            // toolStripStatusLabel1
-            toolStripStatusLabel1.BackColor = colorBgd;
-
-            // Footer
-            ssFooter.BackColor = colorBgd;
-
-            // Buttons
-            btnPause.FlatStyle = btnResume.FlatStyle = btnSkip.FlatStyle = buttonStyle;
-            btnPause.BackColor = btnResume.BackColor = btnSkip.BackColor = colorBgd;
-            btnPause.ForeColor = btnResume.ForeColor = btnSkip.ForeColor = colorTxt;
-
-            // Icon images
-            runtimeCustomIcons();
-        }
-
-        /// <summary>
-        /// Replaces the main frame window images with white ones for the dark theme
-        /// </summary> 
-        private void runtimeCustomIcons()
-        {
-            var customTheme = Settings.Default.customTheme;
-            var whiteIcons = Settings.Default.whiteIcons;
-
-            // TOOL STRIP MENU ITEMS
-            // File
-            settingsToolStripMenuItem.Image = whiteIcons ? Resources.imgSettings_w : Resources.imgSettings;
-            blacklistToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
-            exitToolStripMenuItem.Image = whiteIcons ? Resources.imgExit_w : Resources.imgExit;
-            // Game
-            pauseIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPause_w : Resources.imgPause;
-            resumeIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPlay_w : Resources.imgPlay;
-            skipGameToolStripMenuItem.Image = whiteIcons ? Resources.imgSkip_w : Resources.imgSkip;
-            blacklistCurrentGameToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
-            // Help
-            statisticsToolStripMenuItem.Image = whiteIcons ? Resources.imgStatistics_w : Resources.imgStatistics;
-            changelogToolStripMenuItem.Image = whiteIcons ? Resources.imgDocument_w : Resources.imgDocument;
-            officialGroupToolStripMenuItem.Image = whiteIcons ? Resources.imgGlobe_w : Resources.imgGlobe;
-            aboutToolStripMenuItem.Image = whiteIcons ? Resources.imgInfo_w : Resources.imgInfo;
-
-            // STATUS
-            // Handled in respective tick drawing functions
-
-            // BUTTONS
-            btnPause.Image = whiteIcons ? Resources.imgPauseSmall_w : Resources.imgPauseSmall;
-            btnResume.Image = whiteIcons ? Resources.imgPlaySmall_w : Resources.imgPlaySmall;
-            btnSkip.Image = whiteIcons ? Resources.imgSkipSmall_w : Resources.imgSkipSmall;
-
-            // LOADING GIF
-            //
         }
 
         private void frmMain_FormClose(object sender, FormClosedEventArgs e)
@@ -1312,6 +1134,7 @@ namespace IdleMaster
             statistics.increaseMinutesIdled();
             statistics.checkCardRemaining((uint)CardsRemaining);
         }
+
         private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //Restore Sleep Settings on close
@@ -1320,6 +1143,178 @@ namespace IdleMaster
                 AllowSleep();
             }
             this.Close();
+        }
+
+        private static void PreventSleep() => SetThreadExecutionState(ExecutionState.EsContinuous | ExecutionState.EsSystemRequired);
+        private static void AllowSleep() => SetThreadExecutionState(ExecutionState.EsContinuous);
+
+        private void CopyResource(string resourceName, string file)
+        {
+            using (var resource = GetType().Assembly.GetManifestResourceStream(resourceName))
+            {
+                if (resource == null)
+                {
+                    return;
+                }
+                using (Stream output = File.OpenWrite(file))
+                {
+                    resource.CopyTo(output);
+                }
+            }
+        }
+
+        private void HideAllInterruptiveButtons()
+        {
+            // Set the correct buttons on the form for pause / resume
+            btnResume.Visible = false;
+            btnPause.Visible = false;
+            btnSkip.Visible = false;
+            resumeIdlingToolStripMenuItem.Enabled = false;
+            pauseIdlingToolStripMenuItem.Enabled = false;
+            skipGameToolStripMenuItem.Enabled = false;
+        }
+
+        private void RefreshGamesStateListView()
+        {
+            GamesState.Items.Clear();
+            foreach (var badge in CanIdleBadges.Where(b => b.InIdle))
+            {
+                var line = new ListViewItem(badge.Name);
+                line.SubItems.Add(badge.HoursPlayed.ToString());
+                GamesState.Items.Add(line);
+            }
+
+            // JN: Recolor the listview
+            GamesState.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+            GamesState.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
+        }
+
+        private void ResetFormDesign()
+        {
+            picReadingPage.Image = null;
+            picIdleStatus.Image = null;
+            lblDrops.Text = localization.strings.badge_didnt_load.Replace("__num__", "10");
+            lblIdle.Text = "";
+
+            // Set the form height
+            var graphics = CreateGraphics();
+            var scale = graphics.DpiY * 1.625;
+            Height = Convert.ToInt32(scale);
+            ssFooter.Visible = false;
+        }
+
+        private void ResetRetryCountAndUpdateApplicationState()
+        {
+            RetryCount = 0;
+            SortBadges(Settings.Default.sort);
+
+            picReadingPage.Visible = false;
+            UpdateStateInfo();
+
+            if (CardsRemaining == 0)
+            {
+                IdleComplete();
+            }
+        }
+
+        /// <summary>
+        /// Changes the color of the main window components to match a Steam-like dark theme
+        /// </summary>
+        private void runtimeCustomThemeMain()
+        {
+            // Read settings
+            var customTheme = Settings.Default.customTheme;
+            var whiteIcons = Settings.Default.whiteIcons;
+
+            // Define colors
+            FlatStyle buttonStyle = customTheme ? FlatStyle.Flat : FlatStyle.Standard;
+            Color colorBgd = customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+            Color colorTxt = customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
+
+            // --------------------------
+            // -- APPLY THEME SETTINGS --
+            // --------------------------
+
+            // Main frame window
+            this.BackColor = colorBgd;
+            this.ForeColor = colorTxt;
+
+            // Link colors
+            lnkSignIn.LinkColor = lnkResetCookies.LinkColor = lblCurrentRemaining.ForeColor = lblGameName.LinkColor = customTheme ? Color.GhostWhite : Color.Blue;
+
+            // ToolStripMenu Top
+            mnuTop.BackColor = colorBgd;
+            mnuTop.ForeColor = colorTxt;
+
+            // ToolStripMenuItem and the ToolStripMenuItem dropdowns
+            foreach (ToolStripMenuItem item in mnuTop.Items)
+            {
+                // Menu item coloring
+                item.BackColor = colorBgd;
+                item.ForeColor = colorTxt;
+
+                // Dropdown coloring
+                item.DropDown.BackColor = colorBgd;
+                item.DropDown.ForeColor = colorTxt;
+            }
+
+            // Game state list (needs to be colored in RefreshGamesStateListView)
+            GamesState.BackColor = colorBgd;
+            GamesState.ForeColor = colorTxt;
+
+            // lblTimer
+            lblTimer.BackColor = colorBgd;
+            lblTimer.ForeColor = colorTxt;
+
+            // toolStripStatusLabel1
+            toolStripStatusLabel1.BackColor = colorBgd;
+
+            // Footer
+            ssFooter.BackColor = colorBgd;
+
+            // Buttons
+            btnPause.FlatStyle = btnResume.FlatStyle = btnSkip.FlatStyle = buttonStyle;
+            btnPause.BackColor = btnResume.BackColor = btnSkip.BackColor = colorBgd;
+            btnPause.ForeColor = btnResume.ForeColor = btnSkip.ForeColor = colorTxt;
+
+            // Icon images
+            runtimeCustomIcons();
+        }
+
+        /// <summary>
+        /// Replaces the main frame window images with white ones for the dark theme
+        /// </summary>
+        private void runtimeCustomIcons()
+        {
+            var customTheme = Settings.Default.customTheme;
+            var whiteIcons = Settings.Default.whiteIcons;
+
+            // TOOL STRIP MENU ITEMS
+            // File
+            settingsToolStripMenuItem.Image = whiteIcons ? Resources.imgSettings_w : Resources.imgSettings;
+            blacklistToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
+            exitToolStripMenuItem.Image = whiteIcons ? Resources.imgExit_w : Resources.imgExit;
+            // Game
+            pauseIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPause_w : Resources.imgPause;
+            resumeIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPlay_w : Resources.imgPlay;
+            skipGameToolStripMenuItem.Image = whiteIcons ? Resources.imgSkip_w : Resources.imgSkip;
+            blacklistCurrentGameToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
+            // Help
+            statisticsToolStripMenuItem.Image = whiteIcons ? Resources.imgStatistics_w : Resources.imgStatistics;
+            changelogToolStripMenuItem.Image = whiteIcons ? Resources.imgDocument_w : Resources.imgDocument;
+            officialGroupToolStripMenuItem.Image = whiteIcons ? Resources.imgGlobe_w : Resources.imgGlobe;
+            aboutToolStripMenuItem.Image = whiteIcons ? Resources.imgInfo_w : Resources.imgInfo;
+
+            // STATUS
+            // Handled in respective tick drawing functions
+
+            // BUTTONS
+            btnPause.Image = whiteIcons ? Resources.imgPauseSmall_w : Resources.imgPauseSmall;
+            btnResume.Image = whiteIcons ? Resources.imgPlaySmall_w : Resources.imgPlaySmall;
+            btnSkip.Image = whiteIcons ? Resources.imgSkipSmall_w : Resources.imgSkipSmall;
+
+            // LOADING GIF
+            //
         }
     }
 }
