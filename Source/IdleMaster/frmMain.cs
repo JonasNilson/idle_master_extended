@@ -524,43 +524,18 @@ namespace IdleMaster
         {
             // Settings.Default.myProfileURL = http://steamcommunity.com/id/USER
             var profileLink = Settings.Default.myProfileURL + "/badges";
-            var pages = new List<string>() { "?p=1" };
             var document = new HtmlDocument();
-            int pagesCount = 1;
 
             // Adjust the spinner gif based on the current color theme
             picReadingPage.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             try
             {
-                // Load Page 1 and check how many pages there are
                 var pageURL = string.Format("{0}/?p={1}", profileLink, 1);
                 var response = await CookieClient.GetHttpAsync(pageURL);
-                // Response should be empty. User should be unauthorised.
-                if (string.IsNullOrEmpty(response))
-                {
-                    RetryCount++;
-                    if (RetryCount == 18)
-                    {
-                        ResetClientStatus();
-                        return;
-                    }
-                    throw new Exception("");
-                }
+                CheckIfResponseIsNullWithRetryCount(response);
                 document.LoadHtml(response);
-
-                // If user is authenticated, check page count. If user is not authenticated, pages are different.
-                var pageNodes = document.DocumentNode.SelectNodes("//a[@class=\"pagelink\"]");
-                if (pageNodes != null)
-                {
-                    pages.AddRange(pageNodes.Select(p => p.Attributes["href"].Value).Distinct());
-                    pages = pages.Distinct().ToList();
-                }
-
-                string lastpage = pages.Last().ToString().Replace("?p=", "");
-                pagesCount = Convert.ToInt32(lastpage);
-
-                // Get all badges from current page
+                int pagesCount = ExtractTheTotalNumberOfBadgePages(document);
                 ProcessBadgesOnPage(document);
 
                 // Load other pages
@@ -571,43 +546,25 @@ namespace IdleMaster
                     // Load Page 2+
                     pageURL = string.Format("{0}/?p={1}", profileLink, i);
                     response = await CookieClient.GetHttpAsync(pageURL);
-                    // Response should be empty. User should be unauthorised.
-                    if (string.IsNullOrEmpty(response))
-                    {
-                        RetryCount++;
-                        if (RetryCount == 18)
-                        {
-                            ResetClientStatus();
-                            return;
-                        }
-                        throw new Exception("");
-                    }
+                    CheckIfResponseIsNullWithRetryCount(response);
                     document.LoadHtml(response);
-
-                    // Get all badges from current page
                     ProcessBadgesOnPage(document);
                 }
             }
             catch (Exception ex)
             {
                 Logger.Exception(ex, "Badge -> LoadBadgesAsync, for profile = " + Settings.Default.myProfileURL);
-                // badge page didn't load
-                picReadingPage.Image = null;
-                picIdleStatus.Image = null;
-                lblDrops.Text = localization.strings.badge_didnt_load.Replace("__num__", "10");
-                lblIdle.Text = "";
-
-                // Set the form height
-                var graphics = CreateGraphics();
-                var scale = graphics.DpiY * 1.625;
-                Height = Convert.ToInt32(scale);
-                ssFooter.Visible = false;
-
+                ResetFormDesign();
                 ReloadCount = 1;
                 tmrBadgeReload.Enabled = true;
                 return;
             }
 
+            ResetRetryCountAndUpdateApplicationState();
+        }
+
+        private void ResetRetryCountAndUpdateApplicationState()
+        {
             RetryCount = 0;
             SortBadges(Settings.Default.sort);
 
@@ -617,6 +574,51 @@ namespace IdleMaster
             if (CardsRemaining == 0)
             {
                 IdleComplete();
+            }
+        }
+
+        private void ResetFormDesign()
+        {
+            picReadingPage.Image = null;
+            picIdleStatus.Image = null;
+            lblDrops.Text = localization.strings.badge_didnt_load.Replace("__num__", "10");
+            lblIdle.Text = "";
+
+            // Set the form height
+            var graphics = CreateGraphics();
+            var scale = graphics.DpiY * 1.625;
+            Height = Convert.ToInt32(scale);
+            ssFooter.Visible = false;
+        }
+
+        private static int ExtractTheTotalNumberOfBadgePages(HtmlDocument document)
+        {
+            // If user is authenticated, check page count. If user is not authenticated, pages are different.
+            var pages = new List<string>() { "?p=1" };
+            var pageNodes = document.DocumentNode.SelectNodes("//a[@class=\"pagelink\"]");
+            if (pageNodes != null)
+            {
+                pages.AddRange(pageNodes.Select(p => p.Attributes["href"].Value).Distinct());
+                pages = pages.Distinct().ToList();
+            }
+
+            string lastpage = pages.Last().ToString().Replace("?p=", "");
+            int pagesCount = Convert.ToInt32(lastpage);
+            return pagesCount;
+        }
+
+        private void CheckIfResponseIsNullWithRetryCount(string response)
+        {
+            // Response should be empty. User should be unauthorised.
+            if (string.IsNullOrEmpty(response))
+            {
+                RetryCount++;
+                if (RetryCount == 18)
+                {
+                    ResetClientStatus();
+                    return;
+                }
+                throw new Exception("Response is null or empty. Added (+1) to RetryCount");
             }
         }
 
