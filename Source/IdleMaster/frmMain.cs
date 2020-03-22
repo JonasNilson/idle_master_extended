@@ -682,14 +682,9 @@ namespace IdleMaster
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            // Copy external references to the output directory.  This allows ClickOnce install.
             if (File.Exists(Environment.CurrentDirectory + "\\steam_api.dll") == false)
             {
                 CopyResource("IdleMaster.Resources.steam_api.dll", Environment.CurrentDirectory + @"\steam_api.dll");
-            }
-            if (File.Exists(Environment.CurrentDirectory + "\\CSteamworks.dll") == false)
-            {
-                CopyResource("IdleMaster.Resources.CSteamworks.dll", Environment.CurrentDirectory + @"\CSteamworks.dll");
             }
             if (File.Exists(Environment.CurrentDirectory + "\\steam-idle.exe") == false)
             {
