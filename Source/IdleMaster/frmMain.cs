@@ -522,33 +522,25 @@ namespace IdleMaster
 
         public async Task LoadBadgesAsync()
         {
-            // Settings.Default.myProfileURL = http://steamcommunity.com/id/USER
-            var profileLink = Settings.Default.myProfileURL + "/badges";
-            var document = new HtmlDocument();
-
             // Adjust the spinner gif based on the current color theme
             picReadingPage.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             try
             {
-                var pageURL = string.Format("{0}/?p={1}", profileLink, 1);
-                var response = await CookieClient.GetHttpAsync(pageURL);
-                CheckIfResponseIsNullWithRetryCount(response);
-                document.LoadHtml(response);
-                int pagesCount = ExtractTheTotalNumberOfBadgePages(document);
-                ProcessBadgesOnPage(document);
+                HtmlDocument htmlDocument;
+                int totalBadgePages = 1;
 
-                // Load other pages
-                for (var i = 2; i <= pagesCount; i++)
+                for (var currentBadgePage = 1; currentBadgePage <= totalBadgePages; currentBadgePage++)
                 {
-                    lblDrops.Text = string.Format(localization.strings.reading_badge_page + " {0}/{1}, " + localization.strings.please_wait, i, pagesCount);
+                    if (totalBadgePages == 1)
+                    {
+                        htmlDocument = await GetBadgePageAsync(currentBadgePage);
+                        totalBadgePages = ExtractTotalBadgePages(htmlDocument);
+                    }
 
-                    // Load Page 2+
-                    pageURL = string.Format("{0}/?p={1}", profileLink, i);
-                    response = await CookieClient.GetHttpAsync(pageURL);
-                    CheckIfResponseIsNullWithRetryCount(response);
-                    document.LoadHtml(response);
-                    ProcessBadgesOnPage(document);
+                    lblDrops.Text = string.Format(localization.strings.reading_badge_page + " {0}/{1}, " + localization.strings.please_wait, currentBadgePage, totalBadgePages);
+                    htmlDocument = await GetBadgePageAsync(currentBadgePage);
+                    ProcessBadgesOnPage(htmlDocument);
                 }
             }
             catch (Exception ex)
@@ -561,6 +553,18 @@ namespace IdleMaster
             }
 
             ResetRetryCountAndUpdateApplicationState();
+        }
+
+        private async Task<HtmlDocument> GetBadgePageAsync(int pageNumber)
+        {
+            var document = new HtmlDocument();
+            var profileLink = Settings.Default.myProfileURL + "/badges";
+            var pageURL = string.Format("{0}/?p={1}", profileLink, pageNumber);
+            var response = await CookieClient.GetHttpAsync(pageURL);
+            CheckIfResponseIsNullWithRetryCount(response);
+            document.LoadHtml(response);
+
+            return document;
         }
 
         private void ResetRetryCountAndUpdateApplicationState()
@@ -591,7 +595,7 @@ namespace IdleMaster
             ssFooter.Visible = false;
         }
 
-        private static int ExtractTheTotalNumberOfBadgePages(HtmlDocument document)
+        private static int ExtractTotalBadgePages(HtmlDocument document)
         {
             // If user is authenticated, check page count. If user is not authenticated, pages are different.
             var pages = new List<string>() { "?p=1" };
