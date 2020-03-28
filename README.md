@@ -12,12 +12,12 @@ The latest release is always available here: https://github.com/JonasNilson/idle
 Troubleshooting and common solutions
 -------
 * Idle Master Steam Group:
-  * [How To Fix Most Idle Master + Steam problems](https://steamcommunity.com/groups/idlemastery/discussions/0/133257636766989675/)
-  * [Read this Thread before posting, it saves time](https://steamcommunity.com/groups/idlemastery/discussions/0/152392786912268315/)
-  * [Temporary solution for IM can't login problem](https://steamcommunity.com/groups/idlemastery/discussions/0/1697168437864920721/)
+  * [Read this Thread before posting, it saves time](https://steamcommunity.com/groups/idlemastery/discussions/0/152392786912268315/) ⭐
+  * [How To Fix Most Idle Master + Steam problems](https://steamcommunity.com/groups/idlemastery/discussions/0/133257636766989675/) 🔧
+  * [Temporary solution for IM can't login problem](https://steamcommunity.com/groups/idlemastery/discussions/0/1697168437864920721/) 🔧
 * GitHub Issues
-  * [How to idle any game with Idle Master](https://github.com/JonasNilson/idle_master_extended/issues/36)
-  * [Solve login issues by using an existing Steam cookie](https://github.com/JonasNilson/idle_master_extended/issues/27#issuecomment-577597720)
+  * [How to idle any game with Idle Master](https://github.com/JonasNilson/idle_master_extended/issues/36) 🔧
+  * [Solve login issues by using an existing Steam cookie](https://github.com/JonasNilson/idle_master_extended/issues/27#issuecomment-577597720) 🔧
 
 Contribute
 -------
