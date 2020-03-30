@@ -19,6 +19,7 @@ Troubleshooting and common solutions
 * GitHub Issues
   * 🔧 [How to idle any game with Idle Master](https://github.com/JonasNilson/idle_master_extended/issues/36)
   * 🔧 [Solve login issues by using an existing Steam cookie](https://github.com/JonasNilson/idle_master_extended/issues/27#issuecomment-577597720)
+  * 🔧 [Free games does not have card drops available](https://github.com/JonasNilson/idle_master_extended/issues/38#issuecomment-604059701)
 
 Contribute
 -------
