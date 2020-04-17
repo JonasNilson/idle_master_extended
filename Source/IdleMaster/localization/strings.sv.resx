@@ -163,7 +163,7 @@
     <value>Idle Master är inte ansluten till Steam</value>
   </data>
   <data name="idle_now" xml:space="preserve">
-    <value>idla nu</value>
+    <value>idlas nu</value>
   </data>
   <data name="idling_complete" xml:space="preserve">
     <value>Tomgång klar, inga fler kort finns</value>
