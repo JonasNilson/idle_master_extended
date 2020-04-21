@@ -8,7 +8,7 @@ This is a fork of the original [Idle Master](https://github.com/jshackles/idle_m
 Download
 -------
 * The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
-  * 💹 Total number of downloads: `351 524` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-03-28)
+  * 💹 Total number of downloads: `378 992` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-04-21)
 
 Troubleshooting and common solutions
 -------
@@ -20,6 +20,7 @@ Troubleshooting and common solutions
   * 🔧 [How to idle any game with Idle Master](https://github.com/JonasNilson/idle_master_extended/issues/36)
   * 🔧 [Solve login issues by using an existing Steam cookie](https://github.com/JonasNilson/idle_master_extended/issues/27#issuecomment-577597720)
   * 🔧 [Free games does not have card drops available](https://github.com/JonasNilson/idle_master_extended/issues/38#issuecomment-604059701)
+  * 🔧 [Steam is not running, but actually is](https://github.com/JonasNilson/idle_master_extended/issues/45#issuecomment-611694923)
 
 Contribute
 -------
