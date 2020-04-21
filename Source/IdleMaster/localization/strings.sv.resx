@@ -121,16 +121,16 @@
     <value>&amp; Om</value>
   </data>
   <data name="badge_didnt_load" xml:space="preserve">
-    <value>Märkes sidan laddas inte, kommer att försöka igen om __num__ sekunder</value>
+    <value>Märkessidan laddas inte, kommer att försöka igen om __num__ sekunder</value>
   </data>
   <data name="blacklist" xml:space="preserve">
     <value>&amp;Svartlista</value>
   </data>
   <data name="blacklist_current_game" xml:space="preserve">
-    <value>&amp; Svartlista nuvarande spel</value>
+    <value>&amp; Svartlista över nuvarande spel</value>
   </data>
   <data name="card_drops_remaining" xml:space="preserve">
-    <value>kvarvarande kort droppar</value>
+    <value>kvarvarande kortdroppar</value>
   </data>
   <data name="currently_ingame" xml:space="preserve">
     <value>För närvarande i spelet</value>
@@ -163,7 +163,7 @@
     <value>Idle Master är inte ansluten till Steam</value>
   </data>
   <data name="idle_now" xml:space="preserve">
-    <value>idla nu</value>
+    <value>idlas nu</value>
   </data>
   <data name="idling_complete" xml:space="preserve">
     <value>Tomgång klar, inga fler kort finns</value>
@@ -193,10 +193,10 @@
     <value>var god vänta...</value>
   </data>
   <data name="reading_badge_page" xml:space="preserve">
-    <value>Läser badge sidan</value>
+    <value>Läser märkessidan</value>
   </data>
   <data name="release_notes" xml:space="preserve">
-    <value>&amp;Release noteringar</value>
+    <value>&amp;Releasenoteringar</value>
   </data>
   <data name="resume_idling" xml:space="preserve">
     <value>&amp;Fortsätt idling</value>
@@ -223,7 +223,7 @@
     <value>&amp;Statistik</value>
   </data>
   <data name="steam_ignored" xml:space="preserve">
-    <value>Steam-klient status ignorerades</value>
+    <value>Steam-klientens status ignorerades</value>
   </data>
   <data name="steam_notrunning" xml:space="preserve">
     <value>Steam körs inte</value>
@@ -241,13 +241,13 @@
     <value>&amp;Lägg till</value>
   </data>
   <data name="add_game_blacklist" xml:space="preserve">
-    <value>Lägg till spel i Blacklist</value>
+    <value>Lägg till spel i svartlista</value>
   </data>
   <data name="advanced_auth" xml:space="preserve">
     <value>Visa avancerad autentiseringsinformation</value>
   </data>
   <data name="auth_data" xml:space="preserve">
-    <value>Idle Master autentiseringsdata</value>
+    <value>Idle Masters autentiseringsdata</value>
   </data>
   <data name="cancel" xml:space="preserve">
     <value>&amp;Avbryt</value>
@@ -271,10 +271,10 @@ obehöriga kan logga in på ditt Steam-konto.</value>
     <value>Idla flera spel samtidigt upp till 2 timmar, sedan individuellt</value>
   </data>
   <data name="idling_behavior" xml:space="preserve">
-    <value>Idling metod</value>
+    <value>Idling-metod</value>
   </data>
   <data name="idling_order" xml:space="preserve">
-    <value>Idling ordning</value>
+    <value>Idling-ordning</value>
   </data>
   <data name="ignore_client_status" xml:space="preserve">
     <value>Ignorera Steam-klientens status</value>
@@ -283,7 +283,7 @@ obehöriga kan logga in på ditt Steam-konto.</value>
     <value>Språk för gränssnittet</value>
   </data>
   <data name="manage_blacklist" xml:space="preserve">
-    <value>Hantera Idle Master Svartlista</value>
+    <value>Hantera Idle Masters svartlista</value>
   </data>
   <data name="minimize_to_tray" xml:space="preserve">
     <value>Minimera Idle Master till systemfältet</value>
@@ -295,13 +295,13 @@ obehöriga kan logga in på ditt Steam-konto.</value>
     <value>Standard (Alfabetisk ordning)</value>
   </data>
   <data name="order_least" xml:space="preserve">
-    <value>Priotera spel med minsta antalet av kvarvarande kort droppar</value>
+    <value>Prioritera spel med minsta antalet av kvarvarande kortdroppar</value>
   </data>
   <data name="order_most" xml:space="preserve">
-    <value>Priotera spel med flesta antalet av kvarvarande kort droppar</value>
+    <value>Prioritera spel med flesta antalet av kvarvarande kortdroppar</value>
   </data>
   <data name="order_value" xml:space="preserve">
-    <value>Prioritera spel med de högsta kortvärden</value>
+    <value>Prioritera spel med de högsta kortvärdena</value>
   </data>
   <data name="please_login" xml:space="preserve">
     <value>Var god logga in på Steam</value>
