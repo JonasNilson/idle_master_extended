@@ -124,10 +124,10 @@
     <value>A página de insígnias não carregou, tentando novamente em __num__ segundos</value>
   </data>
   <data name="blacklist" xml:space="preserve">
-    <value>&amp;Lista Negra</value>
+    <value>&amp;Lista negra</value>
   </data>
   <data name="blacklist_current_game" xml:space="preserve">
-    <value>&amp;Adicionar Jogo Atual a Lista Negra</value>
+    <value>&amp;Adicionar jogo atual à lista negra.</value>
   </data>
   <data name="card_drops_remaining" xml:space="preserve">
     <value>cartas restantes</value>
@@ -136,7 +136,7 @@
     <value>Atualmente em jogo</value>
   </data>
   <data name="exit" xml:space="preserve">
-    <value>S&amp;air</value>
+    <value>S&amp;Sair</value>
   </data>
   <data name="file" xml:space="preserve">
     <value>&amp;Arquivo</value>
@@ -145,7 +145,7 @@
     <value>&amp;Jogo</value>
   </data>
   <data name="games_left_to_idle" xml:space="preserve">
-    <value>jogos restantes para "idlear"</value>
+    <value>jogos restantes</value>
   </data>
   <data name="help" xml:space="preserve">
     <value>&amp;Ajuda</value>
@@ -157,19 +157,19 @@
     <value>horas registradas</value>
   </data>
   <data name="idle_master_connected" xml:space="preserve">
-    <value>Idle Master está conectado ao Steam</value>
+    <value>Idle Master está conectado à Steam</value>
   </data>
   <data name="idle_master_notconnected" xml:space="preserve">
-    <value>Idle Master não está conectado ao Steam</value>
+    <value>Idle Master não está conectado à Steam</value>
   </data>
   <data name="idle_now" xml:space="preserve">
-    <value>"Idle" agora</value>
+    <value>agora</value>
   </data>
   <data name="idling_complete" xml:space="preserve">
-    <value>Processo concluído, não há mais cartas disponíveis</value>
+    <value>Processo concluído, não há mais cartas disponíveis.</value>
   </data>
   <data name="idling_paused" xml:space="preserve">
-    <value>"Idling" em pausa</value>
+    <value>Pausado.</value>
   </data>
   <data name="loading_next" xml:space="preserve">
     <value>Carregando o próximo jogo...</value>
@@ -178,7 +178,7 @@
     <value>Nome</value>
   </data>
   <data name="next_check" xml:space="preserve">
-    <value>Próxima verificação</value>
+    <value>Próxima verificação:</value>
   </data>
   <data name="not_ingame" xml:space="preserve">
     <value>Não está em jogo</value>
@@ -187,7 +187,7 @@
     <value>Grupo oficial</value>
   </data>
   <data name="pause_idling" xml:space="preserve">
-    <value>&amp;Pausar "Idling"</value>
+    <value>&amp;Pausar processo</value>
   </data>
   <data name="please_wait" xml:space="preserve">
     <value>por favor, aguarde...</value>
@@ -199,13 +199,13 @@
     <value>&amp;Notas de lançamento</value>
   </data>
   <data name="resume_idling" xml:space="preserve">
-    <value>&amp;Resumir "Idling"</value>
+    <value>&amp;Resumir processo</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>&amp;Configurações</value>
   </data>
   <data name="signed_in_as" xml:space="preserve">
-    <value>Sessão iniciada como</value>
+    <value>Sessão iniciada como:</value>
   </data>
   <data name="sign_in" xml:space="preserve">
     <value>Iniciar sessão</value>
@@ -214,7 +214,7 @@
     <value>Finalizar sessão</value>
   </data>
   <data name="skip_current_game" xml:space="preserve">
-    <value>&amp;Pular Jogo Atual</value>
+    <value>&amp;Pular jogo atual</value>
   </data>
   <data name="sorting_results" xml:space="preserve">
     <value>Organizando resultados baseados nas suas configurações, por favor aguarde...</value>
@@ -223,13 +223,13 @@
     <value>&amp;Estatísticas</value>
   </data>
   <data name="steam_ignored" xml:space="preserve">
-    <value>Estado do cliente Steam ignorado</value>
+    <value>Estado do Cliente Steam ignorado</value>
   </data>
   <data name="steam_notrunning" xml:space="preserve">
-    <value>O Steam não está sendo executado</value>
+    <value>A Steam não está sendo executada</value>
   </data>
   <data name="steam_running" xml:space="preserve">
-    <value>O Steam está sendo executado</value>
+    <value>A Steam está sendo executada</value>
   </data>
   <data name="update_games_status" xml:space="preserve">
     <value>Atualizar status dos jogos</value>
@@ -241,7 +241,7 @@
     <value>&amp;Adicionar</value>
   </data>
   <data name="add_game_blacklist" xml:space="preserve">
-    <value>Adicionar Jogo a Lista Negra</value>
+    <value>Adicionar jogo à lista negra</value>
   </data>
   <data name="advanced_auth" xml:space="preserve">
     <value>Exibir informações de autenticação avançadas</value>
@@ -256,28 +256,28 @@
     <value>Exibir informações acima
 
 [WARNING]
-não compartilhe esta informação com ninguém, pois pode potencialmente ser usado por um invasor para entrar em sua conta Steam.</value>
+não compartilhe esta informação com ninguém, pois poderá ser usada por pessoas mal-intencionadas.</value>
   </data>
   <data name="general" xml:space="preserve">
     <value>Geral</value>
   </data>
   <data name="idle_individual" xml:space="preserve">
-    <value>"Idlear" cada jogo individualmente</value>
+    <value>Processar cada jogo individualmente</value>
   </data>
   <data name="idle_master_settings" xml:space="preserve">
     <value>Configurações do Idle Master</value>
   </data>
   <data name="idle_simultaneous" xml:space="preserve">
-    <value>"Idlear" jogos simultaneamente por até duas horas, e então individualmente</value>
+    <value>Processar jogos simultaneamente por até duas horas.</value>
   </data>
   <data name="idling_behavior" xml:space="preserve">
-    <value>Comportamento de "Idling"</value>
+    <value>Configurações de processamento:</value>
   </data>
   <data name="idling_order" xml:space="preserve">
-    <value>Ordem de "Idling"</value>
+    <value>Ordem de processamento</value>
   </data>
   <data name="ignore_client_status" xml:space="preserve">
-    <value>Ignorar o status do cliente Steam</value>
+    <value>Ignorar o status do Cliente Steam</value>
   </data>
   <data name="interface_language" xml:space="preserve">
     <value>Idioma da interface</value>
@@ -286,7 +286,7 @@ não compartilhe esta informação com ninguém, pois pode potencialmente ser us
     <value>Gerenciar a lista negra do Idle Master</value>
   </data>
   <data name="minimize_to_tray" xml:space="preserve">
-    <value>Minimizar o Idle Master à Barra de tarefas do sistema</value>
+    <value>Minimizar o Idle Master à barra de tarefas do sistema</value>
   </data>
   <data name="ok" xml:space="preserve">
     <value>&amp;OK</value>
@@ -304,7 +304,7 @@ não compartilhe esta informação com ninguém, pois pode potencialmente ser us
     <value>Priorizar os jogos com as cartas de maior valor</value>
   </data>
   <data name="please_login" xml:space="preserve">
-    <value>Por favor, conecte-se ao Steam</value>
+    <value>Por favor, conecte-se à Steam</value>
   </data>
   <data name="please_restart" xml:space="preserve">
     <value>Por favor, reinicie o aplicativo para que as alterações de linguagem tenham efeito.</value>
@@ -316,10 +316,10 @@ não compartilhe esta informação com ninguém, pois pode potencialmente ser us
     <value>&amp;Salvar</value>
   </data>
   <data name="saving_info" xml:space="preserve">
-    <value>O Idle Master está salvando as suas informações</value>
+    <value>O Idle Master está salvando suas informações</value>
   </data>
   <data name="show_username" xml:space="preserve">
-    <value>Mostrar o nome de usuario do Steam do usuario conectado</value>
+    <value>Mostrar o nome de usuário da Steam</value>
   </data>
   <data name="this_session" xml:space="preserve">
     <value>Esta sessão</value>
@@ -337,6 +337,6 @@ não compartilhe esta informação com ninguém, pois pode potencialmente ser us
     <value>Validando...</value>
   </data>
   <data name="idle_onethenmany" xml:space="preserve">
-    <value>"Idlear" jogos com mais de 2 horas individualmente, e então, simultaneamente</value>
+    <value>Processar jogos com mais de 2 horas individualmente, e então, simultaneamente</value>
   </data>
 </root>
