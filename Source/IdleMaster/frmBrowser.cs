@@ -86,14 +86,7 @@ namespace IdleMaster
                 }
 
                 browserBarVisibility(true); // Display the browser bar (lock, protocol, url)
-
-                try
-                {
-                    setRememberMeCheckbox(htmldoc);
-                }
-                catch (Exception)
-                {
-                }
+                setRememberMeCheckbox(htmldoc);
 
                 // Tell steam client to generate keys to login on browser
                 if (Settings.Default.QuickLogin)
@@ -120,9 +113,9 @@ namespace IdleMaster
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    Logger.Exception(ex, "parental_notice = " + htmldoc.GetElementById("parental_notice"));
                 }
 
                 extractSteamCookies();
@@ -132,21 +125,40 @@ namespace IdleMaster
 
         private void setLoginButtonText(dynamic htmldoc, string text)
         {
-            // Set the "Sign in" button text
-            dynamic steamLoginButton = htmldoc.GetElementById("SteamLogin");
-            if (steamLoginButton != null)
+            if (htmldoc != null)
             {
-                steamLoginButton.Value = text;
+                try
+                {
+                    dynamic steamLoginButton = htmldoc.GetElementById("SteamLogin");
+
+                    if (steamLoginButton != null)
+                    {
+                        steamLoginButton.Value = text;
+                    }
+                }
+                catch
+                {
+                    Logger.Exception(ex, "SteamLogin = " + htmldoc.GetElementById("SteamLogin"));
+                }
             }
         }
 
         private static void setRememberMeCheckbox(dynamic htmldoc)
         {
-            // Set the "Remember me" checkbox
-            dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
-            if (rememberMeCheckBox != null)
+            if (htmldoc != null)
             {
-                rememberMeCheckBox.Checked = true;
+                try
+                {
+                    dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
+                    if (rememberMeCheckBox != null)
+                    {
+                        rememberMeCheckBox.Checked = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Exception(ex, "rember_login = " + htmldoc.GetElementById("remember_login"));
+                }
             }
         }
 
@@ -159,45 +171,35 @@ namespace IdleMaster
 
         private void extractSteamCookies()
         {
-            // Get a list of cookies from the current page
             var container = GetUriCookieContainer(wbAuth.Url);
             var cookies = container.GetCookies(wbAuth.Url);
 
-            // Go through the cookie data so that we can extract the cookies we are looking for
             foreach (Cookie cookie in cookies)
             {
-                // Save the "sessionid" cookie
                 if (cookie.Name == "sessionid")
                 {
                     Settings.Default.sessionid = cookie.Value;
                 }
-
-                // Save the "steamLogin" cookie and construct and save the user's profile link
                 else if (cookie.Name == "steamLogin")
                 {
                     Settings.Default.steamLogin = cookie.Value;
                     Settings.Default.myProfileURL = SteamProfile.GetSteamUrl();
                 }
-
                 else if (cookie.Name == "steamLoginSecure")
                 {
                     Settings.Default.steamLoginSecure = cookie.Value;
                     Settings.Default.myProfileURL = SteamProfile.GetSteamUrl();
                 }
-
-                // Save the "steamparental" cookie"
                 else if (cookie.Name == "steamparental")
                 {
                     Settings.Default.steamparental = cookie.Value;
                 }
-
                 else if (cookie.Name == "steamRememberLogin")
                 {
                     Settings.Default.steamRememberLogin = cookie.Value;
                 }
             }
 
-            // Save all of the data to the program settings file, and close this form
             Settings.Default.Save();
         }
 
