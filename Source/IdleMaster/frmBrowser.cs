@@ -136,7 +136,7 @@ namespace IdleMaster
                         steamLoginButton.Value = text;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     Logger.Exception(ex, "SteamLogin = " + htmldoc.GetElementById("SteamLogin"));
                 }
