@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Deployment.Application;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 
 namespace IdleMaster
@@ -19,27 +20,46 @@ namespace IdleMaster
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            // Localize the form
+            SetLocalization();
+            SetTheme();
+            SetVersion();
+        }
+
+        private void SetLocalization()
+        {
             btnOK.Text = localization.strings.ok;
+        }
 
-            // Color text and background according to the current theme
-            var defSettings = Properties.Settings.Default;
-            this.BackColor = defSettings.customTheme ? defSettings.colorBgd : defSettings.colorBgdOriginal;
-            this.ForeColor = defSettings.customTheme ? defSettings.colorTxt : defSettings.colorTxtOriginal;
-            FlatStyle buttonStyle = defSettings.customTheme ? FlatStyle.Flat : FlatStyle.Standard;
-            btnOK.FlatStyle = buttonStyle; btnOK.BackColor = this.BackColor; btnOK.ForeColor = this.ForeColor;
+        private void SetTheme()
+        {
+            var settings = Properties.Settings.Default;
+            var customTheme = settings.customTheme;
 
-
-            if (ApplicationDeployment.IsNetworkDeployed)
+            if (customTheme)
             {
-                var version = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
-                lblVersion.Text = "Idle Master v" + version;
+                this.BackColor = settings.colorBgd;
+                this.ForeColor = settings.colorTxt;
+
+                btnOK.FlatStyle = FlatStyle.Flat;
+                btnOK.BackColor = this.BackColor;
+                btnOK.ForeColor = this.ForeColor;
+
+                linkLabelVersion.LinkColor = this.ForeColor;
             }
-            else
-            {
-                var version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-                lblVersion.Text = "Idle Master v" + version;
-            }
+        }
+
+        private void SetVersion()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+            var major = version.Major;
+            var minor = version.Minor;
+
+            linkLabelVersion.Text = String.Format("Idle Master Extended v{0}.{1}", major, minor);
+        }
+
+        private void linkLabelVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/JonasNilson/idle_master_extended/releases");
         }
     }
 }
