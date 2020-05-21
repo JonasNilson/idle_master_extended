@@ -8,7 +8,7 @@ This is a fork of the original [Idle Master](https://github.com/jshackles/idle_m
 Download
 -------
 * The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
-  * 💹 Total number of downloads: `378 992` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-04-21)
+  * 💹 Total number of downloads: `400 447` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-05-10)
 
 Troubleshooting and common solutions
 -------

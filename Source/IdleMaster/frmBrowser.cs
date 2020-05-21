@@ -308,37 +308,44 @@ namespace IdleMaster
         private void tmrCheck_Tick(object sender, EventArgs e)
         {
             // Prevents the application from "saving" for more than 30 seconds and will attempt to save the cookie data after that time
-            if (SecondsWaiting > 0)
+            if (SecondsWaiting > 0 || wbAuth.ReadyState.Equals(WebBrowserReadyState.Uninitialized))
             {
                 SecondsWaiting -= 1;
             }
             else
             {
-                if (Settings.Default.QuickLogin &&
-                   wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/"))
+                if (Settings.Default.QuickLogin)
                 {
-                    // The login is completed, and the profile is visible
-                    extractSteamCookies();
-                    tmrCheck.Enabled = false;
-                    Close();
-                }
-                else if (Settings.Default.QuickLogin &&
-                         wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/login/home"))
-                {
-                    // For some reason the login is not completed yet
-                    SecondsWaiting = 5;
-
-                    // Attempt to login again
-                    setLoginButtonText(wbAuth.Document.DomDocument, "Attempting to QuickLogin again...");
-                    executeQuickLoginScript();
+                    makeSureLoginHasCompletedOrRefresh();
                 }
                 else
                 {
-                    // Original behavior
-                    tmrCheck.Enabled = false;
-                    Close();
+                    stopTimerAndCloseForm();
                 }
             }
+        }
+
+        private void makeSureLoginHasCompletedOrRefresh()
+        {
+            if (wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/"))
+            {
+                // The login is completed, and the profile is visible
+                extractSteamCookies();
+                stopTimerAndCloseForm();
+            }
+            else
+            {
+                // For some reason the login is not completed yet, navigating to the login page again
+                SecondsWaiting = 5;
+                wbAuth.Navigate("https://steamcommunity.com/login/home/?goto=my/profile", "_self", null, 
+                    "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko");
+            }
+        }
+
+        private void stopTimerAndCloseForm()
+        {
+            tmrCheck.Enabled = false;
+            Close();
         }
     }
 }

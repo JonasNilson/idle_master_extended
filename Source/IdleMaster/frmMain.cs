@@ -58,8 +58,8 @@ namespace IdleMaster
             if (ReloadCount == 0)
             {
                 lblIdle.Text = string.Format(
-                    "{0} " + localization.strings.games_left_to_idle + 
-                    ", {1} " + localization.strings.idle_now + 
+                    "{0} " + localization.strings.games_left_to_idle +
+                    ", {1} " + localization.strings.idle_now +
                     ".", GamesRemaining, CanIdleBadges.Count(b => b.InIdle));
                 lblDrops.Text = CardsRemaining + " " + localization.strings.card_drops_remaining;
                 lblIdle.Visible = GamesRemaining != 0;
@@ -385,12 +385,12 @@ namespace IdleMaster
             // Set the correct buttons on the form for pause / resume
             HideAllInterruptiveButtons();
 
-            if(!Settings.Default.fastMode)
+            if (!Settings.Default.fastMode)
             {
                 btnPause.Visible = true;
                 btnSkip.Visible = true;
             }
-            
+
             var scale = CreateGraphics().DpiY * 3.9;
             Height = Convert.ToInt32(scale);
         }
@@ -461,7 +461,7 @@ namespace IdleMaster
                 UpdateStateInfo();                  // Update information labels
                 await Task.Delay(TimeLeft * 1000);  // Wait 5 sec
                 StopIdle();                         // Stop idling before moving on to the next game
-                
+
                 pbIdle.Value = pbIdle.Maximum - CardsRemaining;
             }
 
@@ -735,6 +735,7 @@ namespace IdleMaster
             aboutToolStripMenuItem.Text = localization.strings.about;
             lnkSignIn.Text = "(" + localization.strings.sign_in + ")";
             lnkResetCookies.Text = "(" + localization.strings.sign_out + ")";
+            // TODO: lnkLatestRelease = "(" + localization.strings.latest_release + ")";
             toolStripStatusLabel1.Text = localization.strings.next_check;
             toolStripStatusLabel1.ToolTipText = localization.strings.next_check;
 
@@ -754,14 +755,62 @@ namespace IdleMaster
             lnkSignIn.Location = point;
             point = new Point(Convert.ToInt32(graphics.DpiX * 2.15), Convert.ToInt32(lnkResetCookies.Location.Y));
             lnkResetCookies.Location = point;
+            point = new Point(Convert.ToInt32(graphics.DpiX * 2.15), Convert.ToInt32(lnkLatestRelease.Location.Y));
+            lnkLatestRelease.Location = point;
 
-            runtimeCustomThemeMain(); // JN: Apply the dark theme
-
+            SetTheme();
+            GetLatestVersion();
 
             //Prevent Sleep
             if (Settings.Default.NoSleep == true)
             {
                 PreventSleep();
+            }
+        }
+
+        private void GetLatestVersion()
+        {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            WebClient webClient = new WebClient();
+            webClient.Headers.Add("user-agent", "Idle Master Extended application");
+            webClient.Encoding = Encoding.UTF8;
+
+            string jsonResponse = webClient.DownloadString("https://api.github.com/repos/JonasNilson/idle_master_extended/releases/latest");
+            string githubReleaseTagKey = "tag_name";
+
+            if (jsonResponse.Contains(githubReleaseTagKey))
+            {
+                string jsonResponseShortened = jsonResponse
+                    .Substring(jsonResponse
+                    .IndexOf(githubReleaseTagKey));
+                string[] releaseTagKeyValue = jsonResponseShortened
+                    .Substring(0, jsonResponseShortened.IndexOf(','))
+                    .Replace("\"", String.Empty)
+                    .Split(':');
+
+                if (releaseTagKeyValue[1].StartsWith("v"))
+                {
+                    string githubReleaseTag = releaseTagKeyValue[1];        // "vX.Y-fix"
+                    string[] tagElements = githubReleaseTag.Split('-');     // "vX.Y"
+                    string versionNumber = tagElements[0].Substring(1);     // "X.Y"
+                    string[] versionElements = versionNumber.Split('.');    // [X, Y]
+
+                    int latestMajorVersion;
+                    int latestMinorVersion;
+                    if (int.TryParse(versionElements[0], out latestMajorVersion)
+                        && int.TryParse(versionElements[1], out latestMinorVersion))
+                    {
+                        System.Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+                        if (latestMajorVersion > version.Major || latestMinorVersion > version.Minor)
+                        {
+                            lnkLatestRelease.Text = String.Format("(Latest: v{0}.{1})", latestMajorVersion, latestMinorVersion);
+                        }
+                        else
+                        {
+                            lnkLatestRelease.Text = String.Format("(Current: v{0}.{1})", version.Major, version.Minor);
+                        }
+                    }
+                }
             }
         }
 
@@ -776,7 +825,7 @@ namespace IdleMaster
             var whiteIcons = Settings.Default.whiteIcons;
             var imgFalse = whiteIcons ? Resources.imgFalse_w : Resources.imgFalse;
             var imgTrue = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
-            runtimeCustomThemeMain();
+            SetTheme();
 
             var connected = !string.IsNullOrWhiteSpace(Settings.Default.sessionid) && !string.IsNullOrWhiteSpace(Settings.Default.steamLoginSecure);
 
@@ -807,6 +856,7 @@ namespace IdleMaster
             skipGameToolStripMenuItem.Enabled = isSteamRunning;
             pauseIdlingToolStripMenuItem.Enabled = isSteamRunning;
             IsSteamReady = isSteamRunning;
+            
         }
 
         private void lblGameName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -872,6 +922,11 @@ namespace IdleMaster
         {
             var frm = new frmBrowser();
             frm.ShowDialog();
+        }
+
+        private void lnkLatestRelease_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/JonasNilson/idle_master_extended/releases");
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1220,7 +1275,7 @@ namespace IdleMaster
         /// <summary>
         /// Changes the color of the main window components to match a Steam-like dark theme
         /// </summary>
-        private void runtimeCustomThemeMain()
+        private void SetTheme()
         {
             // Read settings
             var customTheme = Settings.Default.customTheme;
@@ -1240,7 +1295,12 @@ namespace IdleMaster
             this.ForeColor = colorTxt;
 
             // Link colors
-            lnkSignIn.LinkColor = lnkResetCookies.LinkColor = lblCurrentRemaining.ForeColor = lblGameName.LinkColor = customTheme ? Color.GhostWhite : Color.Blue;
+            lnkLatestRelease.LinkColor 
+                = lnkSignIn.LinkColor 
+                = lnkResetCookies.LinkColor 
+                = lblCurrentRemaining.ForeColor 
+                = lblGameName.LinkColor 
+                = customTheme ? Color.GhostWhite : Color.Blue;
 
             // ToolStripMenu Top
             mnuTop.BackColor = colorBgd;

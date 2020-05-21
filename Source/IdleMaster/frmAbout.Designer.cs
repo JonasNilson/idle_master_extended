@@ -31,11 +31,11 @@ namespace IdleMaster
         /// </summary>
         private void InitializeComponent()
         {
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
             this.btnOK = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblVersion = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.linkLabelVersion = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,23 +61,25 @@ namespace IdleMaster
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // lblVersion
-            // 
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(13, 125);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(59, 13);
-            this.lblVersion.TabIndex = 2;
-            this.lblVersion.Text = "Idle Master";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 139);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 13);
+            this.label2.Size = new System.Drawing.Size(134, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "by jshackles";
+            this.label2.Text = "by jshackles + JonasNilson";
+            // 
+            // linkLabelVersion
+            // 
+            this.linkLabelVersion.AutoSize = true;
+            this.linkLabelVersion.Location = new System.Drawing.Point(13, 126);
+            this.linkLabelVersion.Name = "linkLabelVersion";
+            this.linkLabelVersion.Size = new System.Drawing.Size(107, 13);
+            this.linkLabelVersion.TabIndex = 4;
+            this.linkLabelVersion.TabStop = true;
+            this.linkLabelVersion.Text = "Idle Master Extended";
+            this.linkLabelVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelVersion_LinkClicked);
             // 
             // frmAbout
             // 
@@ -85,8 +87,8 @@ namespace IdleMaster
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(272, 159);
+            this.Controls.Add(this.linkLabelVersion);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -106,7 +108,7 @@ namespace IdleMaster
 
         private Button btnOK;
         private PictureBox pictureBox1;
-        private Label lblVersion;
         private Label label2;
+        private LinkLabel linkLabelVersion;
     }
 }

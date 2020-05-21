@@ -85,6 +85,7 @@ namespace IdleMaster
             this.Hours = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblHoursPlayed = new System.Windows.Forms.Label();
             this.tmrStatistics = new System.Windows.Forms.Timer(this.components);
+            this.lnkLatestRelease = new System.Windows.Forms.LinkLabel();
             this.mnuTop.SuspendLayout();
             this.ssFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picReadingPage)).BeginInit();
@@ -542,12 +543,24 @@ namespace IdleMaster
             this.tmrStatistics.Interval = 60000;
             this.tmrStatistics.Tick += new System.EventHandler(this.tmrStatistics_Tick);
             // 
+            // lnkLatestRelease
+            // 
+            this.lnkLatestRelease.AutoSize = true;
+            this.lnkLatestRelease.Location = new System.Drawing.Point(170, 36);
+            this.lnkLatestRelease.Name = "lnkLatestRelease";
+            this.lnkLatestRelease.Size = new System.Drawing.Size(79, 13);
+            this.lnkLatestRelease.TabIndex = 30;
+            this.lnkLatestRelease.TabStop = true;
+            this.lnkLatestRelease.Text = "(Latest release)";
+            this.lnkLatestRelease.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkLatestRelease_LinkClicked);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(304, 339);
+            this.Controls.Add(this.lnkLatestRelease);
             this.Controls.Add(this.lblHoursPlayed);
             this.Controls.Add(this.GamesState);
             this.Controls.Add(this.lblSignedOnAs);
@@ -647,6 +660,7 @@ namespace IdleMaster
         private Label lblHoursPlayed;
         private Timer tmrStatistics;
         private ToolStripMenuItem statisticsToolStripMenuItem;
+        private LinkLabel lnkLatestRelease;
     }
 }
 
