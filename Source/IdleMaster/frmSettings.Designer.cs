@@ -55,11 +55,11 @@ namespace IdleMaster
             this.ttHints = new System.Windows.Forms.ToolTip(this.components);
             this.btnAdvanced = new System.Windows.Forms.Button();
             this.grpIdlingQuantity = new System.Windows.Forms.GroupBox();
+            this.radWhitelistMode = new System.Windows.Forms.RadioButton();
             this.radFastMode = new System.Windows.Forms.RadioButton();
             this.radOneThenMany = new System.Windows.Forms.RadioButton();
             this.radManyThenOne = new System.Windows.Forms.RadioButton();
             this.radOneGameOnly = new System.Windows.Forms.RadioButton();
-            this.radWhitelistMode = new System.Windows.Forms.RadioButton();
             this.grpGeneral.SuspendLayout();
             this.grpPriority.SuspendLayout();
             this.grpIdlingQuantity.SuspendLayout();
@@ -338,6 +338,15 @@ namespace IdleMaster
             this.grpIdlingQuantity.TabStop = false;
             this.grpIdlingQuantity.Text = "Idling Behavior";
             // 
+            // radWhitelistMode
+            // 
+            this.radWhitelistMode.Location = new System.Drawing.Point(5, 36);
+            this.radWhitelistMode.Name = "radWhitelistMode";
+            this.radWhitelistMode.Size = new System.Drawing.Size(382, 17);
+            this.radWhitelistMode.TabIndex = 8;
+            this.radWhitelistMode.Text = "Whitelist mode";
+            this.radWhitelistMode.UseVisualStyleBackColor = true;
+            // 
             // radFastMode
             // 
             this.radFastMode.Checked = true;
@@ -345,6 +354,7 @@ namespace IdleMaster
             this.radFastMode.Name = "radFastMode";
             this.radFastMode.Size = new System.Drawing.Size(382, 17);
             this.radFastMode.TabIndex = 7;
+            this.radFastMode.TabStop = true;
             this.radFastMode.Text = "Fast mode";
             this.radFastMode.UseVisualStyleBackColor = true;
             // 
@@ -378,15 +388,6 @@ namespace IdleMaster
             this.radOneGameOnly.TabIndex = 4;
             this.radOneGameOnly.Text = "Idle each game individually";
             this.radOneGameOnly.UseVisualStyleBackColor = true;
-            // 
-            // radWhitelistMode
-            // 
-            this.radWhitelistMode.Location = new System.Drawing.Point(5, 36);
-            this.radWhitelistMode.Name = "radWhitelistMode";
-            this.radWhitelistMode.Size = new System.Drawing.Size(382, 17);
-            this.radWhitelistMode.TabIndex = 8;
-            this.radWhitelistMode.Text = "Whitelist mode";
-            this.radWhitelistMode.UseVisualStyleBackColor = true;
             // 
             // frmSettings
             // 

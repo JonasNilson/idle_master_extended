@@ -475,31 +475,44 @@ namespace IdleMaster
             // Adjust the spinner gif based on the current color theme
             picReadingPage.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
-            try
+            if (Settings.Default.IdlingModeWhitelist)
             {
-                HtmlDocument htmlDocument;
-                int totalBadgePages = 1;
-
-                for (var currentBadgePage = 1; currentBadgePage <= totalBadgePages; currentBadgePage++)
+                foreach (var appid in Settings.Default.whitelist)
                 {
-                    if (totalBadgePages == 1)
+                    if (appid != null && !AllBadges.Any(badge => badge.AppId.Equals(appid)))
                     {
-                        htmlDocument = await GetBadgePageAsync(currentBadgePage);
-                        totalBadgePages = ExtractTotalBadgePages(htmlDocument);
+                        AllBadges.Add(new Badge(appid, "Whitelist", "-1", "0"));
                     }
-
-                    lblDrops.Text = string.Format(localization.strings.reading_badge_page + " {0}/{1}, " + localization.strings.please_wait, currentBadgePage, totalBadgePages);
-                    htmlDocument = await GetBadgePageAsync(currentBadgePage);
-                    ProcessBadgesOnPage(htmlDocument);
                 }
             }
-            catch (Exception ex)
+            else
             {
-                Logger.Exception(ex, "Badge -> LoadBadgesAsync, for profile = " + Settings.Default.myProfileURL);
-                ResetFormDesign();
-                ReloadCount = 1;
-                tmrBadgeReload.Enabled = true;
-                return;
+                try
+                {
+                    HtmlDocument htmlDocument;
+                    int totalBadgePages = 1;
+
+                    for (var currentBadgePage = 1; currentBadgePage <= totalBadgePages; currentBadgePage++)
+                    {
+                        if (totalBadgePages == 1)
+                        {
+                            htmlDocument = await GetBadgePageAsync(currentBadgePage);
+                            totalBadgePages = ExtractTotalBadgePages(htmlDocument);
+                        }
+
+                        lblDrops.Text = string.Format(localization.strings.reading_badge_page + " {0}/{1}, " + localization.strings.please_wait, currentBadgePage, totalBadgePages);
+                        htmlDocument = await GetBadgePageAsync(currentBadgePage);
+                        ProcessBadgesOnPage(htmlDocument);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Exception(ex, "Badge -> LoadBadgesAsync, for profile = " + Settings.Default.myProfileURL);
+                    ResetFormDesign();
+                    ReloadCount = 1;
+                    tmrBadgeReload.Enabled = true;
+                    return;
+                }
             }
 
             ResetRetryCountAndUpdateApplicationState();
@@ -574,6 +587,7 @@ namespace IdleMaster
                 var cards = cardNode == null ? string.Empty : Regex.Match(cardNode.InnerText, @"[0-9]+").Value;
 
                 var badgeInMemory = AllBadges.FirstOrDefault(b => b.StringId == appid);
+
                 if (badgeInMemory != null)
                 {
                     badgeInMemory.UpdateStats(cards, hours);
@@ -856,7 +870,7 @@ namespace IdleMaster
             skipGameToolStripMenuItem.Enabled = isSteamRunning;
             pauseIdlingToolStripMenuItem.Enabled = isSteamRunning;
             IsSteamReady = isSteamRunning;
-            
+
         }
 
         private void lblGameName_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -1301,11 +1315,11 @@ namespace IdleMaster
             this.ForeColor = colorTxt;
 
             // Link colors
-            lnkLatestRelease.LinkColor 
-                = lnkSignIn.LinkColor 
-                = lnkResetCookies.LinkColor 
-                = lblCurrentRemaining.ForeColor 
-                = lblGameName.LinkColor 
+            lnkLatestRelease.LinkColor
+                = lnkSignIn.LinkColor
+                = lnkResetCookies.LinkColor
+                = lblCurrentRemaining.ForeColor
+                = lblGameName.LinkColor
                 = customTheme ? Color.GhostWhite : Color.Blue;
 
             // ToolStripMenu Top
@@ -1360,6 +1374,7 @@ namespace IdleMaster
             settingsToolStripMenuItem.Image = whiteIcons ? Resources.imgSettings_w : Resources.imgSettings;
             blacklistToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
             exitToolStripMenuItem.Image = whiteIcons ? Resources.imgExit_w : Resources.imgExit;
+            whitelistToolStripMenuItem.Image = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
             // Game
             pauseIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPause_w : Resources.imgPause;
             resumeIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPlay_w : Resources.imgPlay;

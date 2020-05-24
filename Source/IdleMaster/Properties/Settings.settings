@@ -87,6 +87,9 @@
     <Setting Name="fastMode" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="IdlingModeWhitelist" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="steamLoginSecure" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

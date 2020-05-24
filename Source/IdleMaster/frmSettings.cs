@@ -47,28 +47,26 @@ namespace IdleMaster
                 Settings.Default.language = cboLanguage.Text;
             }
 
-            if (radOneThenMany.Checked)
+            Settings.Default.OneThenMany = Settings.Default.OnlyOneGameIdle 
+                = Settings.Default.fastMode = Settings.Default.IdlingModeWhitelist = false;
+            
+            if (radFastMode.Checked)
             {
-                Settings.Default.OnlyOneGameIdle = false;
+                Settings.Default.fastMode = true;
+            }
+            else if (radWhitelistMode.Checked)
+            {
+                Settings.Default.IdlingModeWhitelist = true;
+            }
+            else if (radOneThenMany.Checked)
+            {
                 Settings.Default.OneThenMany = true;
-                Settings.Default.fastMode = false; // Disable fast mode
             }
             else
             {
-                Settings.Default.OnlyOneGameIdle = radOneGameOnly.Checked && !radManyThenOne.Checked;
-                Settings.Default.OneThenMany = false;
-
-                // JN: Enable/disable fast mode
-                if (radFastMode.Checked)
-                {
-                    Settings.Default.OnlyOneGameIdle = false;
-                    Settings.Default.fastMode = true;
-                }
-                else
-                {
-                    Settings.Default.fastMode = false;
-                }
+                Settings.Default.OnlyOneGameIdle = !radManyThenOne.Checked;
             }
+
             Settings.Default.minToTray = chkMinToTray.Checked;
             Settings.Default.ignoreclient = chkIgnoreClientStatus.Checked;
             Settings.Default.showUsername = chkShowUsername.Checked;
@@ -148,6 +146,10 @@ namespace IdleMaster
             if (Settings.Default.fastMode)
             {
                 radFastMode.Checked = true;
+            }
+            else if (Settings.Default.IdlingModeWhitelist)
+            {
+                radWhitelistMode.Checked = true;
             }
             else if (Settings.Default.OneThenMany)
             {
