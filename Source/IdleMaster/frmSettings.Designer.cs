@@ -38,6 +38,8 @@ namespace IdleMaster
             this.chkShutdown = new System.Windows.Forms.CheckBox();
             this.quickLoginBox = new System.Windows.Forms.CheckBox();
             this.chkPreventSleep = new System.Windows.Forms.CheckBox();
+            this.whiteIconsCheckBox = new System.Windows.Forms.CheckBox();
+            this.darkThemeCheckBox = new System.Windows.Forms.CheckBox();
             this.cboLanguage = new System.Windows.Forms.ComboBox();
             this.lblLanguage = new System.Windows.Forms.Label();
             this.chkShowUsername = new System.Windows.Forms.CheckBox();
@@ -57,8 +59,7 @@ namespace IdleMaster
             this.radOneThenMany = new System.Windows.Forms.RadioButton();
             this.radManyThenOne = new System.Windows.Forms.RadioButton();
             this.radOneGameOnly = new System.Windows.Forms.RadioButton();
-            this.whiteIconsCheckBox = new System.Windows.Forms.CheckBox();
-            this.darkThemeCheckBox = new System.Windows.Forms.CheckBox();
+            this.radWhitelistMode = new System.Windows.Forms.RadioButton();
             this.grpGeneral.SuspendLayout();
             this.grpPriority.SuspendLayout();
             this.grpIdlingQuantity.SuspendLayout();
@@ -119,6 +120,31 @@ namespace IdleMaster
             this.chkPreventSleep.TabIndex = 8;
             this.chkPreventSleep.Text = "Prevent Windows from Sleep";
             this.chkPreventSleep.UseVisualStyleBackColor = true;
+            // 
+            // whiteIconsCheckBox
+            // 
+            this.whiteIconsCheckBox.AutoSize = true;
+            this.whiteIconsCheckBox.Checked = global::IdleMaster.Properties.Settings.Default.whiteIcons;
+            this.whiteIconsCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::IdleMaster.Properties.Settings.Default, "whiteIcons", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.whiteIconsCheckBox.Location = new System.Drawing.Point(305, 38);
+            this.whiteIconsCheckBox.Name = "whiteIconsCheckBox";
+            this.whiteIconsCheckBox.Size = new System.Drawing.Size(82, 17);
+            this.whiteIconsCheckBox.TabIndex = 7;
+            this.whiteIconsCheckBox.Text = "White icons";
+            this.whiteIconsCheckBox.UseVisualStyleBackColor = true;
+            this.whiteIconsCheckBox.CheckedChanged += new System.EventHandler(this.whiteIconsCheckBox_CheckedChanged);
+            // 
+            // darkThemeCheckBox
+            // 
+            this.darkThemeCheckBox.AutoSize = true;
+            this.darkThemeCheckBox.Checked = global::IdleMaster.Properties.Settings.Default.customTheme;
+            this.darkThemeCheckBox.Location = new System.Drawing.Point(305, 19);
+            this.darkThemeCheckBox.Name = "darkThemeCheckBox";
+            this.darkThemeCheckBox.Size = new System.Drawing.Size(81, 17);
+            this.darkThemeCheckBox.TabIndex = 6;
+            this.darkThemeCheckBox.Text = "Dark theme";
+            this.darkThemeCheckBox.UseVisualStyleBackColor = true;
+            this.darkThemeCheckBox.CheckedChanged += new System.EventHandler(this.darkThemeCheckBox_CheckedChanged);
             // 
             // cboLanguage
             // 
@@ -205,7 +231,7 @@ namespace IdleMaster
             this.grpPriority.Controls.Add(this.radIdleLeastDrops);
             this.grpPriority.Controls.Add(this.radIdleMostDrops);
             this.grpPriority.Controls.Add(this.radIdleDefault);
-            this.grpPriority.Location = new System.Drawing.Point(12, 246);
+            this.grpPriority.Location = new System.Drawing.Point(12, 261);
             this.grpPriority.Name = "grpPriority";
             this.grpPriority.Size = new System.Drawing.Size(395, 95);
             this.grpPriority.TabIndex = 1;
@@ -263,7 +289,7 @@ namespace IdleMaster
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(331, 350);
+            this.btnCancel.Location = new System.Drawing.Point(331, 370);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -274,7 +300,7 @@ namespace IdleMaster
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(250, 350);
+            this.btnOK.Location = new System.Drawing.Point(250, 370);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 3;
@@ -286,7 +312,7 @@ namespace IdleMaster
             // 
             this.btnAdvanced.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdvanced.Image = global::IdleMaster.Properties.Resources.imgLock;
-            this.btnAdvanced.Location = new System.Drawing.Point(12, 350);
+            this.btnAdvanced.Location = new System.Drawing.Point(12, 370);
             this.btnAdvanced.Name = "btnAdvanced";
             this.btnAdvanced.Size = new System.Drawing.Size(25, 23);
             this.btnAdvanced.TabIndex = 4;
@@ -298,6 +324,7 @@ namespace IdleMaster
             // 
             this.grpIdlingQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpIdlingQuantity.Controls.Add(this.radWhitelistMode);
             this.grpIdlingQuantity.Controls.Add(this.radFastMode);
             this.grpIdlingQuantity.Controls.Add(this.radOneThenMany);
             this.grpIdlingQuantity.Controls.Add(this.radManyThenOne);
@@ -306,7 +333,7 @@ namespace IdleMaster
             this.grpIdlingQuantity.Margin = new System.Windows.Forms.Padding(2);
             this.grpIdlingQuantity.Name = "grpIdlingQuantity";
             this.grpIdlingQuantity.Padding = new System.Windows.Forms.Padding(2);
-            this.grpIdlingQuantity.Size = new System.Drawing.Size(395, 100);
+            this.grpIdlingQuantity.Size = new System.Drawing.Size(395, 115);
             this.grpIdlingQuantity.TabIndex = 5;
             this.grpIdlingQuantity.TabStop = false;
             this.grpIdlingQuantity.Text = "Idling Behavior";
@@ -318,13 +345,12 @@ namespace IdleMaster
             this.radFastMode.Name = "radFastMode";
             this.radFastMode.Size = new System.Drawing.Size(382, 17);
             this.radFastMode.TabIndex = 7;
-            this.radFastMode.TabStop = true;
             this.radFastMode.Text = "Fast mode";
             this.radFastMode.UseVisualStyleBackColor = true;
             // 
             // radOneThenMany
             // 
-            this.radOneThenMany.Location = new System.Drawing.Point(5, 73);
+            this.radOneThenMany.Location = new System.Drawing.Point(5, 90);
             this.radOneThenMany.Name = "radOneThenMany";
             this.radOneThenMany.Size = new System.Drawing.Size(382, 17);
             this.radOneThenMany.TabIndex = 6;
@@ -335,7 +361,7 @@ namespace IdleMaster
             // 
             this.radManyThenOne.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radManyThenOne.Location = new System.Drawing.Point(5, 54);
+            this.radManyThenOne.Location = new System.Drawing.Point(5, 72);
             this.radManyThenOne.Name = "radManyThenOne";
             this.radManyThenOne.Size = new System.Drawing.Size(382, 17);
             this.radManyThenOne.TabIndex = 5;
@@ -346,37 +372,21 @@ namespace IdleMaster
             // 
             this.radOneGameOnly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radOneGameOnly.Location = new System.Drawing.Point(5, 35);
+            this.radOneGameOnly.Location = new System.Drawing.Point(5, 54);
             this.radOneGameOnly.Name = "radOneGameOnly";
             this.radOneGameOnly.Size = new System.Drawing.Size(382, 17);
             this.radOneGameOnly.TabIndex = 4;
             this.radOneGameOnly.Text = "Idle each game individually";
             this.radOneGameOnly.UseVisualStyleBackColor = true;
             // 
-            // whiteIconsCheckBox
+            // radWhitelistMode
             // 
-            this.whiteIconsCheckBox.AutoSize = true;
-            this.whiteIconsCheckBox.Checked = global::IdleMaster.Properties.Settings.Default.whiteIcons;
-            this.whiteIconsCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::IdleMaster.Properties.Settings.Default, "whiteIcons", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.whiteIconsCheckBox.Location = new System.Drawing.Point(305, 38);
-            this.whiteIconsCheckBox.Name = "whiteIconsCheckBox";
-            this.whiteIconsCheckBox.Size = new System.Drawing.Size(82, 17);
-            this.whiteIconsCheckBox.TabIndex = 7;
-            this.whiteIconsCheckBox.Text = "White icons";
-            this.whiteIconsCheckBox.UseVisualStyleBackColor = true;
-            this.whiteIconsCheckBox.CheckedChanged += new System.EventHandler(this.whiteIconsCheckBox_CheckedChanged);
-            // 
-            // darkThemeCheckBox
-            // 
-            this.darkThemeCheckBox.AutoSize = true;
-            this.darkThemeCheckBox.Checked = global::IdleMaster.Properties.Settings.Default.customTheme;
-            this.darkThemeCheckBox.Location = new System.Drawing.Point(305, 19);
-            this.darkThemeCheckBox.Name = "darkThemeCheckBox";
-            this.darkThemeCheckBox.Size = new System.Drawing.Size(81, 17);
-            this.darkThemeCheckBox.TabIndex = 6;
-            this.darkThemeCheckBox.Text = "Dark theme";
-            this.darkThemeCheckBox.UseVisualStyleBackColor = true;
-            this.darkThemeCheckBox.CheckedChanged += new System.EventHandler(this.darkThemeCheckBox_CheckedChanged);
+            this.radWhitelistMode.Location = new System.Drawing.Point(5, 36);
+            this.radWhitelistMode.Name = "radWhitelistMode";
+            this.radWhitelistMode.Size = new System.Drawing.Size(382, 17);
+            this.radWhitelistMode.TabIndex = 8;
+            this.radWhitelistMode.Text = "Whitelist mode";
+            this.radWhitelistMode.UseVisualStyleBackColor = true;
             // 
             // frmSettings
             // 
@@ -384,7 +394,7 @@ namespace IdleMaster
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(418, 385);
+            this.ClientSize = new System.Drawing.Size(418, 405);
             this.Controls.Add(this.grpIdlingQuantity);
             this.Controls.Add(this.btnAdvanced);
             this.Controls.Add(this.btnOK);
@@ -438,5 +448,6 @@ namespace IdleMaster
         private CheckBox chkPreventSleep;
         private CheckBox quickLoginBox;
         private CheckBox chkShutdown;
+        private RadioButton radWhitelistMode;
     }
 }

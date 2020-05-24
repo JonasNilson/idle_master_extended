@@ -1136,8 +1136,14 @@ namespace IdleMaster
             var frm = new frmBlacklist();
             frm.ShowDialog();
 
-            if (Settings.Default.blacklist.Cast<string>().Any(appid => appid == CurrentBadge.StringId))
+            if (CurrentBadge != null && Settings.Default.blacklist.Cast<string>().Any(appid => appid == CurrentBadge.StringId))
                 btnSkip.PerformClick();
+        }
+
+        private void whitelistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmWhitelist();
+            frm.ShowDialog();
         }
 
         private void blacklistCurrentGameToolStripMenuItem_Click(object sender, EventArgs e)
