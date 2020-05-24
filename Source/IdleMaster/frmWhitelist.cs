@@ -7,8 +7,11 @@ namespace IdleMaster
 {
     public partial class frmWhitelist : Form
     {
-        public frmWhitelist()
+        frmMain mainForm;
+
+        public frmWhitelist(frmMain parentForm)
         {
+            this.mainForm = parentForm;
             InitializeComponent();
         }
 
@@ -60,6 +63,20 @@ namespace IdleMaster
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveWhitelist();
+            mainForm.StopIdle();
+            _ = mainForm.LoadBadgesAsync();
+
+            if (lstWhitelist.Items.Count == 1)
+            {
+                mainForm.StartSoloIdle(
+                    mainForm.AllBadges.FirstOrDefault(b => b.AppId == int.Parse(lstWhitelist.Items[0].ToString()))
+                );
+            }
+            else if (lstWhitelist.Items.Count > 1)
+            {
+                mainForm.StartMultipleIdle();
+            }
+
             Close();
         }
 

@@ -1156,7 +1156,7 @@ namespace IdleMaster
 
         private void whitelistToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frm = new frmWhitelist();
+            var frm = new frmWhitelist(this);
             frm.ShowDialog();
         }
 
