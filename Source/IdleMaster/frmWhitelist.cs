@@ -60,11 +60,11 @@ namespace IdleMaster
             txtAppid.ForeColor = colorTxt;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             SaveWhitelist();
             mainForm.StopIdle();
-            _ = mainForm.LoadBadgesAsync();
+            await mainForm.LoadBadgesAsync();
 
             if (lstWhitelist.Items.Count == 1)
             {
