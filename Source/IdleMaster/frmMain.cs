@@ -477,11 +477,12 @@ namespace IdleMaster
 
             if (Settings.Default.IdlingModeWhitelist)
             {
-                foreach (var appid in Settings.Default.whitelist)
+                foreach (var whitelistID in Settings.Default.whitelist)
                 {
-                    if (appid != null && !AllBadges.Any(badge => badge.AppId.Equals(appid)))
+                    if (int.TryParse(whitelistID, out int applicationID)
+                        && !AllBadges.Any(badge => badge.AppId.Equals(applicationID)))
                     {
-                        AllBadges.Add(new Badge(appid, "Whitelist: " + appid, "-1", "0"));
+                        AllBadges.Add(new Badge(whitelistID, "Whitelist: " + whitelistID, "-1", "0"));
                     }
                 }
             }
