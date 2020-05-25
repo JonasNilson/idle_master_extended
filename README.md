@@ -8,10 +8,12 @@ This is a fork of the original [Idle Master](https://github.com/jshackles/idle_m
 Download
 -------
 * The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
-  * 💹 Total number of downloads: `400 447` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-05-10)
+  * 💹 Total number of downloads: `417 729` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-05-24)
 
 Troubleshooting and common solutions
 -------
+* Make sure you are eligeable for card drops:
+  * https://steamcommunity.com/my/badges
 * Idle Master Steam Group:
   * ⭐ [Read this Thread before posting, it saves time](https://steamcommunity.com/groups/idlemastery/discussions/0/152392786912268315/) 
   * 🔧 [How To Fix Most Idle Master + Steam problems](https://steamcommunity.com/groups/idlemastery/discussions/0/133257636766989675/)
