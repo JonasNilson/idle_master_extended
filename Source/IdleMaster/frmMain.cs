@@ -481,7 +481,8 @@ namespace IdleMaster
             {
                 foreach (var whitelistID in Settings.Default.whitelist)
                 {
-                    if (int.TryParse(whitelistID, out int applicationID)
+                    int applicationID;
+                    if (int.TryParse(whitelistID, out applicationID)
                         && !AllBadges.Any(badge => badge.AppId.Equals(applicationID)))
                     {
                         AllBadges.Add(new Badge(whitelistID, "Whitelist: " + whitelistID, "-1", "0"));
