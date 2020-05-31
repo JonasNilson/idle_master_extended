@@ -130,6 +130,12 @@
     <Compile Include="frmAbout.Designer.cs">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmWhitelist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWhitelist.Designer.cs">
+      <DependentUpon>frmWhitelist.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBlacklist.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,9 @@
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmWhitelist.resx">
+      <DependentUpon>frmWhitelist.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBlacklist.resx">
       <DependentUpon>frmBlacklist.cs</DependentUpon>
     </EmbeddedResource>
@@ -245,7 +254,6 @@
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
-    <None Include="code signing.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

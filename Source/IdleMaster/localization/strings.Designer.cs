@@ -19,7 +19,7 @@ namespace IdleMaster.localization {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class strings {
@@ -93,6 +93,15 @@ namespace IdleMaster.localization {
         internal static string add_game_blacklist {
             get {
                 return ResourceManager.GetString("add_game_blacklist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Game to Whitelist.
+        /// </summary>
+        internal static string add_game_whitelist {
+            get {
+                return ResourceManager.GetString("add_game_whitelist", resourceCulture);
             }
         }
         
@@ -386,6 +395,15 @@ namespace IdleMaster.localization {
         internal static string manage_blacklist {
             get {
                 return ResourceManager.GetString("manage_blacklist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Idle Master Whitelist.
+        /// </summary>
+        internal static string manage_whitelist {
+            get {
+                return ResourceManager.GetString("manage_whitelist", resourceCulture);
             }
         }
         
@@ -719,6 +737,15 @@ namespace IdleMaster.localization {
         internal static string validating {
             get {
                 return ResourceManager.GetString("validating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Whitelist.
+        /// </summary>
+        internal static string whitelist {
+            get {
+                return ResourceManager.GetString("whitelist", resourceCulture);
             }
         }
     }
