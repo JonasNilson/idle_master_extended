@@ -57,13 +57,15 @@ namespace IdleMaster
         {
             if (ReloadCount == 0)
             {
+                int numberOfCardsInIdle = CanIdleBadges.Count(b => b.InIdle);
+
                 lblIdle.Text = string.Format(
-                    "{0} " + localization.strings.games_left_to_idle +
-                    ", {1} " + localization.strings.idle_now +
-                    ".", GamesRemaining, CanIdleBadges.Count(b => b.InIdle));
+                    "{0} " + localization.strings.games_left_to_idle 
+                    + ", {1} " + localization.strings.idle_now 
+                    + ".", (CardsRemaining > 0 ? GamesRemaining : numberOfCardsInIdle), numberOfCardsInIdle);
                 lblDrops.Text = CardsRemaining + " " + localization.strings.card_drops_remaining;
                 lblIdle.Visible = GamesRemaining != 0;
-                lblDrops.Visible = CardsRemaining != 0;
+                lblDrops.Visible = CardsRemaining > 0;
             }
         }
 
