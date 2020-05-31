@@ -341,4 +341,13 @@ your Steam account.</value>
   <data name="idle_onethenmany" xml:space="preserve">
     <value>Idle games with more than 2 hours individually, then simultaneously</value>
   </data>
+  <data name="add_game_whitelist" xml:space="preserve">
+    <value>Add Game to Whitelist</value>
+  </data>
+  <data name="manage_whitelist" xml:space="preserve">
+    <value>Manage Idle Master Whitelist</value>
+  </data>
+  <data name="whitelist" xml:space="preserve">
+    <value>&amp;Whitelist</value>
+  </data>
 </root>

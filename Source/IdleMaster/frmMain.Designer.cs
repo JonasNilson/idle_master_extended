@@ -48,6 +48,7 @@ namespace IdleMaster
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.blacklistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.whitelistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -219,6 +220,7 @@ namespace IdleMaster
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem,
             this.blacklistToolStripMenuItem,
+            this.whitelistToolStripMenuItem,
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -229,7 +231,7 @@ namespace IdleMaster
             // 
             this.settingsToolStripMenuItem.Image = global::IdleMaster.Properties.Resources.imgSettings;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "&Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -237,20 +239,28 @@ namespace IdleMaster
             // 
             this.blacklistToolStripMenuItem.Image = global::IdleMaster.Properties.Resources.imgBlacklist;
             this.blacklistToolStripMenuItem.Name = "blacklistToolStripMenuItem";
-            this.blacklistToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.blacklistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.blacklistToolStripMenuItem.Text = "&Blacklist";
             this.blacklistToolStripMenuItem.Click += new System.EventHandler(this.blacklistToolStripMenuItem_Click);
+            // 
+            // whitelistToolStripMenuItem
+            // 
+            this.whitelistToolStripMenuItem.Image = global::IdleMaster.Properties.Resources.imgTrue;
+            this.whitelistToolStripMenuItem.Name = "whitelistToolStripMenuItem";
+            this.whitelistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.whitelistToolStripMenuItem.Text = "Whitelist";
+            this.whitelistToolStripMenuItem.Click += new System.EventHandler(this.whitelistToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(114, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Image = global::IdleMaster.Properties.Resources.imgExit;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -661,6 +671,7 @@ namespace IdleMaster
         private Timer tmrStatistics;
         private ToolStripMenuItem statisticsToolStripMenuItem;
         private LinkLabel lnkLatestRelease;
+        private ToolStripMenuItem whitelistToolStripMenuItem;
     }
 }
 
