@@ -61,9 +61,9 @@ namespace IdleMaster
                 {
                     globalHeader.parentNode.removeChild(globalHeader);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    Logger.Exception(ex, "frmBrowswer -> wbAuth_DocumentCompleted -> Removing the global_header resulted in an exception");
                 }
 
             }
