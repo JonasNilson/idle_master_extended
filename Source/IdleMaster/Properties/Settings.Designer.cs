@@ -133,34 +133,6 @@ namespace IdleMaster.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\r\n        <?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n        <ArrayOfString xmlns:x" +
-            "si=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001" +
-            "/XMLSchema\">\r\n        <string />\r\n        </ArrayOfString>\r\n      ")]
-        public global::System.Collections.Specialized.StringCollection blacklist {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["blacklist"]));
-            }
-            set {
-                this["blacklist"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\r\n        <?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n        <ArrayOfString xmlns:x" +
-            "si=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001" +
-            "/XMLSchema\">\r\n        <string />\r\n        </ArrayOfString>\r\n      ")]
-        public global::System.Collections.Specialized.StringCollection whitelist {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["whitelist"]));
-            }
-            set {
-                this["whitelist"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool OnlyOneGameIdle {
             get {
@@ -329,18 +301,6 @@ namespace IdleMaster.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IdlingModeWhitelist {
-            get {
-                return ((bool)(this["IdlingModeWhitelist"]));
-            }
-            set {
-                this["IdlingModeWhitelist"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string steamLoginSecure {
             get {
@@ -396,6 +356,46 @@ namespace IdleMaster.Properties {
             }
             set {
                 this["ShutdownWindowsOnDone"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring />\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection blacklist {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["blacklist"]));
+            }
+            set {
+                this["blacklist"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring />\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection whitelist {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["whitelist"]));
+            }
+            set {
+                this["whitelist"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IdlingModeWhitelist {
+            get {
+                return ((bool)(this["IdlingModeWhitelist"]));
+            }
+            set {
+                this["IdlingModeWhitelist"] = value;
             }
         }
     }
