@@ -21,9 +21,9 @@ namespace IdleMaster
                 String programName = Path.GetFileName(Environment.GetCommandLineArgs()[0]);
                 key.SetValue(programName, (int)10001, RegistryValueKind.DWord);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Logger.Exception(ex, "Program -> Main -> Registry and environment modifications resulted in an exception.");
             }
 
             Application.ThreadException += (o, a) => Logger.Exception(a.Exception);

@@ -95,9 +95,9 @@ namespace IdleMaster
                         }
                         AllBadges = AllBadges.OrderByDescending(b => b.AveragePrice).ToList();
                     }
-                    catch
+                    catch (Exception ex)
                     {
-
+                        Logger.Exception(ex, "frmMain -> SortBadges -> The method (mostvalue) resulted in an exception");
                     }
                     break;
                 default:
@@ -194,9 +194,9 @@ namespace IdleMaster
 
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Logger.Exception(ex, "frmMain -> StartIdle -> The attempt to kill rogue processes resulted in an exception.");
             }
 
             // Check if user is authenticated and if any badge left to idle
@@ -305,7 +305,7 @@ namespace IdleMaster
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex, "frmMain -> StopIdle");
+                Logger.Exception(ex, "frmMain -> StopIdle -> An attempt to stop the idling processes resulted in an exception.");
             }
         }
 
