@@ -61,6 +61,8 @@ namespace IdleMaster
             // Textbox Appid
             txtAppid.BackColor = colorBgd;
             txtAppid.ForeColor = colorTxt;
+
+            btnRemove.Image = Settings.Default.whiteIcons ? Resources.imgTrash_w : Resources.imgTrash;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

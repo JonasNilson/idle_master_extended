@@ -479,6 +479,8 @@ namespace IdleMaster
 
             if (Settings.Default.IdlingModeWhitelist)
             {
+                AllBadges.Clear();
+
                 foreach (var whitelistID in Settings.Default.whitelist)
                 {
                     int applicationID;
