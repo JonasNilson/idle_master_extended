@@ -81,6 +81,13 @@ namespace IdleMaster
                 {
                     mainForm.StartMultipleIdle();
                 }
+
+                mainForm.DisableCardDropCheckTimer();
+                mainForm.UpdateStateInfo();
+            }
+            else
+            {
+                mainForm.EnableCardDropCheckTimer();
             }
 
             Close();

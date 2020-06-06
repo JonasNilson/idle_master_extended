@@ -782,7 +782,7 @@ namespace IdleMaster
             GetLatestVersion();
 
             //Prevent Sleep
-            if (Settings.Default.NoSleep == true)
+            if (Settings.Default.NoSleep)
             {
                 PreventSleep();
             }
@@ -982,7 +982,11 @@ namespace IdleMaster
 
         private async void tmrCardDropCheck_Tick(object sender, EventArgs e)
         {
-            if (TimeLeft <= 0)
+            if (Settings.Default.IdlingModeWhitelist)
+            {
+                DisableCardDropCheckTimer();
+            }
+            else if (TimeLeft <= 0)
             {
                 tmrCardDropCheck.Enabled = false;
                 if (CurrentBadge != null)
@@ -1017,13 +1021,34 @@ namespace IdleMaster
 
                 // Check if user is authenticated and if any badge left to idle
                 // There should be check for IsCookieReady, but property is set in timer tick, so it could take some time to be set.
-                tmrCardDropCheck.Enabled = !string.IsNullOrWhiteSpace(Settings.Default.sessionid) && IsSteamReady && CanIdleBadges.Any() && TimeLeft != 0;
+                if (!string.IsNullOrWhiteSpace(Settings.Default.sessionid) && IsSteamReady && CanIdleBadges.Any() && TimeLeft != 0)
+                {
+                    EnableCardDropCheckTimer();
+                }
+                else
+                {
+                    DisableCardDropCheckTimer();
+                }
+                    
             }
             else
             {
                 TimeLeft = TimeLeft - 1;
                 lblTimer.Text = TimeSpan.FromSeconds(TimeLeft).ToString(@"mm\:ss");
+                EnableCardDropCheckTimer();
             }
+        }
+
+        public void DisableCardDropCheckTimer()
+        {
+            tmrCardDropCheck.Enabled = false;
+            toolStripStatusLabel1.Visible = lblTimer.Visible = false;
+        }
+
+        public void EnableCardDropCheckTimer()
+        {
+            tmrCardDropCheck.Enabled = true;
+            toolStripStatusLabel1.Visible = lblTimer.Visible = true;
         }
 
         private async void btnSkip_Click(object sender, EventArgs e)
