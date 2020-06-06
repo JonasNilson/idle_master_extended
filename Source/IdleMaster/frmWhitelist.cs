@@ -63,18 +63,22 @@ namespace IdleMaster
         private async void btnSave_Click(object sender, EventArgs e)
         {
             SaveWhitelist();
-            mainForm.StopIdle();
-            await mainForm.LoadBadgesAsync();
 
-            if (lstWhitelist.Items.Count == 1)
+            if (Settings.Default.IdlingModeWhitelist)
             {
-                mainForm.StartSoloIdle(
-                    mainForm.AllBadges.FirstOrDefault(b => b.AppId == int.Parse(lstWhitelist.Items[0].ToString()))
-                );
-            }
-            else if (lstWhitelist.Items.Count > 1)
-            {
-                mainForm.StartMultipleIdle();
+                mainForm.StopIdle();
+                await mainForm.LoadBadgesAsync();
+
+                if (lstWhitelist.Items.Count == 1)
+                {
+                    mainForm.StartSoloIdle(
+                        mainForm.AllBadges.FirstOrDefault(b => b.AppId == int.Parse(lstWhitelist.Items[0].ToString()))
+                    );
+                }
+                else if (lstWhitelist.Items.Count > 1)
+                {
+                    mainForm.StartMultipleIdle();
+                }
             }
 
             Close();
