@@ -150,7 +150,8 @@ namespace IdleMaster
                 try
                 {
                     dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
-                    if (rememberMeCheckBox != null)
+                    
+                    if (rememberMeCheckBox != null && !(rememberMeCheckBox is DBNull))
                     {
                         rememberMeCheckBox.Checked = true;
                     }
