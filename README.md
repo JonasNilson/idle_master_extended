@@ -58,6 +58,9 @@ Idle Master Extended comes with a few extensions and fixes:
 </p>
 
 * **Quick login**: (`File > Settings > General > Quick login`) If you have Steam running it is possible to login without entering any credentials
+<p align="center">
+  <img src ="https://i.imgur.com/6tnHIk4.png"/>
+</p>
 
 * **Latest release**: Always keep track of the latest release of Idle Master Extended (available in v1.5)
 <p align="center">
