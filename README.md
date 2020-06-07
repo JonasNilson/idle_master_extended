@@ -47,30 +47,31 @@ Features
 -------
 Idle Master Extended comes with a few extensions and fixes:
 
-* **Fast mode** (File > Settings > Fast mode): Get your cards faster by automagically switching between simultaneous and individual idling (based on: https://steamcommunity.com/groups/idlemastery/discussions/0/1485487749771924917/)
+* **Fast mode** (`File > Settings > Idling Behavior > Fast mode`): Get your cards faster by automagically switching between simultaneous and individual idling (based on: https://steamcommunity.com/groups/idlemastery/discussions/0/1485487749771924917/)
 <p align="center">
   <img src ="https://i.imgur.com/5DSvi3e.jpg"/>
 </p>
 
-* **Dark theme** (File > Settings > Dark theme): Applies color changes to several of the interface components to better match the Steam interface color scheme.
+* **Dark theme** (`File > Settings > General > Dark theme`): Applies color changes to several of the interface components to better match the Steam interface color scheme.
 <p align="center">
   <img src ="https://i.imgur.com/DM8wnbm.png"/>
 </p>
 
-* **Latest release**: Always keep track of the latest release of Idle Master Extended (v1.5)
+* **Quick login**: (`File > Settings > General > Quick login`) If you have Steam running it is possible to login without entering any credentials
+
+* **Latest release**: Always keep track of the latest release of Idle Master Extended (available in v1.5)
 <p align="center">
   <img src ="https://i.imgur.com/EosesDk.png"/>
 </p>
 
-* **Whitelist mode** (File > Whitelist & File > Settings > Whitelist mode): Add the game's Steam ID to a list and idle any game in your library (v1.5)
+* **Whitelist mode** (`File > Whitelist` & `File > Settings > Idling Behavior > Whitelist mode`): Add the game's Steam ID to a list and idle any game in your library (v1.5)
 <p align="center">
-  <img src ="https://i.imgur.com/J2HpdME.png"/>
   <img src ="https://i.imgur.com/CAwgi68.png"/>
 </p>
 
-* **Updated Steamworks.NET** (https://steamworks.github.io): Includes the latest version of Steamworks.NET (v11.0.0) (available here: https://github.com/rlabrecque/Steamworks.NET/releases), which no longer requires CSteamworks.dll.
+* **Updated Steamworks.NET** (https://steamworks.github.io): Includes the latest version of Steamworks.NET (v11.0.0) (available here: https://github.com/rlabrecque/Steamworks.NET/releases), which no longer requires `CSteamworks.dll`.
 
-* **Cookies and HTTPS**: All links within the application uses the HTTPS protocol and the cookie has been updated to include *steamLoginSecure*. The browser window used to login to Steam displays more information about the site being visited.
+* **Cookies and HTTPS**: All links within the application uses the `HTTPS` protocol and the cookie has been updated to include *steamLoginSecure*. The browser window used to login to Steam displays more information about the site being visited.
 
 * **Additional fixes**: For example, previously the "current badge" was skipped when changing from individual game idling to simultaneous idling - it should now work as intended. 
 
