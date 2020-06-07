@@ -55,7 +55,7 @@ namespace IdleMaster
             // Find the page header, and remove it.  This gives the login form a more streamlined look.
             dynamic htmldoc = wbAuth.Document.DomDocument;
             dynamic globalHeader = htmldoc.GetElementById("global_header");
-            if (globalHeader != null)
+            if (globalHeader != null && !(globalHeader is DBNull))
             {
                 try
                 {
@@ -101,7 +101,7 @@ namespace IdleMaster
                 try
                 {
                     dynamic parentalNotice = htmldoc.GetElementById("parental_notice");
-                    if (parentalNotice != null)
+                    if (parentalNotice != null && !(parentalNotice is DBNull))
                     {
                         if (parentalNotice.OuterHtml != "")
                         {
@@ -131,7 +131,7 @@ namespace IdleMaster
                 {
                     dynamic steamLoginButton = htmldoc.GetElementById("SteamLogin");
 
-                    if (steamLoginButton != null)
+                    if (steamLoginButton != null && !(steamLoginButton is DBNull))
                     {
                         steamLoginButton.Value = text;
                     }
