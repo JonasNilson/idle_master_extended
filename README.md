@@ -24,7 +24,8 @@ Troubleshooting and common solutions
   * 🔧 [How To Fix Most Idle Master + Steam problems](https://steamcommunity.com/groups/idlemastery/discussions/0/133257636766989675/)
   * 🔧 [Temporary solution for IM can't login problem](https://steamcommunity.com/groups/idlemastery/discussions/0/1697168437864920721/)
 * GitHub Issues
-  * 🔧 [How to idle any game with Idle Master](https://github.com/JonasNilson/idle_master_extended/issues/36)
+  * 🔧 [How to idle any game with Idle Master Extended (v1.5)](https://github.com/JonasNilson/idle_master_extended/releases/tag/v1.5)
+  * 🔧 [(Legacy) How to idle any game with Idle Master Extended](https://github.com/JonasNilson/idle_master_extended/issues/36)
   * 🔧 [Solve login issues by using an existing Steam cookie](https://github.com/JonasNilson/idle_master_extended/issues/27#issuecomment-577597720)
   * 🔧 [Free games does not have card drops available](https://github.com/JonasNilson/idle_master_extended/issues/38#issuecomment-604059701)
   * 🔧 [Steam is not running, but actually is](https://github.com/JonasNilson/idle_master_extended/issues/45#issuecomment-611694923)
