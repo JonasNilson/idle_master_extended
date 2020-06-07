@@ -56,6 +56,16 @@ Idle Master Extended comes with a few extensions and fixes:
   <img src ="https://i.imgur.com/DM8wnbm.png"/>
 </p>
 
+* **Latest release**: Always keep track of the latest release of Idle Master Extended (v1.5)
+<p align="center">
+  <img src ="https://i.imgur.com/EosesDk.png"/>
+</p>
+
+* **Whitelist mode** (File > Settings > Whitelist mode): Add the game's Steam ID to a list and idle any game in your library (v1.5)
+<p align="center">
+  <img src ="https://i.imgur.com/CAwgi68.png"/>
+</p>
+
 * **Updated Steamworks.NET** (https://steamworks.github.io): Includes the latest version of Steamworks.NET (v11.0.0) (available here: https://github.com/rlabrecque/Steamworks.NET/releases), which no longer requires CSteamworks.dll.
 
 * **Cookies and HTTPS**: All links within the application uses the HTTPS protocol and the cookie has been updated to include *steamLoginSecure*. The browser window used to login to Steam displays more information about the site being visited.
@@ -63,7 +73,6 @@ Idle Master Extended comes with a few extensions and fixes:
 * **Additional fixes**: For example, previously the "current badge" was skipped when changing from individual game idling to simultaneous idling - it should now work as intended. 
 
 *Note*: the "Remember me on this computer" checkbox is automatically checked when using the login browser window due to user feedback. According to the Steam website this allows for automatic logins for **30 days** - but it is only valid for Steam Guard enabled users.
-
 
 ---
 ---
