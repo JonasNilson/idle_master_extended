@@ -61,8 +61,9 @@ Idle Master Extended comes with a few extensions and fixes:
   <img src ="https://i.imgur.com/EosesDk.png"/>
 </p>
 
-* **Whitelist mode** (File > Settings > Whitelist mode): Add the game's Steam ID to a list and idle any game in your library (v1.5)
+* **Whitelist mode** (File > Whitelist & File > Settings > Whitelist mode): Add the game's Steam ID to a list and idle any game in your library (v1.5)
 <p align="center">
+  <img src ="https://i.imgur.com/J2HpdME.png"/>
   <img src ="https://i.imgur.com/CAwgi68.png"/>
 </p>
 
