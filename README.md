@@ -12,11 +12,8 @@ Download
 
 Donate
 -------
-Want to motivate me?
 * 🎉 [Send me a donation through Steam](https://steamcommunity.com/tradeoffer/new/?partner=180303553&token=gOgA5lWk). I accept anything you throw at me.
   * **Note**: Only use the trade link directly from here to avoid fake accounts. 
-
-
 
 Troubleshooting and common solutions
 -------
