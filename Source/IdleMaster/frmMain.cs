@@ -1210,8 +1210,7 @@ namespace IdleMaster
 
         private void changelogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frm = new frmChangelog();
-            frm.Show();
+            Process.Start("https://github.com/JonasNilson/idle_master_extended/releases");
         }
 
         private void statisticsToolStripMenuItem_Click(object sender, EventArgs e)
