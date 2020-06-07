@@ -1431,5 +1431,10 @@ namespace IdleMaster
             // LOADING GIF
             //
         }
+
+        private void donateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://steamcommunity.com/tradeoffer/new/?partner=180303553&token=gOgA5lWk");
+        }
     }
 }

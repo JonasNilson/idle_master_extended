@@ -87,6 +87,7 @@ namespace IdleMaster
             this.lblHoursPlayed = new System.Windows.Forms.Label();
             this.tmrStatistics = new System.Windows.Forms.Timer(this.components);
             this.lnkLatestRelease = new System.Windows.Forms.LinkLabel();
+            this.donateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuTop.SuspendLayout();
             this.ssFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picReadingPage)).BeginInit();
@@ -222,6 +223,7 @@ namespace IdleMaster
             this.blacklistToolStripMenuItem,
             this.whitelistToolStripMenuItem,
             this.toolStripMenuItem1,
+            this.donateToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -564,6 +566,13 @@ namespace IdleMaster
             this.lnkLatestRelease.Text = "(Latest release)";
             this.lnkLatestRelease.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkLatestRelease_LinkClicked);
             // 
+            // donateToolStripMenuItem
+            // 
+            this.donateToolStripMenuItem.Name = "donateToolStripMenuItem";
+            this.donateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.donateToolStripMenuItem.Text = "Donate";
+            this.donateToolStripMenuItem.Click += new System.EventHandler(this.donateToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -672,6 +681,7 @@ namespace IdleMaster
         private ToolStripMenuItem statisticsToolStripMenuItem;
         private LinkLabel lnkLatestRelease;
         private ToolStripMenuItem whitelistToolStripMenuItem;
+        private ToolStripMenuItem donateToolStripMenuItem;
     }
 }
 
