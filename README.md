@@ -10,6 +10,14 @@ Download
 * The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
   * 💹 Total number of downloads: `430 097` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-06-06)
 
+Donate
+-------
+Want to motivate me?
+* 🎉 [Send me a donation through Steam](https://steamcommunity.com/tradeoffer/new/?partner=180303553&token=gOgA5lWk). I accept anything you throw at me.
+  * **Note**: Only use the trade link directly from here to avoid fake accounts. 
+
+
+
 Troubleshooting and common solutions
 -------
 * Make sure you are eligeable for card drops:
