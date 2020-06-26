@@ -1,6 +1,6 @@
 Idle Master Extended [![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)
 ===========
- Get your Steam Trading Cards the Fast Way (Fast Mode Extension)
+ Get your [Steam Trading Cards](https://steamcommunity.com/tradingcards/) the Fast Way (Fast Mode Extension)
  ⭐️ Accepted by the official [Idle Master community](https://steamcommunity.com/groups/idlemastery/discussions/0/1485487749771924917/)
  
 This is a fork of the original [Idle Master](https://github.com/jshackles/idle_master) project (**discontinued** in early 2017) by [jshackles](https://github.com/jshackles) (also known for [Enhanced Steam](https://github.com/jshackles/Enhanced_Steam)).
@@ -18,6 +18,7 @@ Donate
 Troubleshooting and common solutions
 -------
 * Make sure you are eligeable for card drops:
+  * https://steamcommunity.com/tradingcards/
   * https://steamcommunity.com/my/badges
 * Idle Master Steam Group:
   * ⭐ [Read this Thread before posting, it saves time](https://steamcommunity.com/groups/idlemastery/discussions/0/152392786912268315/) 
