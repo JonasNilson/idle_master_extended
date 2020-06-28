@@ -19,6 +19,7 @@ Troubleshooting and common solutions
 -------
 * Make sure you are eligeable for card drops:
   * https://steamcommunity.com/tradingcards/
+  * https://steamcommunity.com/tradingcards/faq/
   * https://steamcommunity.com/my/badges
 * Idle Master Steam Group:
   * ⭐ [Read this Thread before posting, it saves time](https://steamcommunity.com/groups/idlemastery/discussions/0/152392786912268315/) 
