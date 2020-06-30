@@ -33,10 +33,6 @@ namespace IdleMaster
             {
                 Settings.Default.sort = "mostcards";
             }
-            if (radIdleMostValue.Checked)
-            {
-                Settings.Default.sort = "mostvalue";
-            }
 
             if (cboLanguage.Text != "")
             {
@@ -106,9 +102,6 @@ namespace IdleMaster
                 case "mostcards":
                     radIdleMostDrops.Checked = true;
                     break;
-                case "mostvalue":
-                    radIdleMostValue.Checked = true;
-                    break;
                 default:
                     break;
             }
@@ -135,8 +128,6 @@ namespace IdleMaster
             ttHints.SetToolTip(radOneThenMany, localization.strings.idle_onethenmany);
             radIdleDefault.Text = localization.strings.order_default;
             ttHints.SetToolTip(radIdleDefault, localization.strings.order_default);
-            radIdleMostValue.Text = localization.strings.order_value;
-            ttHints.SetToolTip(radIdleMostValue, localization.strings.order_value);
             radIdleMostDrops.Text = localization.strings.order_most;
             ttHints.SetToolTip(radIdleMostDrops, localization.strings.order_most);
             radIdleLeastDrops.Text = localization.strings.order_least;
