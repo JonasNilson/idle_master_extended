@@ -184,7 +184,7 @@
     <value>Şu an oyunda değil</value>
   </data>
   <data name="official_group" xml:space="preserve">
-    <value>&amp;Resmi Grub</value>
+    <value>&amp;Resmi Grup</value>
   </data>
   <data name="pause_idling" xml:space="preserve">
     <value>&amp;Rölantiyi duraklat</value>
@@ -235,7 +235,7 @@
     <value>Oyun durumunu güncelleştir</value>
   </data>
   <data name="accept" xml:space="preserve">
-    <value>&amp;Kabul</value>
+    <value>&amp;Onayla</value>
   </data>
   <data name="add" xml:space="preserve">
     <value>&amp;Ekle</value>
@@ -257,7 +257,7 @@
 
 [UYARI]
 Bu bilgileri kimseyle paylaşmayınız,
-aksi halde hırsız tarafından Steam hesabınıza giriş yapılma tehdidi oluşabilir.</value>
+aksi halde hırsızlar tarafından Steam hesabınıza giriş yapılma tehdidi oluşabilir.</value>
   </data>
   <data name="general" xml:space="preserve">
     <value>Genel</value>
