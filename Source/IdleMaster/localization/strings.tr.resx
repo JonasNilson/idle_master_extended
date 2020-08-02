@@ -255,10 +255,9 @@
   <data name="cookie_warning" xml:space="preserve">
     <value>Yukarıdaki bilgileri görüntüle
 
-[WARNING]
-Bu bilgileri kimseyle paylaşmayın,
-potansiyel bir saldırgan tarafından Steam hesabınıza 
-giriş yapmak için kullanılabilir.</value>
+[UYARI]
+Bu bilgileri kimseyle paylaşmayınız,
+aksi halde hırsızlar tarafından Steam hesabınıza giriş yapılma tehdidi oluşabilir.</value>
   </data>
   <data name="general" xml:space="preserve">
     <value>Genel</value>
