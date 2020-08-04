@@ -14,7 +14,7 @@ This is a fork of the original [Idle Master](https://github.com/jshackles/idle_m
 Download
 -------
 * The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
-  * 💹 Total number of downloads: `492 317` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-07-30)
+  * 💹 Total number of downloads: `496 079` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-07-30)
 
 Donate
 -------
