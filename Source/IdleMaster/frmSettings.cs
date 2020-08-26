@@ -270,7 +270,18 @@ namespace IdleMaster
 
         private void chkShutdown_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
+            if (chkShutdown.Checked)
+            {
+                if (MessageBox.Show("Are you sure you want to shut down Windows once all your games are finished idling?\n\nNote: This setting will only be active once and then reset itself.",
+                                    "Shutdown Windows", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
+                }
+                else
+                {
+                    chkShutdown.Checked = false;
+                }
+            }
         }
     }
 }
