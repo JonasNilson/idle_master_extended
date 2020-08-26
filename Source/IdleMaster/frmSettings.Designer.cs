@@ -46,7 +46,6 @@ namespace IdleMaster
             this.chkIgnoreClientStatus = new System.Windows.Forms.CheckBox();
             this.chkMinToTray = new System.Windows.Forms.CheckBox();
             this.grpPriority = new System.Windows.Forms.GroupBox();
-            this.radIdleMostValue = new System.Windows.Forms.RadioButton();
             this.radIdleLeastDrops = new System.Windows.Forms.RadioButton();
             this.radIdleMostDrops = new System.Windows.Forms.RadioButton();
             this.radIdleDefault = new System.Windows.Forms.RadioButton();
@@ -227,34 +226,21 @@ namespace IdleMaster
             // 
             this.grpPriority.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpPriority.Controls.Add(this.radIdleMostValue);
             this.grpPriority.Controls.Add(this.radIdleLeastDrops);
             this.grpPriority.Controls.Add(this.radIdleMostDrops);
             this.grpPriority.Controls.Add(this.radIdleDefault);
             this.grpPriority.Location = new System.Drawing.Point(12, 261);
             this.grpPriority.Name = "grpPriority";
-            this.grpPriority.Size = new System.Drawing.Size(395, 95);
+            this.grpPriority.Size = new System.Drawing.Size(395, 78);
             this.grpPriority.TabIndex = 1;
             this.grpPriority.TabStop = false;
             this.grpPriority.Text = "Idling Order";
-            // 
-            // radIdleMostValue
-            // 
-            this.radIdleMostValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radIdleMostValue.Location = new System.Drawing.Point(7, 35);
-            this.radIdleMostValue.Name = "radIdleMostValue";
-            this.radIdleMostValue.Size = new System.Drawing.Size(382, 17);
-            this.radIdleMostValue.TabIndex = 3;
-            this.radIdleMostValue.TabStop = true;
-            this.radIdleMostValue.Text = "Prioritize games with the highest card values";
-            this.radIdleMostValue.UseVisualStyleBackColor = true;
             // 
             // radIdleLeastDrops
             // 
             this.radIdleLeastDrops.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radIdleLeastDrops.Location = new System.Drawing.Point(7, 69);
+            this.radIdleLeastDrops.Location = new System.Drawing.Point(7, 52);
             this.radIdleLeastDrops.Name = "radIdleLeastDrops";
             this.radIdleLeastDrops.Size = new System.Drawing.Size(382, 17);
             this.radIdleLeastDrops.TabIndex = 2;
@@ -265,7 +251,7 @@ namespace IdleMaster
             // 
             this.radIdleMostDrops.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radIdleMostDrops.Location = new System.Drawing.Point(7, 52);
+            this.radIdleMostDrops.Location = new System.Drawing.Point(7, 35);
             this.radIdleMostDrops.Name = "radIdleMostDrops";
             this.radIdleMostDrops.Size = new System.Drawing.Size(382, 17);
             this.radIdleMostDrops.TabIndex = 1;
@@ -289,7 +275,7 @@ namespace IdleMaster
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(331, 370);
+            this.btnCancel.Location = new System.Drawing.Point(331, 349);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
@@ -300,7 +286,7 @@ namespace IdleMaster
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(250, 370);
+            this.btnOK.Location = new System.Drawing.Point(250, 349);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 3;
@@ -312,7 +298,7 @@ namespace IdleMaster
             // 
             this.btnAdvanced.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAdvanced.Image = global::IdleMaster.Properties.Resources.imgLock;
-            this.btnAdvanced.Location = new System.Drawing.Point(12, 370);
+            this.btnAdvanced.Location = new System.Drawing.Point(12, 349);
             this.btnAdvanced.Name = "btnAdvanced";
             this.btnAdvanced.Size = new System.Drawing.Size(25, 23);
             this.btnAdvanced.TabIndex = 4;
@@ -395,7 +381,7 @@ namespace IdleMaster
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(418, 405);
+            this.ClientSize = new System.Drawing.Size(418, 384);
             this.Controls.Add(this.grpIdlingQuantity);
             this.Controls.Add(this.btnAdvanced);
             this.Controls.Add(this.btnOK);
@@ -432,7 +418,6 @@ namespace IdleMaster
         private RadioButton radIdleDefault;
         private Button btnCancel;
         private Button btnOK;
-        private RadioButton radIdleMostValue;
         private Button btnAdvanced;
         private ToolTip ttHints;
         private CheckBox chkIgnoreClientStatus;
