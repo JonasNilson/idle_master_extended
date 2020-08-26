@@ -272,8 +272,8 @@ namespace IdleMaster
         {
             if (chkShutdown.Checked)
             {
-                if (MessageBox.Show("Are you sure you want to shut down Windows once all your games are finished idling?\n\nNote: This setting will only be active once and then reset itself.",
-                                    "Shutdown Windows", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                if (MessageBox.Show("Are you sure you want Idle Master Extended to shutdown Windows when idling is done?\n\nNote: This setting will only be active once.",
+                                    "Shutdown Windows", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
                     Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
                 }
