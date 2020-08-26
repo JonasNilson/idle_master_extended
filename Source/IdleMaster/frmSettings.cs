@@ -166,14 +166,22 @@ namespace IdleMaster
             {
                 chkShowUsername.Checked = true;
             }
+
             if (Settings.Default.NoSleep)
             {
                 chkPreventSleep.Checked = true;
             }
+
             if (Settings.Default.QuickLogin)
             {
                 quickLoginBox.Checked = true;
             }
+
+            if (Settings.Default.ShutdownWindowsOnDone)
+            {
+                chkShutdown.Checked = true;
+            }
+
             runtimeCustomThemeSettings(); // JN: Apply theme colors and icons
         }
 
