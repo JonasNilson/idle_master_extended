@@ -307,15 +307,39 @@ namespace IdleMaster
 
             if (Settings.Default.ShutdownWindowsOnDone)
             {
-                // Start a separate process to shut down Windows (30 sec timer)
-                var psi = new ProcessStartInfo("shutdown", "/s /t 30");
-                psi.CreateNoWindow = true;
-                psi.UseShellExecute = false;
-                Process.Start(psi);
+                Settings.Default.ShutdownWindowsOnDone = false;
+                Settings.Default.Save();
 
-                // Close the application
-                Form1_Closing(this, null);
+                StartShutdownProcess();
+
+                if (MessageBox.Show("Your computer is about to shut down.\n\nNote: Press Cancel to abort.",
+                                    "Idling Completed", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.Cancel)
+                {
+                    AbortShutdownProcess();
+                }
+                else
+                {
+                    Form1_Closing(this, null);
+                }
             }
+        }
+
+        private static void AbortShutdownProcess()
+        {
+            CreateShutdownProcess("/a");
+        }
+
+        private static void StartShutdownProcess()
+        {
+            CreateShutdownProcess("/s /c \"Idle Master Extended is about to shutdown Windows.\" /t 300");
+        }
+
+        private static void CreateShutdownProcess(String parameters)
+        {
+            var psi = new ProcessStartInfo("shutdown", parameters);
+            psi.CreateNoWindow = true;
+            psi.UseShellExecute = false;
+            Process.Start(psi);
         }
 
         public void StartSoloIdle(Badge badge)

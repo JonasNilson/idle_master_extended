@@ -166,14 +166,22 @@ namespace IdleMaster
             {
                 chkShowUsername.Checked = true;
             }
+
             if (Settings.Default.NoSleep)
             {
                 chkPreventSleep.Checked = true;
             }
+
             if (Settings.Default.QuickLogin)
             {
                 quickLoginBox.Checked = true;
             }
+
+            if (Settings.Default.ShutdownWindowsOnDone)
+            {
+                chkShutdown.Checked = true;
+            }
+
             runtimeCustomThemeSettings(); // JN: Apply theme colors and icons
         }
 
@@ -262,7 +270,18 @@ namespace IdleMaster
 
         private void chkShutdown_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
+            if (chkShutdown.Checked)
+            {
+                if (MessageBox.Show("Are you sure you want Idle Master Extended to shutdown Windows when idling is done?\n\nNote: This setting will only be active once.",
+                                    "Shutdown Windows", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
+                }
+                else
+                {
+                    chkShutdown.Checked = false;
+                }
+            }
         }
     }
 }
