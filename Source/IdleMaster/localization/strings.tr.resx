@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -127,13 +127,13 @@
     <value>&amp;Kara Liste</value>
   </data>
   <data name="blacklist_current_game" xml:space="preserve">
-    <value>&amp;Şu andaki oyunu kara listeye ekle</value>
+    <value>&amp;Mevcut Oyunu Kara Listeye Al</value>
   </data>
   <data name="card_drops_remaining" xml:space="preserve">
-    <value>geri kalan kart sayısı</value>
+    <value>kart kaldı</value>
   </data>
   <data name="currently_ingame" xml:space="preserve">
-    <value>Şu an oyunda</value>
+    <value>Şu anki oyun</value>
   </data>
   <data name="exit" xml:space="preserve">
     <value>&amp;Çıkış</value>
@@ -145,7 +145,7 @@
     <value>&amp;Oyun</value>
   </data>
   <data name="games_left_to_idle" xml:space="preserve">
-    <value>rölanti edilecek oyun sayısı</value>
+    <value>çalıştırılacak oyun sayısı</value>
   </data>
   <data name="help" xml:space="preserve">
     <value>&amp;Yardım</value>
@@ -154,58 +154,58 @@
     <value>Saat</value>
   </data>
   <data name="hrs_on_record" xml:space="preserve">
-    <value>oynanmış saat</value>
+    <value>saat oynanmış</value>
   </data>
   <data name="idle_master_connected" xml:space="preserve">
-    <value>İdle Master şu an Steam ile bağlı</value>
+    <value>Idle Master, Steam'e bağlı</value>
   </data>
   <data name="idle_master_notconnected" xml:space="preserve">
-    <value>İdle Master şu an Steam ile bağlı değil</value>
+    <value>Idle Master, Steam'e bağlı değil</value>
   </data>
   <data name="idle_now" xml:space="preserve">
-    <value>rölantiyi başlat</value>
+    <value>çalışmayı başlat</value>
   </data>
   <data name="idling_complete" xml:space="preserve">
-    <value>Rölanti tamamlandı, daha fazla kart hakkı kalmadı</value>
+    <value>Çalışma tamamlandı, kart hakkınız kalmadı</value>
   </data>
   <data name="idling_paused" xml:space="preserve">
-    <value>Rölanti duraklatıldı</value>
+    <value>Çalışma duraklatıldı</value>
   </data>
   <data name="loading_next" xml:space="preserve">
-    <value>Sonraki oyun açılıyor...</value>
+    <value>Sonraki oyun yükleniyor...</value>
   </data>
   <data name="name" xml:space="preserve">
     <value>İsim</value>
   </data>
   <data name="next_check" xml:space="preserve">
-    <value>Sonraki onay</value>
+    <value>Sonraki kontrol</value>
   </data>
   <data name="not_ingame" xml:space="preserve">
-    <value>Şu an oyunda değil</value>
+    <value>Oyunda değil</value>
   </data>
   <data name="official_group" xml:space="preserve">
-    <value>&amp;Resmi Grub</value>
+    <value>&amp;Resmi Grup</value>
   </data>
   <data name="pause_idling" xml:space="preserve">
-    <value>&amp;Rölantiyi duraklat</value>
+    <value>&amp;Çalışmayı Duraklat</value>
   </data>
   <data name="please_wait" xml:space="preserve">
-    <value>lütfen bekleyiniz...</value>
+    <value>lütfen bekleyin...</value>
   </data>
   <data name="reading_badge_page" xml:space="preserve">
     <value>Rozet sayfası okunuyor</value>
   </data>
   <data name="release_notes" xml:space="preserve">
-    <value>&amp;Sürüm notları</value>
+    <value>&amp;Sürüm Notları</value>
   </data>
   <data name="resume_idling" xml:space="preserve">
-    <value>&amp;Rölantiyi devam et</value>
+    <value>&amp;Çalışmaya Devam Et</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>&amp;Ayarlar</value>
   </data>
   <data name="signed_in_as" xml:space="preserve">
-    <value>Olarak oturumda</value>
+    <value>Olarak giriş yapıldı</value>
   </data>
   <data name="sign_in" xml:space="preserve">
     <value>Oturum Aç</value>
@@ -214,86 +214,86 @@
     <value>Oturumu Kapat</value>
   </data>
   <data name="skip_current_game" xml:space="preserve">
-    <value>&amp;Şu andaki oyunu atla</value>
+    <value>&amp;Mevcut Oyunu Atla</value>
   </data>
   <data name="sorting_results" xml:space="preserve">
-    <value>Ayarlarınıza göre sonuçlar sıralanıyor, lütfen bekleyiniz...</value>
+    <value>Sonuçlar ayarlarınıza göre sıralanıyor, lütfen bekleyin...</value>
   </data>
   <data name="statistics" xml:space="preserve">
-    <value>&amp;İstatistikler</value>
+    <value>&amp;İstatistik</value>
   </data>
   <data name="steam_ignored" xml:space="preserve">
-    <value>Steam işletici durumu göz ardı edildi</value>
+    <value>Steam istemcisi durumu yok sayıldı</value>
   </data>
   <data name="steam_notrunning" xml:space="preserve">
-    <value>Steam şu an çalışmıyor</value>
+    <value>Steam çalışmıyor</value>
   </data>
   <data name="steam_running" xml:space="preserve">
-    <value>Steam şu an çalışıyor</value>
+    <value>Steam çalışıyor</value>
   </data>
   <data name="update_games_status" xml:space="preserve">
-    <value>Oyun durumunu güncelleştir</value>
+    <value>Oyun durumunu güncelle</value>
   </data>
   <data name="accept" xml:space="preserve">
-    <value>&amp;Kabul</value>
+    <value>&amp;Onayla</value>
   </data>
   <data name="add" xml:space="preserve">
     <value>&amp;Ekle</value>
   </data>
   <data name="add_game_blacklist" xml:space="preserve">
-    <value>Kara Listeye Oyun ekle</value>
+    <value>Kara Listeye Oyun Ekle</value>
   </data>
   <data name="advanced_auth" xml:space="preserve">
-    <value>Gelişmiş doğrulama bilgisini göster</value>
+    <value>Gelişmiş kimlik doğrulama bilgilerini görüntüle</value>
   </data>
   <data name="auth_data" xml:space="preserve">
-    <value>İdle Master doğrulama bilgisi</value>
+    <value>Idle Master Kimlik Doğrulama Verileri</value>
   </data>
   <data name="cancel" xml:space="preserve">
     <value>&amp;İptal</value>
   </data>
   <data name="cookie_warning" xml:space="preserve">
-    <value>Bilgiyi yukarıda görüntüle
+    <value>Yukarıdaki bilgileri görüntüle
 
 [UYARI]
 Bu bilgileri kimseyle paylaşmayınız,
-aksi halde hırsız tarafından Steam hesabınıza giriş yapılma tehdidi oluşabilir.</value>
+aksi halde hırsızlar tarafından Steam hesabınıza giriş yapılma tehdidi oluşabilir.</value>
   </data>
   <data name="general" xml:space="preserve">
     <value>Genel</value>
   </data>
   <data name="idle_individual" xml:space="preserve">
-    <value>Her oyunu ayrı rölanti et</value>
+    <value>Her oyunu ayrı ayrı çalıştır</value>
   </data>
   <data name="idle_master_settings" xml:space="preserve">
-    <value>İdle Master Ayarlar</value>
+    <value>Idle Master Ayarları</value>
   </data>
   <data name="idle_simultaneous" xml:space="preserve">
-    <value>Oyunları aynı anda 2 saat rölanti et, sonra ayrı ayrı</value>
+    <value>Oyunları 2 saate kadar eş zamanlı, sonra ayrı ayrı çalıştır</value>
   </data>
   <data name="idling_behavior" xml:space="preserve">
-    <value>Rölanti davranışı</value>
+    <value>Çalışma Davranışı</value>
   </data>
   <data name="idling_order" xml:space="preserve">
-    <value>Rölanti sıralaması</value>
+    <value>Çalışma Sıralaması</value>
   </data>
   <data name="ignore_client_status" xml:space="preserve">
-    <value>Steam işletici durumunu yoksay</value>
+    <value>Steam istemcisi durumunu yoksay</value>
   </data>
   <data name="interface_language" xml:space="preserve">
-    <value>Arabirim Dili</value>
+    <value>Arayüz Dili</value>
   </data>
   <data name="manage_blacklist" xml:space="preserve">
-    <value>İdle Master kara listeyi yönet</value>
+    <value>Idle Master Kara Listeyi Yönet</value>
   </data>
   <data name="minimize_to_tray" xml:space="preserve">
-    <value>İdle Master uygulamasını küçült</value>
+    <value>Idle Master'ı sistem tepsisine küçült</value>
   </data>
   <data name="ok" xml:space="preserve">
     <value>&amp;Tamam</value>
   </data>
   <data name="order_default" xml:space="preserve">
-    <value>Varsayılan (alfabetik sırayla)</value>
+    <value>Varsayılan (Alfabetik Sırayla)</value>
   </data>
   <data name="order_least" xml:space="preserve">
     <value>En az kart sayısı olan oyunlara öncelik ver</value>
@@ -302,42 +302,51 @@ aksi halde hırsız tarafından Steam hesabınıza giriş yapılma tehdidi oluş
     <value>En çok kart sayısı olan oyunlara öncelik ver</value>
   </data>
   <data name="order_value" xml:space="preserve">
-    <value>En yüksek kart değeri olan oyunlara öncelik ver</value>
+    <value>En yüksek kart değerleri olan oyunlara öncelik ver</value>
   </data>
   <data name="please_login" xml:space="preserve">
-    <value>Lütfen Steam'e giriş yapın</value>
+    <value>Lütfen Steam'e Giriş Yapın</value>
   </data>
   <data name="please_restart" xml:space="preserve">
-    <value>Lütfen dil değişikliklerin etkili olabilmesi için uygulamayı yeniden başlatın.</value>
+    <value>Dil değişikliklerinin geçerli olması için lütfen uygulamayı yeniden başlatın.</value>
   </data>
   <data name="release_notes_title" xml:space="preserve">
-    <value>İdle Master sürüm notları</value>
+    <value>Idle Master Sürüm Notları</value>
   </data>
   <data name="save" xml:space="preserve">
     <value>&amp;Kaydet</value>
   </data>
   <data name="saving_info" xml:space="preserve">
-    <value>İdle Master bilgilerinizi kaydediyor</value>
+    <value>Idle Master bilgilerinizi kaydediyor</value>
   </data>
   <data name="show_username" xml:space="preserve">
-    <value>Oturumdaki kullanıcının Steam adını göster</value>
+    <value>Oturumdaki Steam kullanıcı adını göster</value>
   </data>
   <data name="this_session" xml:space="preserve">
-    <value>Bu oturum</value>
+    <value>Bu Oturum</value>
   </data>
   <data name="total" xml:space="preserve">
     <value>Toplam</value>
   </data>
   <data name="update" xml:space="preserve">
-    <value>&amp;Güncelleştir</value>
+    <value>&amp;Güncelle</value>
   </data>
   <data name="validate_failed" xml:space="preserve">
-    <value>Yazdığınız veriler geçerli değil.  Lütfen yeniden deneyin.</value>
+    <value>Girdiğiniz veriler geçersiz. Lütfen tekrar deneyin.</value>
   </data>
   <data name="validating" xml:space="preserve">
-    <value>Onaylanıyor...</value>
+    <value>Doğrulanıyor...</value>
   </data>
   <data name="idle_onethenmany" xml:space="preserve">
-    <value>2 saatten fazla oyunları tek tek, sonra beraber rölanti et</value>
+    <value>Oyunları 2 saate kadar ayrı ayrı, sonra eş zamanlı çalıştır</value>
+  </data>
+  <data name="add_game_whitelist" xml:space="preserve">
+    <value>Beyaz Listeye Oyun Ekle</value>
+  </data>
+  <data name="manage_whitelist" xml:space="preserve">
+    <value>Idle Master Beyaz Listeyi Yönet</value>
+  </data>
+  <data name="whitelist" xml:space="preserve">
+    <value>&amp;Beyaz Liste</value>
   </data>
 </root>
