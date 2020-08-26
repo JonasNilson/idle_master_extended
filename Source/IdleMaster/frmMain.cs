@@ -307,6 +307,8 @@ namespace IdleMaster
 
             if (Settings.Default.ShutdownWindowsOnDone)
             {
+                Settings.Default.ShutdownWindowsOnDone = false;
+                
                 // Start a separate process to shut down Windows (30 sec timer)
                 var psi = new ProcessStartInfo("shutdown", "/s /t 30");
                 psi.CreateNoWindow = true;
