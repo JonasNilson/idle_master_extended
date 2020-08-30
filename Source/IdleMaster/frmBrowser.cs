@@ -125,16 +125,18 @@ namespace IdleMaster
                 try
                 {
                     dynamic steamLoginDiv = htmldoc.GetElementById("login_btn_signin");
-
+                    
                     if (steamLoginDiv != null && !(steamLoginDiv is DBNull))
                     {
-                        const string evalJavascript = "eval(function V_SetCookie() {}, function V_GetCookie() {})";
                         const string loginJavascript = "LoginUsingSteamClient('https://steamcommunity.com/')";
-                        const string onclickHtml = "onclick=\"" + evalJavascript + ";" + loginJavascript + "\"";
+                        const string onclickHtml = "onclick=\"" + loginJavascript + "\"";
 
                         steamLoginDiv.InnerHtml = steamLoginDiv.InnerHtml + 
                             "<input class=\"btn_green_white_innerfade btn_medium\" type=\"submit\" id=\"QuickSteamLogin\" " +
                             "value=\"Quick-Login\" " + onclickHtml + "border=\"0\" tabindex=\"6\">";
+
+                        // Overwrite cookie functions to ignore the auto login cookie checks
+                        wbAuth.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
                     }
                 }
                 catch (Exception ex)
@@ -307,17 +309,6 @@ namespace IdleMaster
                 // The login is completed, and the profile is visible
                 extractSteamCookies();
                 stopTimerAndCloseForm();
-            }
-            else if (wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/login/")
-              && wbAuth.ReadyState.Equals(WebBrowserReadyState.Loading))
-            {
-                dynamic htmldoc = wbAuth.Document.DomDocument;
-                dynamic quickLoginButton = htmldoc.GetElementById("QuickSteamLogin");
-
-                if (quickLoginButton != null && !(quickLoginButton is DBNull))
-                {
-                    quickLoginButton.Value = "Loading...";
-                }
             }
 
             if (SecondsWaiting > 0 || wbAuth.ReadyState.Equals(WebBrowserReadyState.Uninitialized))
