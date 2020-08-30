@@ -67,7 +67,6 @@ namespace IdleMaster
             Settings.Default.ignoreclient = chkIgnoreClientStatus.Checked;
             Settings.Default.showUsername = chkShowUsername.Checked;
             Settings.Default.NoSleep = chkPreventSleep.Checked;
-            Settings.Default.QuickLogin = quickLoginBox.Checked;
             Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
             Settings.Default.Save();
             Close();
@@ -172,11 +171,6 @@ namespace IdleMaster
                 chkPreventSleep.Checked = true;
             }
 
-            if (Settings.Default.QuickLogin)
-            {
-                quickLoginBox.Checked = true;
-            }
-
             if (Settings.Default.ShutdownWindowsOnDone)
             {
                 chkShutdown.Checked = true;
@@ -261,11 +255,6 @@ namespace IdleMaster
         {
             Settings.Default.whiteIcons = whiteIconsCheckBox.Checked; // Save the white icons setting
             runtimeWhiteIconsSettings(); // JN: Apply white icons
-        }
-
-        private void QuickLoginBox_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.Default.QuickLogin = quickLoginBox.Checked;
         }
 
         private void chkShutdown_CheckedChanged(object sender, EventArgs e)

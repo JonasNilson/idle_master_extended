@@ -36,7 +36,6 @@ namespace IdleMaster
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.grpGeneral = new System.Windows.Forms.GroupBox();
             this.chkShutdown = new System.Windows.Forms.CheckBox();
-            this.quickLoginBox = new System.Windows.Forms.CheckBox();
             this.chkPreventSleep = new System.Windows.Forms.CheckBox();
             this.whiteIconsCheckBox = new System.Windows.Forms.CheckBox();
             this.darkThemeCheckBox = new System.Windows.Forms.CheckBox();
@@ -69,7 +68,6 @@ namespace IdleMaster
             this.grpGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpGeneral.Controls.Add(this.chkShutdown);
-            this.grpGeneral.Controls.Add(this.quickLoginBox);
             this.grpGeneral.Controls.Add(this.chkPreventSleep);
             this.grpGeneral.Controls.Add(this.whiteIconsCheckBox);
             this.grpGeneral.Controls.Add(this.darkThemeCheckBox);
@@ -96,19 +94,6 @@ namespace IdleMaster
             this.chkShutdown.Text = "Shutdown Windows when done";
             this.chkShutdown.UseVisualStyleBackColor = true;
             this.chkShutdown.CheckedChanged += new System.EventHandler(this.chkShutdown_CheckedChanged);
-            // 
-            // quickLoginBox
-            // 
-            this.quickLoginBox.AutoSize = true;
-            this.quickLoginBox.Checked = true;
-            this.quickLoginBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.quickLoginBox.Location = new System.Drawing.Point(305, 56);
-            this.quickLoginBox.Name = "quickLoginBox";
-            this.quickLoginBox.Size = new System.Drawing.Size(79, 17);
-            this.quickLoginBox.TabIndex = 9;
-            this.quickLoginBox.Text = "Quick login";
-            this.quickLoginBox.UseVisualStyleBackColor = true;
-            this.quickLoginBox.CheckedChanged += new System.EventHandler(this.QuickLoginBox_CheckedChanged);
             // 
             // chkPreventSleep
             // 
@@ -432,7 +417,6 @@ namespace IdleMaster
         private CheckBox whiteIconsCheckBox;
         private RadioButton radFastMode;
         private CheckBox chkPreventSleep;
-        private CheckBox quickLoginBox;
         private CheckBox chkShutdown;
         private RadioButton radWhitelistMode;
     }

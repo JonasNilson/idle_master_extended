@@ -10,7 +10,7 @@ namespace IdleMaster
     public partial class frmBrowser : Form
     {
 
-        public int SecondsWaiting = 5;
+        public int SecondsWaiting = 30;
 
         [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool InternetSetOption(int hInternet, int dwOption, string lpBuffer, int dwBufferLength);
@@ -88,12 +88,7 @@ namespace IdleMaster
                 browserBarVisibility(true); // Display the browser bar (lock, protocol, url)
                 setRememberMeCheckbox(htmldoc);
 
-                // Tell steam client to generate keys to login on browser
-                if (Settings.Default.QuickLogin)
-                {
-                    setLoginButtonText(htmldoc, "Attempting to QuickLogin...");
-                    executeQuickLoginScript();
-                }
+                createQuickLoginButton(htmldoc, "Attempting to QuickLogin...");
             }
             // If the page it just finished loading isn't the login page
             else if (url.StartsWith("javascript:") == false && url.StartsWith("about:") == false)
@@ -123,22 +118,28 @@ namespace IdleMaster
             }
         }
 
-        private void setLoginButtonText(dynamic htmldoc, string text)
+        private void createQuickLoginButton(dynamic htmldoc, string text)
         {
             if (htmldoc != null)
             {
                 try
                 {
-                    dynamic steamLoginButton = htmldoc.GetElementById("SteamLogin");
+                    dynamic steamLoginDiv = htmldoc.GetElementById("login_btn_signin");
 
-                    if (steamLoginButton != null && !(steamLoginButton is DBNull))
+                    if (steamLoginDiv != null && !(steamLoginDiv is DBNull))
                     {
-                        steamLoginButton.Value = text;
+                        const string evalJavascript = "eval(function V_SetCookie() {}, function V_GetCookie() {})";
+                        const string loginJavascript = "LoginUsingSteamClient('https://steamcommunity.com/')";
+                        const string onclickHtml = "onclick=\"" + evalJavascript + ";" + loginJavascript + "\"";
+
+                        steamLoginDiv.InnerHtml = steamLoginDiv.InnerHtml + 
+                            "<input class=\"btn_green_white_innerfade btn_medium\" type=\"submit\" id=\"QuickSteamLogin\" " +
+                            "value=\"Quick-Login\" " + onclickHtml + "border=\"0\" tabindex=\"6\">";
                     }
                 }
                 catch (Exception ex)
                 {
-                    Logger.Exception(ex, "SteamLogin = " + htmldoc.GetElementById("SteamLogin"));
+                    Logger.Exception(ex, "login_btn_signin = " + htmldoc.GetElementById("login_btn_signin"));
                 }
             }
         }
@@ -161,13 +162,6 @@ namespace IdleMaster
                     Logger.Exception(ex, "rember_login = " + htmldoc.GetElementById("remember_login"));
                 }
             }
-        }
-
-        private void executeQuickLoginScript()
-        {
-            // Overwrite cookie functions to ignore the auto login cookie checks
-            wbAuth.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
-            wbAuth.Document.InvokeScript("LoginUsingSteamClient", new object[] { "https://steamcommunity.com/" });
         }
 
         private void extractSteamCookies()
@@ -299,8 +293,7 @@ namespace IdleMaster
 
                 browserBarVisibility(false); // Hide the browser bar
             }
-            else if (Settings.Default.QuickLogin &&
-                     url.StartsWith("https://steamcommunity.com/login/home/?goto=my/profile"))
+            else if (url.StartsWith("https://steamcommunity.com/login/home/?goto=my/profile"))
             {
                 tmrCheck.Enabled = true;
             }
@@ -315,14 +308,7 @@ namespace IdleMaster
             }
             else
             {
-                if (Settings.Default.QuickLogin)
-                {
-                    makeSureLoginHasCompletedOrRefresh();
-                }
-                else
-                {
-                    stopTimerAndCloseForm();
-                }
+                stopTimerAndCloseForm();
             }
         }
 
