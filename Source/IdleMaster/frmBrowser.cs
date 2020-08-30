@@ -10,7 +10,7 @@ namespace IdleMaster
     public partial class frmBrowser : Form
     {
 
-        public int SecondsWaiting = 5;
+        public int SecondsWaiting = 30;
 
         [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool InternetSetOption(int hInternet, int dwOption, string lpBuffer, int dwBufferLength);
@@ -85,15 +85,9 @@ namespace IdleMaster
                         Settings.Default.steamMachineAuth = cookie.Value;
                 }
 
-                browserBarVisibility(true); // Display the browser bar (lock, protocol, url)
+                browserBarVisibility(true);
                 setRememberMeCheckbox(htmldoc);
-
-                // Tell steam client to generate keys to login on browser
-                if (Settings.Default.QuickLogin)
-                {
-                    setLoginButtonText(htmldoc, "Attempting to QuickLogin...");
-                    executeQuickLoginScript();
-                }
+                createQuickLoginButton(htmldoc);
             }
             // If the page it just finished loading isn't the login page
             else if (url.StartsWith("javascript:") == false && url.StartsWith("about:") == false)
@@ -123,22 +117,31 @@ namespace IdleMaster
             }
         }
 
-        private void setLoginButtonText(dynamic htmldoc, string text)
+        // Creates a separate buttong to trigger a login call to the Steam Client Javascript API (localhost)
+        private void createQuickLoginButton(dynamic htmldoc)
         {
             if (htmldoc != null)
             {
                 try
                 {
-                    dynamic steamLoginButton = htmldoc.GetElementById("SteamLogin");
-
-                    if (steamLoginButton != null && !(steamLoginButton is DBNull))
+                    dynamic steamLoginDiv = htmldoc.GetElementById("login_btn_signin");
+                    
+                    if (steamLoginDiv != null && !(steamLoginDiv is DBNull))
                     {
-                        steamLoginButton.Value = text;
+                        const string loginJavascript = "LoginUsingSteamClient('https://steamcommunity.com/')";
+                        const string onclickHtml = "onclick=\"" + loginJavascript + "\"";
+
+                        steamLoginDiv.InnerHtml = steamLoginDiv.InnerHtml + 
+                            "<input class=\"btn_green_white_innerfade btn_medium\" type=\"submit\" id=\"QuickSteamLogin\" " +
+                            "value=\"Quick-Login\" " + onclickHtml + "border=\"0\" tabindex=\"6\">";
+
+                        // Overwrite cookie functions to ignore the auto login cookie checks
+                        wbAuth.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
                     }
                 }
                 catch (Exception ex)
                 {
-                    Logger.Exception(ex, "SteamLogin = " + htmldoc.GetElementById("SteamLogin"));
+                    Logger.Exception(ex, "login_btn_signin = " + htmldoc.GetElementById("login_btn_signin"));
                 }
             }
         }
@@ -161,13 +164,6 @@ namespace IdleMaster
                     Logger.Exception(ex, "rember_login = " + htmldoc.GetElementById("remember_login"));
                 }
             }
-        }
-
-        private void executeQuickLoginScript()
-        {
-            // Overwrite cookie functions to ignore the auto login cookie checks
-            wbAuth.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
-            wbAuth.Document.InvokeScript("LoginUsingSteamClient", new object[] { "https://steamcommunity.com/" });
         }
 
         private void extractSteamCookies()
@@ -299,8 +295,7 @@ namespace IdleMaster
 
                 browserBarVisibility(false); // Hide the browser bar
             }
-            else if (Settings.Default.QuickLogin &&
-                     url.StartsWith("https://steamcommunity.com/login/home/?goto=my/profile"))
+            else if (url.StartsWith("https://steamcommunity.com/login/home/?goto=my/profile"))
             {
                 tmrCheck.Enabled = true;
             }
@@ -308,38 +303,21 @@ namespace IdleMaster
 
         private void tmrCheck_Tick(object sender, EventArgs e)
         {
-            // Prevents the application from "saving" for more than 30 seconds and will attempt to save the cookie data after that time
+            if (wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/")
+                && wbAuth.ReadyState.Equals(WebBrowserReadyState.Complete))
+            {
+                // The login is completed, and the profile is visible
+                extractSteamCookies();
+                stopTimerAndCloseForm();
+            }
+
             if (SecondsWaiting > 0 || wbAuth.ReadyState.Equals(WebBrowserReadyState.Uninitialized))
             {
                 SecondsWaiting -= 1;
             }
             else
             {
-                if (Settings.Default.QuickLogin)
-                {
-                    makeSureLoginHasCompletedOrRefresh();
-                }
-                else
-                {
-                    stopTimerAndCloseForm();
-                }
-            }
-        }
-
-        private void makeSureLoginHasCompletedOrRefresh()
-        {
-            if (wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/"))
-            {
-                // The login is completed, and the profile is visible
-                extractSteamCookies();
                 stopTimerAndCloseForm();
-            }
-            else
-            {
-                // For some reason the login is not completed yet, navigating to the login page again
-                SecondsWaiting = 5;
-                wbAuth.Navigate("https://steamcommunity.com/login/home/?goto=my/profile", "_self", null, 
-                    "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko");
             }
         }
 
