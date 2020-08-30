@@ -85,10 +85,9 @@ namespace IdleMaster
                         Settings.Default.steamMachineAuth = cookie.Value;
                 }
 
-                browserBarVisibility(true); // Display the browser bar (lock, protocol, url)
+                browserBarVisibility(true);
                 setRememberMeCheckbox(htmldoc);
-
-                createQuickLoginButton(htmldoc, "Attempting to QuickLogin...");
+                createQuickLoginButton(htmldoc);
             }
             // If the page it just finished loading isn't the login page
             else if (url.StartsWith("javascript:") == false && url.StartsWith("about:") == false)
@@ -118,7 +117,8 @@ namespace IdleMaster
             }
         }
 
-        private void createQuickLoginButton(dynamic htmldoc, string text)
+        // Creates a separate buttong to trigger a login call to the Steam Client Javascript API (localhost)
+        private void createQuickLoginButton(dynamic htmldoc)
         {
             if (htmldoc != null)
             {
@@ -301,12 +301,23 @@ namespace IdleMaster
 
         private void tmrCheck_Tick(object sender, EventArgs e)
         {
-            if (wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/") 
+            if (wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/")
                 && wbAuth.ReadyState.Equals(WebBrowserReadyState.Complete))
             {
                 // The login is completed, and the profile is visible
                 extractSteamCookies();
                 stopTimerAndCloseForm();
+            }
+            else if (wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/login/")
+              && wbAuth.ReadyState.Equals(WebBrowserReadyState.Loading))
+            {
+                dynamic htmldoc = wbAuth.Document.DomDocument;
+                dynamic quickLoginButton = htmldoc.GetElementById("QuickSteamLogin");
+
+                if (quickLoginButton != null && !(quickLoginButton is DBNull))
+                {
+                    quickLoginButton.Value = "Loading...";
+                }
             }
 
             if (SecondsWaiting > 0 || wbAuth.ReadyState.Equals(WebBrowserReadyState.Uninitialized))
