@@ -14,12 +14,11 @@ This is a fork of the original [Idle Master](https://github.com/jshackles/idle_m
 Download
 -------
 * The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
-  * 💹 Total number of downloads: `501 358` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-08-11)
+  * 💹 Total number of downloads: `516 077` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-08-30)
 
-Donate
+Features
 -------
-* 🎉 [Send me a donation through Steam](https://steamcommunity.com/tradeoffer/new/?partner=180303553&token=gOgA5lWk). I accept anything you throw at me. The Steam account id is `JonasNilson` (https://steamcommunity.com/id/JonasNilson)
-  * **Note**: Only use the trade link directly from here to avoid fake accounts.
+* [GitHub Wiki > Features](https://github.com/JonasNilson/idle_master_extended/wiki/Features)
 
 Troubleshooting
 -------
@@ -29,9 +28,10 @@ Contribute
 -------
 * [GitHub Wiki > Contribute](https://github.com/JonasNilson/idle_master_extended/wiki/Contribute)
 
-Features
+Donate
 -------
-* [GitHub Wiki > Features](https://github.com/JonasNilson/idle_master_extended/wiki/Features)
+* 🎉 [Send me a donation through Steam](https://steamcommunity.com/tradeoffer/new/?partner=180303553&token=gOgA5lWk). I accept anything you throw at me. The Steam account id is `JonasNilson` (https://steamcommunity.com/id/JonasNilson)
+  * **Note**: Only use the trade link directly from here to avoid fake accounts.
 
 Credits
 -------
