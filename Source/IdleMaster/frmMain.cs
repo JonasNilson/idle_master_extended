@@ -1412,16 +1412,17 @@ namespace IdleMaster
             blacklistToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
             exitToolStripMenuItem.Image = whiteIcons ? Resources.imgExit_w : Resources.imgExit;
             whitelistToolStripMenuItem.Image = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
+            donateToolStripMenuItem.Image = whiteIcons ? Resources.imgView_w : Resources.imgView;
             // Game
             pauseIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPause_w : Resources.imgPause;
             resumeIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPlay_w : Resources.imgPlay;
             skipGameToolStripMenuItem.Image = whiteIcons ? Resources.imgSkip_w : Resources.imgSkip;
             blacklistCurrentGameToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
             // Help
+            wikiToolStripMenuItem.Image = whiteIcons ? Resources.imgInfo_w : Resources.imgInfo;
             statisticsToolStripMenuItem.Image = whiteIcons ? Resources.imgStatistics_w : Resources.imgStatistics;
             changelogToolStripMenuItem.Image = whiteIcons ? Resources.imgDocument_w : Resources.imgDocument;
             officialGroupToolStripMenuItem.Image = whiteIcons ? Resources.imgGlobe_w : Resources.imgGlobe;
-            aboutToolStripMenuItem.Image = whiteIcons ? Resources.imgInfo_w : Resources.imgInfo;
 
             // STATUS
             // Handled in respective tick drawing functions
@@ -1438,6 +1439,11 @@ namespace IdleMaster
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("https://steamcommunity.com/tradeoffer/new/?partner=180303553&token=gOgA5lWk");
+        }
+
+        private void wikiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/JonasNilson/idle_master_extended/wiki");
         }
     }
 }
