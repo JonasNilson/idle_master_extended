@@ -193,6 +193,7 @@ namespace IdleMaster
                 }
                 if (CanIdleBadges.Any())
                 {
+                    lblCurrentStatus.Enabled = false;
                     statistics.setRemainingCards((uint)CardsRemaining);
                     tmrStatistics.Enabled = true;
                     tmrStatistics.Start();
@@ -292,8 +293,8 @@ namespace IdleMaster
         public void IdleComplete()
         {
             // Deactivate the timer control and inform the user that the program is finished
-            tmrCardDropCheck.Enabled = false;
             lblCurrentStatus.Text = localization.strings.idling_complete;
+            lblCurrentStatus.Enabled = true;
 
             lblGameName.Visible = false;
             btnPause.Visible = false;
@@ -351,6 +352,7 @@ namespace IdleMaster
             CurrentBadge.Idle();
 
             // Update game name
+            lblCurrentStatus.Enabled = false;
             lblGameName.Visible = true;
             lblGameName.Text = CurrentBadge.Name;
 
@@ -409,6 +411,7 @@ namespace IdleMaster
             // Update label controls
             lblCurrentRemaining.Text = localization.strings.update_games_status;
             lblCurrentStatus.Text = localization.strings.currently_ingame;
+            lblCurrentStatus.Enabled = false;
 
             lblGameName.Visible = false;
             lblHoursPlayed.Visible = false;
@@ -1357,6 +1360,7 @@ namespace IdleMaster
                 = lnkResetCookies.LinkColor
                 = lblCurrentRemaining.ForeColor
                 = lblGameName.LinkColor
+                = lblCurrentStatus.LinkColor
                 = customTheme ? Color.GhostWhite : Color.Blue;
 
             // ToolStripMenu Top
@@ -1444,6 +1448,11 @@ namespace IdleMaster
         private void wikiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/JonasNilson/idle_master_extended/wiki");
+        }
+
+        private void lblCurrentStatus_LinkClicked(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/JonasNilson/idle_master_extended/wiki/Idling-complete");
         }
     }
 }
