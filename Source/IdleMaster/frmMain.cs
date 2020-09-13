@@ -377,8 +377,7 @@ namespace IdleMaster
             lblHoursPlayed.Text = CurrentBadge.HoursPlayed + " " + localization.strings.hrs_on_record;
 
             // Set progress bar values and show the footer
-            pbIdle.Maximum = CardsRemaining > pbIdle.Maximum ? CardsRemaining : pbIdle.Maximum;//CurrentBadge.RemainingCard;
-            //pbIdle.Value = 0;
+            pbIdle.Maximum = CardsRemaining > pbIdle.Maximum ? CardsRemaining : pbIdle.Maximum;
             ssFooter.Visible = true;
 
             // Start the animated "working" gif
@@ -623,7 +622,8 @@ namespace IdleMaster
             }
 
             lblCurrentRemaining.Text = badge.RemainingCard == -1 ? "" : badge.RemainingCard + " " + localization.strings.card_drops_remaining;
-            pbIdle.Value = pbIdle.Maximum - CardsRemaining; //badge.RemainingCard;
+            pbIdle.Maximum = CardsRemaining > pbIdle.Maximum ? CardsRemaining : pbIdle.Maximum;
+            pbIdle.Value = pbIdle.Maximum - CardsRemaining;
             lblHoursPlayed.Text = badge.HoursPlayed + " " + localization.strings.hrs_on_record;
             UpdateStateInfo();
         }
@@ -985,7 +985,6 @@ namespace IdleMaster
 
             StartIdle();
         }
-
 
         private async void tmrCardDropCheck_Tick(object sender, EventArgs e)
         {
