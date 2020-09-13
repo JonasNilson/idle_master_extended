@@ -1445,7 +1445,7 @@ namespace IdleMaster
 
         private void donateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Process.Start("https://steamcommunity.com/tradeoffer/new/?partner=180303553&token=gOgA5lWk");
+            Process.Start("https://github.com/JonasNilson/idle_master_extended/wiki/Donate");
         }
 
         private void wikiToolStripMenuItem_Click(object sender, EventArgs e)
