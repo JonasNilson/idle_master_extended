@@ -371,7 +371,7 @@ namespace IdleMaster
             }
 
             // Update label controls
-            lblCurrentRemaining.Text = CurrentBadge.RemainingCard + " " + localization.strings.card_drops_remaining;
+            lblCurrentRemaining.Text = badge.RemainingCard == -1 ? "" : CurrentBadge.RemainingCard + " " + localization.strings.card_drops_remaining;
             lblCurrentStatus.Text = localization.strings.currently_ingame;
             lblHoursPlayed.Visible = true;
             lblHoursPlayed.Text = CurrentBadge.HoursPlayed + " " + localization.strings.hrs_on_record;
@@ -622,7 +622,7 @@ namespace IdleMaster
                 TimeLeft = badge.RemainingCard == 1 ? 300 : 900;
             }
 
-            lblCurrentRemaining.Text = badge.RemainingCard + " " + localization.strings.card_drops_remaining;
+            lblCurrentRemaining.Text = badge.RemainingCard == -1 ? "" : badge.RemainingCard + " " + localization.strings.card_drops_remaining;
             pbIdle.Value = pbIdle.Maximum - CardsRemaining; //badge.RemainingCard;
             lblHoursPlayed.Text = badge.HoursPlayed + " " + localization.strings.hrs_on_record;
             UpdateStateInfo();
