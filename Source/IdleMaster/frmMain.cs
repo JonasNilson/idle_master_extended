@@ -495,7 +495,7 @@ namespace IdleMaster
                     if (int.TryParse(whitelistID, out applicationID)
                         && !AllBadges.Any(badge => badge.AppId.Equals(applicationID)))
                     {
-                        AllBadges.Add(new Badge(whitelistID, "Whitelist: " + whitelistID, "-1", "0"));
+                        AllBadges.Add(new Badge(whitelistID, "App ID: " + whitelistID, "-1", "0"));
                     }
                 }
             }
