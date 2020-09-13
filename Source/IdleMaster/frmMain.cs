@@ -191,8 +191,10 @@ namespace IdleMaster
                 {
                     return;
                 }
+
                 if (CanIdleBadges.Any())
                 {
+                    EnableCardDropCheckTimer();
                     lblCurrentStatus.Enabled = false;
                     statistics.setRemainingCards((uint)CardsRemaining);
                     tmrStatistics.Enabled = true;

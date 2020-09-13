@@ -69,6 +69,7 @@ namespace IdleMaster
             Settings.Default.NoSleep = chkPreventSleep.Checked;
             Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
             Settings.Default.Save();
+
             Close();
         }
 
