@@ -30,8 +30,7 @@ Contribute
 
 Donate
 -------
-* 🎉 [Send me a donation through Steam](https://steamcommunity.com/tradeoffer/new/?partner=180303553&token=gOgA5lWk). I accept anything you throw at me. The Steam account id is `JonasNilson` (https://steamcommunity.com/id/JonasNilson)
-  * **Note**: Only use the trade link directly from here to avoid fake accounts.
+* [GitHub Wiki > Donate](https://github.com/JonasNilson/idle_master_extended/wiki/Donate)
 
 Credits
 -------
