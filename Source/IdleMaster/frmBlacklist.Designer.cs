@@ -126,11 +126,12 @@ namespace IdleMaster
             this.MinimizeBox = false;
             this.Name = "frmBlacklist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Manage Idle Master Blacklist";
+            this.Text = "Manage Blacklist";
             this.Load += new System.EventHandler(this.frmBlacklist_Load);
             this.grpAdd.ResumeLayout(false);
             this.grpAdd.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion

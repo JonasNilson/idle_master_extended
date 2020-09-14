@@ -126,7 +126,7 @@ namespace IdleMaster
             this.MinimizeBox = false;
             this.Name = "frmWhitelist";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Manage Idle Master Whitelist";
+            this.Text = "Manage Whitelist";
             this.Load += new System.EventHandler(this.frmWhitelist_Load);
             this.grpAdd.ResumeLayout(false);
             this.grpAdd.PerformLayout();
