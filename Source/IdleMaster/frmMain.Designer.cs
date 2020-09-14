@@ -622,7 +622,7 @@ namespace IdleMaster
             this.MainMenuStrip = this.mnuTop;
             this.MaximizeBox = false;
             this.Name = "frmMain";
-            this.Text = "Idle Master";
+            this.Text = "Idle Master Extended";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClose);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.Resize += new System.EventHandler(this.frmMain_Resize);
