@@ -392,13 +392,7 @@ namespace IdleMaster
             TimeLeft = CurrentBadge.RemainingCard == 1 ? 300 : 900;
 
             // Set the correct buttons on the form for pause / resume
-            HideAllInterruptiveButtons();
-
-            if (!Settings.Default.fastMode)
-            {
-                btnPause.Visible = true;
-                btnSkip.Visible = true;
-            }
+            ShowInterruptiveButtons();
 
             var scale = CreateGraphics().DpiY * 3.9;
             Height = Convert.ToInt32(scale);
@@ -433,7 +427,7 @@ namespace IdleMaster
             picApp.Visible = false;
             RefreshGamesStateListView();
 
-            HideAllInterruptiveButtons();
+            ShowInterruptiveButtons();
 
             var scale = CreateGraphics().DpiY * 3.86;
             Height = Convert.ToInt32(scale);
@@ -462,6 +456,7 @@ namespace IdleMaster
             await Task.Delay(5 * 1000);
             picReadingPage.Visible = false;
             lblIdle.Visible = lblDrops.Visible = true;
+            
 
             foreach (var badge in (CanIdleBadges.Where(b => (!Equals(b, CurrentBadge)
                                                             && CanIdleBadges.ToList().IndexOf(b) < MaxSimultanousCards))))
@@ -471,7 +466,6 @@ namespace IdleMaster
                 UpdateStateInfo();                  // Update information labels
                 await Task.Delay(TimeLeft * 1000);  // Wait 5 sec
                 StopIdle();                         // Stop idling before moving on to the next game
-
                 pbIdle.Value = pbIdle.Maximum - CardsRemaining;
             }
 
@@ -1279,15 +1273,25 @@ namespace IdleMaster
             }
         }
 
-        private void HideAllInterruptiveButtons()
+        private void ShowInterruptiveButtons()
         {
             // Set the correct buttons on the form for pause / resume
             btnResume.Visible = false;
-            btnPause.Visible = false;
-            btnSkip.Visible = false;
             resumeIdlingToolStripMenuItem.Enabled = false;
-            pauseIdlingToolStripMenuItem.Enabled = false;
-            skipGameToolStripMenuItem.Enabled = false;
+
+            btnPause.Visible = true;
+            pauseIdlingToolStripMenuItem.Enabled = true;
+
+            if (Settings.Default.fastMode || Settings.Default.IdlingModeWhitelist)
+            {
+                btnSkip.Visible = false;
+                skipGameToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                btnSkip.Visible = true;
+                skipGameToolStripMenuItem.Enabled = true;
+            }
         }
 
         private void RefreshGamesStateListView()
