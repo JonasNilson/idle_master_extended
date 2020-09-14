@@ -142,12 +142,6 @@
     <Compile Include="frmBlacklist.Designer.cs">
       <DependentUpon>frmBlacklist.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmChangelog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmChangelog.Designer.cs">
-      <DependentUpon>frmChangelog.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,9 +199,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBrowser.resx">
       <DependentUpon>frmBrowser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmChangelog.resx">
-      <DependentUpon>frmChangelog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

@@ -378,7 +378,7 @@ namespace IdleMaster
             this.MaximizeBox = false;
             this.Name = "frmSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Idle Master Settings";
+            this.Text = "Idle Master Extended Settings";
             this.Load += new System.EventHandler(this.frmSettings_Load);
             this.grpGeneral.ResumeLayout(false);
             this.grpGeneral.PerformLayout();
