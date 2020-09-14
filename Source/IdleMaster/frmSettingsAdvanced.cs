@@ -15,11 +15,11 @@ namespace IdleMaster
         private void btnView_Click(object sender, EventArgs e)
         {
             txtSessionID.PasswordChar = '\0';
-            txtSteamLogin.PasswordChar = '\0';
+            txtSteamLoginSecure.PasswordChar = '\0';
             txtSteamParental.PasswordChar = '\0';
 
             txtSessionID.Enabled = true;
-            txtSteamLogin.Enabled = true;
+            txtSteamLoginSecure.Enabled = true;
             txtSteamParental.Enabled = true;
 
             btnView.Visible = false;
@@ -59,12 +59,12 @@ namespace IdleMaster
 
             if (!string.IsNullOrWhiteSpace(Settings.Default.steamLoginSecure))
             {
-                txtSteamLogin.Text = Settings.Default.steamLoginSecure;
-                txtSteamLogin.Enabled = false;
+                txtSteamLoginSecure.Text = Settings.Default.steamLoginSecure;
+                txtSteamLoginSecure.Enabled = false;
             }
             else
             {
-                txtSteamLogin.PasswordChar = '\0';
+                txtSteamLoginSecure.PasswordChar = '\0';
             }
 
             if (!string.IsNullOrWhiteSpace(Settings.Default.steamparental))
@@ -77,7 +77,7 @@ namespace IdleMaster
                 txtSteamParental.PasswordChar = '\0';
             }
 
-            if (txtSessionID.Enabled && txtSteamLogin.Enabled && txtSteamParental.Enabled)
+            if (txtSessionID.Enabled && txtSteamLoginSecure.Enabled && txtSteamParental.Enabled)
             {
                 btnView.Visible = false;
             }
@@ -105,7 +105,7 @@ namespace IdleMaster
             try
             {
                 Settings.Default.sessionid = txtSessionID.Text.Trim();
-                Settings.Default.steamLoginSecure = txtSteamLogin.Text.Trim();
+                Settings.Default.steamLoginSecure = txtSteamLoginSecure.Text.Trim();
                 Settings.Default.myProfileURL = SteamProfile.GetSteamUrl();
                 Settings.Default.steamparental = txtSteamParental.Text.Trim();
 
@@ -125,13 +125,13 @@ namespace IdleMaster
             // Invalid cookie data, reset the form
             btnUpdate.Text = localization.strings.update;
             txtSessionID.Text = "";
-            txtSteamLogin.Text = "";
+            txtSteamLoginSecure.Text = "";
             txtSteamParental.Text = "";
             txtSessionID.PasswordChar = '\0';
-            txtSteamLogin.PasswordChar = '\0';
+            txtSteamLoginSecure.PasswordChar = '\0';
             txtSteamParental.PasswordChar = '\0';
             txtSessionID.Enabled = true;
-            txtSteamLogin.Enabled = true;
+            txtSteamLoginSecure.Enabled = true;
             txtSteamParental.Enabled = true;
             txtSessionID.Focus();
             MessageBox.Show(localization.strings.validate_failed);
@@ -142,7 +142,7 @@ namespace IdleMaster
         {
             btnUpdate.Enabled = false;
             txtSessionID.Enabled = false;
-            txtSteamLogin.Enabled = false;
+            txtSteamLoginSecure.Enabled = false;
             txtSteamParental.Enabled = false;
             btnUpdate.Text = localization.strings.validating;
             await CheckAndSave();

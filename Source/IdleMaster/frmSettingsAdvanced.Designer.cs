@@ -37,7 +37,7 @@ namespace IdleMaster
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtSessionID = new System.Windows.Forms.TextBox();
-            this.txtSteamLogin = new System.Windows.Forms.TextBox();
+            this.txtSteamLoginSecure = new System.Windows.Forms.TextBox();
             this.txtSteamParental = new System.Windows.Forms.TextBox();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
@@ -80,14 +80,14 @@ namespace IdleMaster
             this.txtSessionID.TabIndex = 3;
             this.txtSessionID.TextChanged += new System.EventHandler(this.txtSessionID_TextChanged);
             // 
-            // txtSteamLogin
+            // txtSteamLoginSecure
             // 
-            this.txtSteamLogin.Location = new System.Drawing.Point(123, 33);
-            this.txtSteamLogin.Name = "txtSteamLogin";
-            this.txtSteamLogin.PasswordChar = '*';
-            this.txtSteamLogin.Size = new System.Drawing.Size(280, 20);
-            this.txtSteamLogin.TabIndex = 4;
-            this.txtSteamLogin.TextChanged += new System.EventHandler(this.txtSteamLogin_TextChanged);
+            this.txtSteamLoginSecure.Location = new System.Drawing.Point(123, 33);
+            this.txtSteamLoginSecure.Name = "txtSteamLoginSecure";
+            this.txtSteamLoginSecure.PasswordChar = '*';
+            this.txtSteamLoginSecure.Size = new System.Drawing.Size(280, 20);
+            this.txtSteamLoginSecure.TabIndex = 4;
+            this.txtSteamLoginSecure.TextChanged += new System.EventHandler(this.txtSteamLogin_TextChanged);
             // 
             // txtSteamParental
             // 
@@ -137,7 +137,7 @@ namespace IdleMaster
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.txtSteamParental);
-            this.Controls.Add(this.txtSteamLogin);
+            this.Controls.Add(this.txtSteamLoginSecure);
             this.Controls.Add(this.txtSessionID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -147,7 +147,7 @@ namespace IdleMaster
             this.MaximizeBox = false;
             this.Name = "frmSettingsAdvanced";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Idle Master Authentication Data";
+            this.Text = "Steam Authentication Data";
             this.Load += new System.EventHandler(this.frmSettingsAdvanced_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -160,7 +160,7 @@ namespace IdleMaster
         private Label label2;
         private Label label3;
         private TextBox txtSessionID;
-        private TextBox txtSteamLogin;
+        private TextBox txtSteamLoginSecure;
         private TextBox txtSteamParental;
         private Button btnView;
         private Button btnUpdate;
