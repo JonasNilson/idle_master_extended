@@ -32,7 +32,7 @@ namespace IdleMaster
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            var resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettingsAdvanced));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettingsAdvanced));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,9 +46,9 @@ namespace IdleMaster
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(19, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 23);
+            this.label1.Size = new System.Drawing.Size(98, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "sessionid:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -57,44 +57,44 @@ namespace IdleMaster
             // 
             this.label2.Location = new System.Drawing.Point(13, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 23);
+            this.label2.Size = new System.Drawing.Size(104, 23);
             this.label2.TabIndex = 1;
-            this.label2.Text = "steamLogin:";
+            this.label2.Text = "steamLoginSecure:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(12, 60);
+            this.label3.Location = new System.Drawing.Point(16, 60);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 23);
+            this.label3.Size = new System.Drawing.Size(101, 23);
             this.label3.TabIndex = 2;
             this.label3.Text = "steamparental:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // txtSessionID
             // 
-            this.txtSessionID.Location = new System.Drawing.Point(104, 10);
+            this.txtSessionID.Location = new System.Drawing.Point(123, 10);
             this.txtSessionID.Name = "txtSessionID";
             this.txtSessionID.PasswordChar = '*';
-            this.txtSessionID.Size = new System.Drawing.Size(299, 20);
+            this.txtSessionID.Size = new System.Drawing.Size(280, 20);
             this.txtSessionID.TabIndex = 3;
             this.txtSessionID.TextChanged += new System.EventHandler(this.txtSessionID_TextChanged);
             // 
             // txtSteamLogin
             // 
-            this.txtSteamLogin.Location = new System.Drawing.Point(104, 33);
+            this.txtSteamLogin.Location = new System.Drawing.Point(123, 33);
             this.txtSteamLogin.Name = "txtSteamLogin";
             this.txtSteamLogin.PasswordChar = '*';
-            this.txtSteamLogin.Size = new System.Drawing.Size(299, 20);
+            this.txtSteamLogin.Size = new System.Drawing.Size(280, 20);
             this.txtSteamLogin.TabIndex = 4;
             this.txtSteamLogin.TextChanged += new System.EventHandler(this.txtSteamLogin_TextChanged);
             // 
             // txtSteamParental
             // 
-            this.txtSteamParental.Location = new System.Drawing.Point(104, 57);
+            this.txtSteamParental.Location = new System.Drawing.Point(123, 57);
             this.txtSteamParental.Name = "txtSteamParental";
             this.txtSteamParental.PasswordChar = '*';
-            this.txtSteamParental.Size = new System.Drawing.Size(299, 20);
+            this.txtSteamParental.Size = new System.Drawing.Size(280, 20);
             this.txtSteamParental.TabIndex = 5;
             this.txtSteamParental.TextChanged += new System.EventHandler(this.txtSteamParental_TextChanged);
             // 
@@ -112,7 +112,7 @@ namespace IdleMaster
             // btnView
             // 
             this.btnView.Image = global::IdleMaster.Properties.Resources.imgView;
-            this.btnView.Location = new System.Drawing.Point(104, 83);
+            this.btnView.Location = new System.Drawing.Point(123, 83);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(27, 23);
             this.btnView.TabIndex = 6;
