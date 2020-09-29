@@ -353,11 +353,10 @@ namespace IdleMaster
                 picIdleStatus.Image = null;
 
                 // Stop the card drop check timer
-                tmrCardDropCheck.Enabled = false;
+                DisableCardDropCheckTimer();
 
                 // Stop the statistics timer
                 tmrStatistics.Stop();
-                tmrStatistics.Enabled = false;
 
                 // Hide the status bar
                 ssFooter.Visible = false;
@@ -453,7 +452,7 @@ namespace IdleMaster
             picIdleStatus.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             // Start the timer that will check if drops remain
-            tmrCardDropCheck.Enabled = true;
+            EnableCardDropCheckTimer();
 
             // Reset the timer
             TimeLeft = CurrentBadge.RemainingCard == 1 ? 300 : 900;
@@ -484,7 +483,7 @@ namespace IdleMaster
             picIdleStatus.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             // Start the timer that will check if drops remain
-            tmrCardDropCheck.Enabled = true;
+            EnableCardDropCheckTimer();
 
             // Reset the timer
             TimeLeft = 360;
@@ -1254,7 +1253,7 @@ namespace IdleMaster
             }
             else if (TimeLeft <= 0)
             {
-                tmrCardDropCheck.Enabled = false;
+                DisableCardDropCheckTimer();
                 if (CurrentBadge != null)
                 {
                     CurrentBadge.Idle();
@@ -1301,7 +1300,6 @@ namespace IdleMaster
             {
                 TimeLeft = TimeLeft - 1;
                 lblTimer.Text = TimeSpan.FromSeconds(TimeLeft).ToString(@"mm\:ss");
-                EnableCardDropCheckTimer();
             }
         }
 
@@ -1347,13 +1345,13 @@ namespace IdleMaster
 
         public void DisableCardDropCheckTimer()
         {
-            tmrCardDropCheck.Enabled = false;
+            tmrCardDropCheck.Stop();
             toolStripStatusLabel1.Visible = lblTimer.Visible = false;
         }
 
         public void EnableCardDropCheckTimer()
         {
-            tmrCardDropCheck.Enabled = true;
+            tmrCardDropCheck.Start();
             toolStripStatusLabel1.Visible = lblTimer.Visible = true;
         }
         #endregion
