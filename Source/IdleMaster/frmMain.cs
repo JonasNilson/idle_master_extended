@@ -513,6 +513,8 @@ namespace IdleMaster
         /// </summary>
         private async Task StartSoloIdleFastMode()
         {
+            Boolean paused = false;
+            
             StopIdle();
 
             lblDrops.Text = localization.strings.loading_next;
@@ -531,13 +533,21 @@ namespace IdleMaster
                 TimeLeft = 5;                       // Set the timer to 5 sec
                 UpdateStateInfo();                  // Update information labels
                 await Task.Delay(TimeLeft * 1000);  // Wait 5 sec
+
+                if (!tmrCardDropCheck.Enabled)
+                {
+                    paused = true;                  // The pause button has been triggered
+                    break;                          // Breaks the loop to "pause" (cancel) idling
+                }
+
                 StopIdle();                         // Stop idling before moving on to the next game
                 pbIdle.Value = pbIdle.Maximum - CardsRemaining;
             }
-
-            CurrentBadge = null;                    // Resets the current badge
-            StartMultipleIdleFastMode();            // Start the simultaneous idling
-            TimeLeft = 5 * 60;                      // Time before the next individual idling
+            
+            if (!paused)
+            {
+                StartMultipleIdleFastMode();        // Start the simultaneous idling
+            }
         }
 
         public void IdleComplete()
@@ -1273,6 +1283,7 @@ namespace IdleMaster
                     if (Settings.Default.fastMode)
                     {
                         await StartSoloIdleFastMode();
+                        return;
                     }
                     else
                     {
@@ -1294,7 +1305,6 @@ namespace IdleMaster
                 {
                     DisableCardDropCheckTimer();
                 }
-
             }
             else
             {
