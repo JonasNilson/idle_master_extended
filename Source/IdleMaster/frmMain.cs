@@ -441,7 +441,7 @@ namespace IdleMaster
             // Update label controls
             lblCurrentRemaining.Text = badge.RemainingCard == -1 ? "" : CurrentBadge.RemainingCard + " " + localization.strings.card_drops_remaining;
             lblCurrentStatus.Text = localization.strings.currently_ingame;
-            lblHoursPlayed.Visible = true;
+            lblHoursPlayed.Visible = !Settings.Default.IdlingModeWhitelist;
             lblHoursPlayed.Text = CurrentBadge.HoursPlayed + " " + localization.strings.hrs_on_record;
 
             // Set progress bar values and show the footer
@@ -541,7 +541,6 @@ namespace IdleMaster
                 }
 
                 StopIdle();                         // Stop idling before moving on to the next game
-                pbIdle.Value = pbIdle.Maximum - CardsRemaining;
             }
             
             if (!paused)
