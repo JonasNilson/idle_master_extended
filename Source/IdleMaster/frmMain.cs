@@ -513,7 +513,7 @@ namespace IdleMaster
         /// </summary>
         private async Task StartSoloIdleFastMode()
         {
-            Boolean paused = false;
+            bool paused = false;
             
             StopIdle();
 
