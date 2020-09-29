@@ -504,6 +504,7 @@ namespace IdleMaster
         /// </summary>
         private void StartMultipleIdleFastMode()
         {
+            CurrentBadge = null;
             StartMultipleIdle();
             TimeLeft = 5 * 60;
         }
