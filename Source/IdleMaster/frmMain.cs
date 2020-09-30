@@ -53,6 +53,9 @@ namespace IdleMaster
         public int GamesRemaining { get { return CanIdleBadges.Count(); } }
         public Badge CurrentBadge;
 
+        private bool IsCurrentThemeCustom;
+        private bool IsCurrentIconsWhite;
+
         public frmMain()
         {
             InitializeComponent();
@@ -1372,69 +1375,73 @@ namespace IdleMaster
         /// </summary>
         private void SetTheme()
         {
-            // Read settings
-            var customTheme = Settings.Default.customTheme;
-            var whiteIcons = Settings.Default.whiteIcons;
-
-            // Define colors
-            FlatStyle buttonStyle = customTheme ? FlatStyle.Flat : FlatStyle.Standard;
-            Color colorBgd = customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
-            Color colorTxt = customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
-
-            // --------------------------
-            // -- APPLY THEME SETTINGS --
-            // --------------------------
-
-            // Main frame window
-            this.BackColor = colorBgd;
-            this.ForeColor = colorTxt;
-
-            // Link colors
-            lnkLatestRelease.LinkColor
-                = lnkSignIn.LinkColor
-                = lnkResetCookies.LinkColor
-                = lblCurrentRemaining.ForeColor
-                = lblGameName.LinkColor
-                = lblCurrentStatus.LinkColor
-                = customTheme ? Color.GhostWhite : Color.Blue;
-
-            // ToolStripMenu Top
-            mnuTop.BackColor = colorBgd;
-            mnuTop.ForeColor = colorTxt;
-
-            // ToolStripMenuItem and the ToolStripMenuItem dropdowns
-            foreach (ToolStripMenuItem item in mnuTop.Items)
-            {
-                // Menu item coloring
-                item.BackColor = colorBgd;
-                item.ForeColor = colorTxt;
-
-                // Dropdown coloring
-                item.DropDown.BackColor = colorBgd;
-                item.DropDown.ForeColor = colorTxt;
-            }
-
-            // Game state list (needs to be colored in RefreshGamesStateListView)
-            GamesState.BackColor = colorBgd;
-            GamesState.ForeColor = colorTxt;
-
-            // lblTimer
-            lblTimer.BackColor = colorBgd;
-            lblTimer.ForeColor = colorTxt;
-
-            // toolStripStatusLabel1
-            toolStripStatusLabel1.BackColor = colorBgd;
-
-            // Footer
-            ssFooter.BackColor = colorBgd;
-
-            // Buttons
-            btnPause.FlatStyle = btnResume.FlatStyle = btnSkip.FlatStyle = buttonStyle;
-            btnPause.BackColor = btnResume.BackColor = btnSkip.BackColor = colorBgd;
-            btnPause.ForeColor = btnResume.ForeColor = btnSkip.ForeColor = colorTxt;
-
             // Icon images
             ApplyIcons();
+
+            // Read settings
+            bool customTheme = Settings.Default.customTheme;
+
+            if (IsCurrentThemeCustom != customTheme)
+            {
+                IsCurrentThemeCustom = customTheme;
+
+                // Define colors
+                FlatStyle buttonStyle = customTheme ? FlatStyle.Flat : FlatStyle.Standard;
+                Color colorBgd = customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
+                Color colorTxt = customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
+
+                // --------------------------
+                // -- APPLY THEME SETTINGS --
+                // --------------------------
+
+                // Main frame window
+                this.BackColor = colorBgd;
+                this.ForeColor = colorTxt;
+
+                // Link colors
+                lnkLatestRelease.LinkColor
+                    = lnkSignIn.LinkColor
+                    = lnkResetCookies.LinkColor
+                    = lblCurrentRemaining.ForeColor
+                    = lblGameName.LinkColor
+                    = lblCurrentStatus.LinkColor
+                    = customTheme ? Color.GhostWhite : Color.Blue;
+
+                // ToolStripMenu Top
+                mnuTop.BackColor = colorBgd;
+                mnuTop.ForeColor = colorTxt;
+
+                // ToolStripMenuItem and the ToolStripMenuItem dropdowns
+                foreach (ToolStripMenuItem item in mnuTop.Items)
+                {
+                    // Menu item coloring
+                    item.BackColor = colorBgd;
+                    item.ForeColor = colorTxt;
+
+                    // Dropdown coloring
+                    item.DropDown.BackColor = colorBgd;
+                    item.DropDown.ForeColor = colorTxt;
+                }
+
+                // Game state list (needs to be colored in RefreshGamesStateListView)
+                GamesState.BackColor = colorBgd;
+                GamesState.ForeColor = colorTxt;
+
+                // lblTimer
+                lblTimer.BackColor = colorBgd;
+                lblTimer.ForeColor = colorTxt;
+
+                // toolStripStatusLabel1
+                toolStripStatusLabel1.BackColor = colorBgd;
+
+                // Footer
+                ssFooter.BackColor = colorBgd;
+
+                // Buttons
+                btnPause.FlatStyle = btnResume.FlatStyle = btnSkip.FlatStyle = buttonStyle;
+                btnPause.BackColor = btnResume.BackColor = btnSkip.BackColor = colorBgd;
+                btnPause.ForeColor = btnResume.ForeColor = btnSkip.ForeColor = colorTxt;
+            }
         }
 
         /// <summary>
@@ -1442,37 +1449,41 @@ namespace IdleMaster
         /// </summary>
         private void ApplyIcons()
         {
-            var customTheme = Settings.Default.customTheme;
-            var whiteIcons = Settings.Default.whiteIcons;
+            bool whiteIcons = Settings.Default.whiteIcons;
 
-            // TOOL STRIP MENU ITEMS
-            // File
-            settingsToolStripMenuItem.Image = whiteIcons ? Resources.imgSettings_w : Resources.imgSettings;
-            blacklistToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
-            exitToolStripMenuItem.Image = whiteIcons ? Resources.imgExit_w : Resources.imgExit;
-            whitelistToolStripMenuItem.Image = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
-            donateToolStripMenuItem.Image = whiteIcons ? Resources.imgView_w : Resources.imgView;
-            // Game
-            pauseIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPause_w : Resources.imgPause;
-            resumeIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPlay_w : Resources.imgPlay;
-            skipGameToolStripMenuItem.Image = whiteIcons ? Resources.imgSkip_w : Resources.imgSkip;
-            blacklistCurrentGameToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
-            // Help
-            wikiToolStripMenuItem.Image = whiteIcons ? Resources.imgInfo_w : Resources.imgInfo;
-            statisticsToolStripMenuItem.Image = whiteIcons ? Resources.imgStatistics_w : Resources.imgStatistics;
-            changelogToolStripMenuItem.Image = whiteIcons ? Resources.imgDocument_w : Resources.imgDocument;
-            officialGroupToolStripMenuItem.Image = whiteIcons ? Resources.imgGlobe_w : Resources.imgGlobe;
+            if (IsCurrentIconsWhite != whiteIcons)
+            {
+                IsCurrentIconsWhite = whiteIcons;
 
-            // STATUS
-            // Handled in respective tick drawing functions
+                // TOOL STRIP MENU ITEMS
+                // File
+                settingsToolStripMenuItem.Image = whiteIcons ? Resources.imgSettings_w : Resources.imgSettings;
+                blacklistToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
+                exitToolStripMenuItem.Image = whiteIcons ? Resources.imgExit_w : Resources.imgExit;
+                whitelistToolStripMenuItem.Image = whiteIcons ? Resources.imgTrue_w : Resources.imgTrue;
+                donateToolStripMenuItem.Image = whiteIcons ? Resources.imgView_w : Resources.imgView;
+                // Game
+                pauseIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPause_w : Resources.imgPause;
+                resumeIdlingToolStripMenuItem.Image = whiteIcons ? Resources.imgPlay_w : Resources.imgPlay;
+                skipGameToolStripMenuItem.Image = whiteIcons ? Resources.imgSkip_w : Resources.imgSkip;
+                blacklistCurrentGameToolStripMenuItem.Image = whiteIcons ? Resources.imgBlacklist_w : Resources.imgBlacklist;
+                // Help
+                wikiToolStripMenuItem.Image = whiteIcons ? Resources.imgInfo_w : Resources.imgInfo;
+                statisticsToolStripMenuItem.Image = whiteIcons ? Resources.imgStatistics_w : Resources.imgStatistics;
+                changelogToolStripMenuItem.Image = whiteIcons ? Resources.imgDocument_w : Resources.imgDocument;
+                officialGroupToolStripMenuItem.Image = whiteIcons ? Resources.imgGlobe_w : Resources.imgGlobe;
 
-            // BUTTONS
-            btnPause.Image = whiteIcons ? Resources.imgPauseSmall_w : Resources.imgPauseSmall;
-            btnResume.Image = whiteIcons ? Resources.imgPlaySmall_w : Resources.imgPlaySmall;
-            btnSkip.Image = whiteIcons ? Resources.imgSkipSmall_w : Resources.imgSkipSmall;
+                // STATUS
+                // Handled in respective tick drawing functions
 
-            // LOADING GIF
-            //
+                // BUTTONS
+                btnPause.Image = whiteIcons ? Resources.imgPauseSmall_w : Resources.imgPauseSmall;
+                btnResume.Image = whiteIcons ? Resources.imgPlaySmall_w : Resources.imgPlaySmall;
+                btnSkip.Image = whiteIcons ? Resources.imgSkipSmall_w : Resources.imgSkipSmall;
+
+                // LOADING GIF
+                picIdleStatus.Image = whiteIcons ? Resources.imgSpinInv : Resources.imgSpin;
+            }
         }
         #endregion
     }
