@@ -1,9 +1,12 @@
-Idle Master Extended [![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)
+Idle Master Extended
 ===========
-Get your [Steam Trading Cards](https://steamcommunity.com/tradingcards/) the Fast Way (Fast Mode Extension)
+[![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)[![Github All Releases](https://img.shields.io/github/downloads/JonasNilson/idle_master_extended/total.svg)]()
+
+🚀 Get your [Steam Trading Cards](https://steamcommunity.com/tradingcards/) the Quickest Possible Way
+
 ⭐️ Accepted by the official [Idle Master community](https://steamcommunity.com/groups/idlemastery/discussions/0/1485487749771924917/)
 
-This is a fork of the original [Idle Master](https://github.com/jshackles/idle_master) project (**discontinued** in early 2017) by [jshackles](https://github.com/jshackles) (also known for [Enhanced Steam](https://github.com/jshackles/Enhanced_Steam)):
+🔧 This is a fork of the original [Idle Master](https://github.com/jshackles/idle_master) project (**discontinued** in early 2017) by [jshackles](https://github.com/jshackles) (also known for [Enhanced Steam](https://github.com/jshackles/Enhanced_Steam)):
 
 > This program will determine which of your Steam games still have Steam Trading Card drops remaining, and will go through each application to simulate you being “in-game” so that cards will drop. It will check periodically to see if the game you’re idling has card drops remaining. When only one drop remains, it will start checking more frequently. When the game you’re idling has no more cards, it’ll move on to the next game. When no more cards are available, the program will terminate. 
 > 
@@ -13,8 +16,9 @@ This is a fork of the original [Idle Master](https://github.com/jshackles/idle_m
 
 Download
 -------
-* The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
-  * 💹 Total number of downloads: `556 484` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-10-17)
+🔽 The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
+
+💹 Total number of downloads: `556 484` ([source](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended), 2020-10-17)
 
 Features
 -------
