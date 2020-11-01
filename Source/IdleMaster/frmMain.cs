@@ -65,8 +65,7 @@ namespace IdleMaster
         #region BADGES
         public async Task LoadBadgesAsync()
         {
-            // Adjust the spinner gif based on the current color theme
-            picReadingPage.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
+            picReadingPage.Visible = true;
 
             if (Settings.Default.IdlingModeWhitelist)
             {
@@ -353,7 +352,7 @@ namespace IdleMaster
                 btnSkip.Visible = false;
                 lblCurrentStatus.Text = localization.strings.not_ingame;
                 lblHoursPlayed.Visible = false;
-                picIdleStatus.Image = null;
+                picIdleStatus.Visible = false;
 
                 // Stop the card drop check timer
                 DisableCardDropCheckTimer();
@@ -452,7 +451,7 @@ namespace IdleMaster
             ssFooter.Visible = true;
 
             // Start the animated "working" gif
-            picIdleStatus.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
+            picIdleStatus.Visible = true; // Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             // Start the timer that will check if drops remain
             EnableCardDropCheckTimer();
@@ -483,7 +482,7 @@ namespace IdleMaster
             gameToolStripMenuItem.Enabled = false;
 
             // Start the animated "working" gif
-            picIdleStatus.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
+            picIdleStatus.Visible = true; //Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
 
             // Start the timer that will check if drops remain
             EnableCardDropCheckTimer();
@@ -785,8 +784,8 @@ namespace IdleMaster
         #region FORM
         private void ResetFormDesign()
         {
-            picReadingPage.Image = null;
-            picIdleStatus.Image = null;
+            picReadingPage.Visible = false;
+            picIdleStatus.Visible = false;
             lblDrops.Text = localization.strings.badge_didnt_load.Replace("__num__", "10");
             lblIdle.Text = "";
 
@@ -1483,6 +1482,7 @@ namespace IdleMaster
 
                 // LOADING GIF
                 picIdleStatus.Image = whiteIcons ? Resources.imgSpinInv : Resources.imgSpin;
+                picReadingPage.Image = whiteIcons ? Resources.imgSpinInv : Resources.imgSpin;
             }
         }
         #endregion

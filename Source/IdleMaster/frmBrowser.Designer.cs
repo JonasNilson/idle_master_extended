@@ -33,110 +33,144 @@ namespace IdleMaster
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBrowser));
-            this.wbAuth = new System.Windows.Forms.WebBrowser();
-            this.lblSaving = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tmrCheck = new System.Windows.Forms.Timer(this.components);
-            this.lblWebBrowser = new System.Windows.Forms.Label();
-            this.pbWebBrowserLock = new System.Windows.Forms.PictureBox();
-            this.lblWebBrowserAuth = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbWebBrowserLock)).BeginInit();
+            this.webBrowserAuthentication = new System.Windows.Forms.WebBrowser();
+            this.labelSaving = new System.Windows.Forms.Label();
+            this.pictureBoxSpinningGif = new System.Windows.Forms.PictureBox();
+            this.timerCheck = new System.Windows.Forms.Timer(this.components);
+            this.labelWebBrowser = new System.Windows.Forms.Label();
+            this.pictureBoxWebBrowserLock = new System.Windows.Forms.PictureBox();
+            this.labelWebBrowserAuth = new System.Windows.Forms.Label();
+            this.buttonQuickLogin = new System.Windows.Forms.Button();
+            this.labelQuickLoginInstructions = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpinningGif)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWebBrowserLock)).BeginInit();
             this.SuspendLayout();
             // 
-            // wbAuth
+            // webBrowserAuthentication
             // 
-            this.wbAuth.AllowWebBrowserDrop = false;
-            this.wbAuth.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wbAuth.Location = new System.Drawing.Point(0, 0);
-            this.wbAuth.MinimumSize = new System.Drawing.Size(20, 20);
-            this.wbAuth.Name = "wbAuth";
-            this.wbAuth.ScriptErrorsSuppressed = true;
-            this.wbAuth.ScrollBarsEnabled = false;
-            this.wbAuth.Size = new System.Drawing.Size(976, 798);
-            this.wbAuth.TabIndex = 0;
-            this.wbAuth.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbAuth_DocumentCompleted);
-            this.wbAuth.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.wbAuth_Navigating);
+            this.webBrowserAuthentication.AllowWebBrowserDrop = false;
+            this.webBrowserAuthentication.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.webBrowserAuthentication.Location = new System.Drawing.Point(0, 16);
+            this.webBrowserAuthentication.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserAuthentication.Name = "webBrowserAuthentication";
+            this.webBrowserAuthentication.ScriptErrorsSuppressed = true;
+            this.webBrowserAuthentication.ScrollBarsEnabled = false;
+            this.webBrowserAuthentication.Size = new System.Drawing.Size(604, 458);
+            this.webBrowserAuthentication.TabIndex = 0;
+            this.webBrowserAuthentication.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbAuth_DocumentCompleted);
+            this.webBrowserAuthentication.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.wbAuth_Navigating);
             // 
-            // lblSaving
+            // labelSaving
             // 
-            this.lblSaving.AutoSize = true;
-            this.lblSaving.Location = new System.Drawing.Point(34, 11);
-            this.lblSaving.Name = "lblSaving";
-            this.lblSaving.Size = new System.Drawing.Size(180, 13);
-            this.lblSaving.TabIndex = 1;
-            this.lblSaving.Text = "Idle Master is saving your information";
+            this.labelSaving.AutoSize = true;
+            this.labelSaving.Location = new System.Drawing.Point(34, 11);
+            this.labelSaving.Name = "labelSaving";
+            this.labelSaving.Size = new System.Drawing.Size(180, 13);
+            this.labelSaving.TabIndex = 1;
+            this.labelSaving.Text = "Idle Master is saving your information";
             // 
-            // pictureBox1
+            // pictureBoxSpinningGif
             // 
-            this.pictureBox1.Image = global::IdleMaster.Properties.Resources.imgSpin;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pictureBoxSpinningGif.Image = global::IdleMaster.Properties.Resources.imgSpin;
+            this.pictureBoxSpinningGif.Location = new System.Drawing.Point(13, 9);
+            this.pictureBoxSpinningGif.Name = "pictureBoxSpinningGif";
+            this.pictureBoxSpinningGif.Size = new System.Drawing.Size(16, 16);
+            this.pictureBoxSpinningGif.TabIndex = 2;
+            this.pictureBoxSpinningGif.TabStop = false;
             // 
-            // tmrCheck
+            // timerCheck
             // 
-            this.tmrCheck.Interval = 1000;
-            this.tmrCheck.Tick += new System.EventHandler(this.tmrCheck_Tick);
+            this.timerCheck.Interval = 1000;
+            this.timerCheck.Tick += new System.EventHandler(this.tmrCheck_Tick);
             // 
-            // lblWebBrowser
+            // labelWebBrowser
             // 
-            this.lblWebBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblWebBrowser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.lblWebBrowser.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWebBrowser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(166)))), ((int)(((byte)(75)))));
-            this.lblWebBrowser.Location = new System.Drawing.Point(204, 0);
-            this.lblWebBrowser.Name = "lblWebBrowser";
-            this.lblWebBrowser.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.lblWebBrowser.Size = new System.Drawing.Size(772, 16);
-            this.lblWebBrowser.TabIndex = 3;
-            this.lblWebBrowser.Text = "Loading...";
-            this.lblWebBrowser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelWebBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelWebBrowser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.labelWebBrowser.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWebBrowser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(166)))), ((int)(((byte)(75)))));
+            this.labelWebBrowser.Location = new System.Drawing.Point(204, 0);
+            this.labelWebBrowser.Name = "labelWebBrowser";
+            this.labelWebBrowser.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.labelWebBrowser.Size = new System.Drawing.Size(403, 16);
+            this.labelWebBrowser.TabIndex = 3;
+            this.labelWebBrowser.Text = "Loading...";
+            this.labelWebBrowser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pbWebBrowserLock
+            // pictureBoxWebBrowserLock
             // 
-            this.pbWebBrowserLock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.pbWebBrowserLock.Location = new System.Drawing.Point(0, 0);
-            this.pbWebBrowserLock.Name = "pbWebBrowserLock";
-            this.pbWebBrowserLock.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-            this.pbWebBrowserLock.Size = new System.Drawing.Size(24, 16);
-            this.pbWebBrowserLock.TabIndex = 4;
-            this.pbWebBrowserLock.TabStop = false;
+            this.pictureBoxWebBrowserLock.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.pictureBoxWebBrowserLock.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxWebBrowserLock.Name = "pictureBoxWebBrowserLock";
+            this.pictureBoxWebBrowserLock.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.pictureBoxWebBrowserLock.Size = new System.Drawing.Size(24, 16);
+            this.pictureBoxWebBrowserLock.TabIndex = 4;
+            this.pictureBoxWebBrowserLock.TabStop = false;
             // 
-            // lblWebBrowserAuth
+            // labelWebBrowserAuth
             // 
-            this.lblWebBrowserAuth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblWebBrowserAuth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.lblWebBrowserAuth.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWebBrowserAuth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(166)))), ((int)(((byte)(75)))));
-            this.lblWebBrowserAuth.Location = new System.Drawing.Point(24, 0);
-            this.lblWebBrowserAuth.Name = "lblWebBrowserAuth";
-            this.lblWebBrowserAuth.Size = new System.Drawing.Size(180, 16);
-            this.lblWebBrowserAuth.TabIndex = 5;
-            this.lblWebBrowserAuth.Text = "Verifying...";
-            this.lblWebBrowserAuth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelWebBrowserAuth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.labelWebBrowserAuth.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWebBrowserAuth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(126)))), ((int)(((byte)(166)))), ((int)(((byte)(75)))));
+            this.labelWebBrowserAuth.Location = new System.Drawing.Point(24, 0);
+            this.labelWebBrowserAuth.Name = "labelWebBrowserAuth";
+            this.labelWebBrowserAuth.Size = new System.Drawing.Size(180, 16);
+            this.labelWebBrowserAuth.TabIndex = 5;
+            this.labelWebBrowserAuth.Text = "Verifying...";
+            this.labelWebBrowserAuth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // buttonQuickLogin
+            // 
+            this.buttonQuickLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonQuickLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonQuickLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(130)))), ((int)(((byte)(225)))));
+            this.buttonQuickLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonQuickLogin.ForeColor = System.Drawing.SystemColors.Control;
+            this.buttonQuickLogin.Location = new System.Drawing.Point(424, 78);
+            this.buttonQuickLogin.Name = "buttonQuickLogin";
+            this.buttonQuickLogin.Size = new System.Drawing.Size(180, 24);
+            this.buttonQuickLogin.TabIndex = 6;
+            this.buttonQuickLogin.Text = "Quick Login";
+            this.buttonQuickLogin.UseVisualStyleBackColor = false;
+            this.buttonQuickLogin.Click += new System.EventHandler(this.buttonQuickLogin_Click);
+            // 
+            // labelQuickLoginInstructions
+            // 
+            this.labelQuickLoginInstructions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelQuickLoginInstructions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.labelQuickLoginInstructions.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelQuickLoginInstructions.ForeColor = System.Drawing.SystemColors.Control;
+            this.labelQuickLoginInstructions.Location = new System.Drawing.Point(0, 78);
+            this.labelQuickLoginInstructions.Name = "labelQuickLoginInstructions";
+            this.labelQuickLoginInstructions.Size = new System.Drawing.Size(604, 24);
+            this.labelQuickLoginInstructions.TabIndex = 7;
+            this.labelQuickLoginInstructions.Text = "To automatically log in using your Steam client credentials, press this button:";
+            this.labelQuickLoginInstructions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 798);
-            this.Controls.Add(this.lblWebBrowserAuth);
-            this.Controls.Add(this.pbWebBrowserLock);
-            this.Controls.Add(this.lblWebBrowser);
-            this.Controls.Add(this.wbAuth);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblSaving);
+            this.ClientSize = new System.Drawing.Size(604, 472);
+            this.Controls.Add(this.buttonQuickLogin);
+            this.Controls.Add(this.labelQuickLoginInstructions);
+            this.Controls.Add(this.labelWebBrowserAuth);
+            this.Controls.Add(this.pictureBoxWebBrowserLock);
+            this.Controls.Add(this.labelWebBrowser);
+            this.Controls.Add(this.webBrowserAuthentication);
+            this.Controls.Add(this.pictureBoxSpinningGif);
+            this.Controls.Add(this.labelSaving);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "frmBrowser";
             this.Text = "Please Login to Steam";
             this.Load += new System.EventHandler(this.frmBrowser_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbWebBrowserLock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpinningGif)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWebBrowserLock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,12 +178,14 @@ namespace IdleMaster
 
         #endregion
 
-        private WebBrowser wbAuth;
-        private Label lblSaving;
-        private PictureBox pictureBox1;
-        private Timer tmrCheck;
-        private Label lblWebBrowser;
-        private PictureBox pbWebBrowserLock;
-        private Label lblWebBrowserAuth;
+        private WebBrowser webBrowserAuthentication;
+        private Label labelSaving;
+        private PictureBox pictureBoxSpinningGif;
+        private Timer timerCheck;
+        private Label labelWebBrowser;
+        private PictureBox pictureBoxWebBrowserLock;
+        private Label labelWebBrowserAuth;
+        private Button buttonQuickLogin;
+        private Label labelQuickLoginInstructions;
     }
 }
