@@ -10,7 +10,7 @@ namespace IdleMaster
     public partial class frmBrowser : Form
     {
 
-        public int SecondsWaiting = 30;
+        public int SecondsWaiting = 300;
 
         [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool InternetSetOption(int hInternet, int dwOption, string lpBuffer, int dwBufferLength);
