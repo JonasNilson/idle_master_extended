@@ -468,6 +468,7 @@ namespace IdleMasterExtended
             this.picIdleStatus.Size = new System.Drawing.Size(15, 16);
             this.picIdleStatus.TabIndex = 15;
             this.picIdleStatus.TabStop = false;
+            this.picIdleStatus.Visible = false;
             // 
             // picCookieStatus
             // 

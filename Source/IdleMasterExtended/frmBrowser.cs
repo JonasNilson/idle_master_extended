@@ -24,17 +24,20 @@ namespace IdleMasterExtended
             InitializeComponent();
 
             // TODO: Move this somewhere else (changes the loading spinner depending on the theme)
-            pictureBox1.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
+            pictureBoxSpinningGif.Image = Settings.Default.customTheme ? Resources.imgSpinInv : Resources.imgSpin;
         }
 
         private void frmBrowser_Load(object sender, EventArgs e)
         {
+            quickLoginBarVisibility(false);
+            browserBarVisibility(false);
+
             // Remove any existing session state data
             InternetSetOption(0, 42, null, 0);
 
             // Localize form
             this.Text = localization.strings.please_login;
-            lblSaving.Text = localization.strings.saving_info;
+            labelSaving.Text = localization.strings.saving_info;
 
             // Delete Steam cookie data from the browser control
             InternetSetCookie("https://steamcommunity.com", "sessionid", ";expires=Mon, 01 Jan 0001 00:00:00 GMT");
@@ -43,7 +46,7 @@ namespace IdleMasterExtended
             InternetSetCookie("https://steamcommunity.com", "steamRememberLogin", ";expires=Mon, 01 Jan 0001 00:00:00 GMT");
 
             // When the form is loaded, navigate to the Steam login page using the web browser control
-            wbAuth.Navigate("https://steamcommunity.com/login/home/?goto=my/profile", "_self", null, "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko");
+            webBrowserAuthentication.Navigate("https://steamcommunity.com/login/home/?goto=my/profile", "_self", null, "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko");
 
             this.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
             this.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
@@ -52,24 +55,10 @@ namespace IdleMasterExtended
         // This code block executes each time a new document is loaded into the web browser control
         private void wbAuth_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            // Find the page header, and remove it.  This gives the login form a more streamlined look.
-            dynamic htmldoc = wbAuth.Document.DomDocument;
-            dynamic globalHeader = htmldoc.GetElementById("global_header");
-            if (globalHeader != null && !(globalHeader is DBNull))
-            {
-                try
-                {
-                    globalHeader.parentNode.removeChild(globalHeader);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Exception(ex, "frmBrowswer -> wbAuth_DocumentCompleted -> Removing the global_header resulted in an exception");
-                }
-
-            }
+            dynamic htmldoc = webBrowserAuthentication.Document.DomDocument;
 
             // Get the URL of the page that just finished loading
-            var url = wbAuth.Url.AbsoluteUri;
+            var url = webBrowserAuthentication.Url.AbsoluteUri;
 
             // If the page it just finished loading is the login page
             if (url.StartsWith("https://steamcommunity.com/login/home/?goto=") ||
@@ -77,8 +66,8 @@ namespace IdleMasterExtended
                 url == "https://store.steampowered.com//login/transfer")
             {
                 // Get a list of cookies from the current page
-                CookieContainer container = GetUriCookieContainer(wbAuth.Url);
-                var cookies = container.GetCookies(wbAuth.Url);
+                CookieContainer container = GetUriCookieContainer(webBrowserAuthentication.Url);
+                var cookies = container.GetCookies(webBrowserAuthentication.Url);
                 foreach (Cookie cookie in cookies)
                 {
                     if (cookie.Name.StartsWith("steamMachineAuth"))
@@ -86,8 +75,9 @@ namespace IdleMasterExtended
                 }
 
                 browserBarVisibility(true);
-                setRememberMeCheckbox(htmldoc);
-                createQuickLoginButton(htmldoc);
+                quickLoginBarVisibility(true);
+                setRememberMeCheckbox();
+                removeUnneccessaryWebsiteElements();
             }
             // If the page it just finished loading isn't the login page
             else if (url.StartsWith("javascript:") == false && url.StartsWith("about:") == false)
@@ -100,7 +90,7 @@ namespace IdleMasterExtended
                         if (parentalNotice.OuterHtml != "")
                         {
                             // Steam family options enabled
-                            wbAuth.Show();
+                            webBrowserAuthentication.Show();
                             Width = 1000;
                             Height = 350;
                             return;
@@ -117,42 +107,41 @@ namespace IdleMasterExtended
             }
         }
 
-        // Creates a separate buttong to trigger a login call to the Steam Client Javascript API (localhost)
-        private void createQuickLoginButton(dynamic htmldoc)
+        private void removeUnneccessaryWebsiteElements()
         {
-            if (htmldoc != null)
+            removeWebsiteElementById("global_header");
+            removeWebsiteElementById("link_forgot_password");
+            removeWebsiteElementById("responsive_menu_logo");
+        }
+
+        private void removeWebsiteElementById(string elementId)
+        {
+            dynamic htmlDomDocument = webBrowserAuthentication.Document.DomDocument;
+            dynamic elementToBeRemoved = htmlDomDocument.GetElementById(elementId);
+
+            if (elementToBeRemoved != null && !(elementToBeRemoved is DBNull))
             {
                 try
                 {
-                    dynamic steamLoginDiv = htmldoc.GetElementById("login_btn_signin");
-                    
-                    if (steamLoginDiv != null && !(steamLoginDiv is DBNull))
-                    {
-                        const string loginJavascript = "LoginUsingSteamClient('https://steamcommunity.com/')";
-                        const string onclickHtml = "onclick=\"" + loginJavascript + "\"";
-
-                        steamLoginDiv.InnerHtml = steamLoginDiv.InnerHtml + 
-                            "<input class=\"btn_green_white_innerfade btn_medium\" type=\"submit\" id=\"QuickSteamLogin\" " +
-                            "value=\"Quick-Login\" " + onclickHtml + "border=\"0\" tabindex=\"6\">";
-
-                        // Overwrite cookie functions to ignore the auto login cookie checks
-                        wbAuth.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
-                    }
+                    elementToBeRemoved.parentNode.removeChild(elementToBeRemoved);
                 }
                 catch (Exception ex)
                 {
-                    Logger.Exception(ex, "login_btn_signin = " + htmldoc.GetElementById("login_btn_signin"));
+                    Logger.Exception(ex, "frmBrowswer -> wbAuth_DocumentCompleted -> Removing the element: " + elementId + " resulted in an exception");
                 }
+
             }
         }
 
-        private static void setRememberMeCheckbox(dynamic htmldoc)
+        private void setRememberMeCheckbox()
         {
-            if (htmldoc != null)
+            dynamic htmlDomDocument = webBrowserAuthentication.Document.DomDocument;
+
+            if (htmlDomDocument != null)
             {
                 try
                 {
-                    dynamic rememberMeCheckBox = htmldoc.GetElementById("remember_login");
+                    dynamic rememberMeCheckBox = htmlDomDocument.GetElementById("remember_login");
                     
                     if (rememberMeCheckBox != null && !(rememberMeCheckBox is DBNull))
                     {
@@ -161,15 +150,15 @@ namespace IdleMasterExtended
                 }
                 catch (Exception ex)
                 {
-                    Logger.Exception(ex, "rember_login = " + htmldoc.GetElementById("remember_login"));
+                    Logger.Exception(ex, "rember_login = " + htmlDomDocument.GetElementById("remember_login"));
                 }
             }
         }
 
         private void extractSteamCookies()
         {
-            var container = GetUriCookieContainer(wbAuth.Url);
-            var cookies = container.GetCookies(wbAuth.Url);
+            var container = GetUriCookieContainer(webBrowserAuthentication.Url);
+            var cookies = container.GetCookies(webBrowserAuthentication.Url);
 
             foreach (Cookie cookie in cookies)
             {
@@ -204,16 +193,21 @@ namespace IdleMasterExtended
         private void browserBarVisibility(bool visibility)
         {
             // Toggle visibility of the browser bar
-            pbWebBrowserLock.Visible = lblWebBrowserAuth.Visible = lblWebBrowser.Visible = visibility;
+            pictureBoxWebBrowserLock.Visible = labelWebBrowserAuth.Visible = labelWebBrowser.Visible = visibility;
 
             if (visibility)
             {
                 // Update browser bar content
-                pbWebBrowserLock.Image = wbAuth.Url.Scheme == "https" ? Resources.imgLock_w : Resources.imgLock;
-                lblWebBrowserAuth.Text = wbAuth.Document.Domain + " (" + wbAuth.Url.Scheme + ")";
-                if (wbAuth.Url.Scheme == "https") { lblWebBrowserAuth.BackColor = Settings.Default.colorSteamGreen; lblWebBrowserAuth.ForeColor = Settings.Default.colorBgd; }
-                lblWebBrowser.Text = wbAuth.Url.AbsoluteUri;
+                pictureBoxWebBrowserLock.Image = webBrowserAuthentication.Url.Scheme == "https" ? Resources.imgLock_w : Resources.imgLock;
+                labelWebBrowserAuth.Text = webBrowserAuthentication.Document.Domain + " (" + webBrowserAuthentication.Url.Scheme + ")";
+                if (webBrowserAuthentication.Url.Scheme == "https") { labelWebBrowserAuth.BackColor = Settings.Default.colorSteamGreen; labelWebBrowserAuth.ForeColor = Settings.Default.colorBgd; }
+                labelWebBrowser.Text = webBrowserAuthentication.Url.AbsoluteUri;
             }
+        }
+
+        private void quickLoginBarVisibility(bool visibility)
+        {
+            labelQuickLoginInstructions.Visible = buttonQuickLogin.Visible = visibility;
         }
 
         // Imports the InternetGetCookieEx function from wininet.dll which allows the application to access the cookie data from the web browser control
@@ -281,10 +275,10 @@ namespace IdleMasterExtended
                 url.StartsWith("about:") == false)
             {
                 // start the sanity check timer
-                tmrCheck.Enabled = true;
+                timerCheck.Enabled = true;
 
                 // If it's navigating to a page other than the Steam login page, hide the browser control and resize the form
-                wbAuth.Visible = false;
+                webBrowserAuthentication.Visible = false;
 
                 // Scale the form based on the user's DPI settings
                 var graphics = CreateGraphics();
@@ -293,25 +287,30 @@ namespace IdleMasterExtended
                 Height = Convert.ToInt32(scaleY);
                 Width = Convert.ToInt32(scaleX);
 
-                browserBarVisibility(false); // Hide the browser bar
+                browserBarVisibility(false);
+                quickLoginBarVisibility(false);
             }
             else if (url.StartsWith("https://steamcommunity.com/login/home/?goto=my/profile"))
             {
-                tmrCheck.Enabled = true;
+                timerCheck.Enabled = true;
             }
         }
 
         private void tmrCheck_Tick(object sender, EventArgs e)
         {
-            if (wbAuth.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/")
-                && wbAuth.ReadyState.Equals(WebBrowserReadyState.Complete))
+            if (webBrowserAuthentication.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/"))
             {
-                // The login is completed, and the profile is visible
-                extractSteamCookies();
-                stopTimerAndCloseForm();
+                quickLoginBarVisibility(false);
+
+                if (webBrowserAuthentication.ReadyState.Equals(WebBrowserReadyState.Complete))
+                {
+                    // The login is completed, and the profile is visible
+                    extractSteamCookies();
+                    stopTimerAndCloseForm();
+                }
             }
 
-            if (SecondsWaiting > 0 || wbAuth.ReadyState.Equals(WebBrowserReadyState.Uninitialized))
+            if (SecondsWaiting > 0 || webBrowserAuthentication.ReadyState.Equals(WebBrowserReadyState.Uninitialized))
             {
                 SecondsWaiting -= 1;
             }
@@ -323,8 +322,17 @@ namespace IdleMasterExtended
 
         private void stopTimerAndCloseForm()
         {
-            tmrCheck.Enabled = false;
+            timerCheck.Enabled = false;
             Close();
+        }
+
+        private void buttonQuickLogin_Click(object sender, EventArgs e)
+        {
+            // Overwrite cookie functions to ignore the auto login cookie checks
+            webBrowserAuthentication.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
+            webBrowserAuthentication.Document.InvokeScript("LoginUsingSteamClient", new object[] { "https://steamcommunity.com/" });
+
+            buttonQuickLogin.Text = "Login script activated...";
         }
     }
 }
