@@ -73,7 +73,7 @@ namespace IdleMasterExtended
             // 
             // pictureBoxSpinningGif
             // 
-            this.pictureBoxSpinningGif.Image = global::IdleMaster.Properties.Resources.imgSpin;
+            this.pictureBoxSpinningGif.Image = global::IdleMasterExtended.Properties.Resources.imgSpin;
             this.pictureBoxSpinningGif.Location = new System.Drawing.Point(13, 9);
             this.pictureBoxSpinningGif.Name = "pictureBoxSpinningGif";
             this.pictureBoxSpinningGif.Size = new System.Drawing.Size(16, 16);
