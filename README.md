@@ -1,6 +1,7 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)[![Github All Releases](https://img.shields.io/github/downloads/JonasNilson/idle_master_extended/total.svg)]()
+
 Idle Master Extended
 ===========
-[![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)[![Github All Releases](https://img.shields.io/github/downloads/JonasNilson/idle_master_extended/total.svg)]()
 
 🚀 Get your [Steam Trading Cards](https://steamcommunity.com/tradingcards/) the Quickest Possible Way
 
