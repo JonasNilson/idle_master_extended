@@ -1486,5 +1486,10 @@ namespace IdleMasterExtended
             }
         }
         #endregion
+
+        private void labelBetaRelease_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/JonasNilson/idle_master_extended/releases");
+        }
     }
 }

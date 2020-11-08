@@ -89,6 +89,7 @@ namespace IdleMasterExtended
             this.lblHoursPlayed = new System.Windows.Forms.Label();
             this.tmrStatistics = new System.Windows.Forms.Timer(this.components);
             this.lnkLatestRelease = new System.Windows.Forms.LinkLabel();
+            this.labelBetaRelease = new System.Windows.Forms.Label();
             this.mnuTop.SuspendLayout();
             this.ssFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picReadingPage)).BeginInit();
@@ -589,12 +590,26 @@ namespace IdleMasterExtended
             this.lnkLatestRelease.Text = "(Latest release)";
             this.lnkLatestRelease.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkLatestRelease_LinkClicked);
             // 
+            // labelBetaRelease
+            // 
+            this.labelBetaRelease.AutoSize = true;
+            this.labelBetaRelease.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.labelBetaRelease.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBetaRelease.ForeColor = System.Drawing.Color.Red;
+            this.labelBetaRelease.Location = new System.Drawing.Point(170, 36);
+            this.labelBetaRelease.Name = "labelBetaRelease";
+            this.labelBetaRelease.Size = new System.Drawing.Size(114, 13);
+            this.labelBetaRelease.TabIndex = 31;
+            this.labelBetaRelease.Text = "(PRE-RELEASE: v1.7)";
+            this.labelBetaRelease.Click += new System.EventHandler(this.labelBetaRelease_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(304, 339);
+            this.Controls.Add(this.labelBetaRelease);
             this.Controls.Add(this.lnkLatestRelease);
             this.Controls.Add(this.lblHoursPlayed);
             this.Controls.Add(this.GamesState);
@@ -699,6 +714,7 @@ namespace IdleMasterExtended
         private ToolStripMenuItem whitelistToolStripMenuItem;
         private ToolStripMenuItem donateToolStripMenuItem;
         private ToolStripMenuItem wikiToolStripMenuItem;
+        private Label labelBetaRelease;
     }
 }
 

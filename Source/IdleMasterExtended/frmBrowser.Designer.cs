@@ -57,7 +57,7 @@ namespace IdleMasterExtended
             this.webBrowserAuthentication.Name = "webBrowserAuthentication";
             this.webBrowserAuthentication.ScriptErrorsSuppressed = true;
             this.webBrowserAuthentication.ScrollBarsEnabled = false;
-            this.webBrowserAuthentication.Size = new System.Drawing.Size(604, 458);
+            this.webBrowserAuthentication.Size = new System.Drawing.Size(604, 432);
             this.webBrowserAuthentication.TabIndex = 0;
             this.webBrowserAuthentication.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbAuth_DocumentCompleted);
             this.webBrowserAuthentication.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.wbAuth_Navigating);
@@ -73,7 +73,6 @@ namespace IdleMasterExtended
             // 
             // pictureBoxSpinningGif
             // 
-            this.pictureBoxSpinningGif.Image = global::IdleMasterExtended.Properties.Resources.imgSpin;
             this.pictureBoxSpinningGif.Location = new System.Drawing.Point(13, 9);
             this.pictureBoxSpinningGif.Name = "pictureBoxSpinningGif";
             this.pictureBoxSpinningGif.Size = new System.Drawing.Size(16, 16);
@@ -129,7 +128,7 @@ namespace IdleMasterExtended
             this.buttonQuickLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(130)))), ((int)(((byte)(225)))));
             this.buttonQuickLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonQuickLogin.ForeColor = System.Drawing.SystemColors.Control;
-            this.buttonQuickLogin.Location = new System.Drawing.Point(424, 78);
+            this.buttonQuickLogin.Location = new System.Drawing.Point(424, 448);
             this.buttonQuickLogin.Name = "buttonQuickLogin";
             this.buttonQuickLogin.Size = new System.Drawing.Size(180, 24);
             this.buttonQuickLogin.TabIndex = 6;
@@ -143,7 +142,7 @@ namespace IdleMasterExtended
             this.labelQuickLoginInstructions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.labelQuickLoginInstructions.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelQuickLoginInstructions.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelQuickLoginInstructions.Location = new System.Drawing.Point(0, 78);
+            this.labelQuickLoginInstructions.Location = new System.Drawing.Point(0, 448);
             this.labelQuickLoginInstructions.Name = "labelQuickLoginInstructions";
             this.labelQuickLoginInstructions.Size = new System.Drawing.Size(604, 24);
             this.labelQuickLoginInstructions.TabIndex = 7;
