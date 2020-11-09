@@ -1,4 +1,4 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)[![Github All Releases](https://img.shields.io/github/downloads/JonasNilson/idle_master_extended/total.svg)]()
+[![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)[![Github All Releases](https://img.shields.io/github/downloads/JonasNilson/idle_master_extended/total.svg)](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended)
 
 Idle Master Extended
 ===========
