@@ -258,7 +258,6 @@
   <ItemGroup>
     <None Include="Resources\ban-2x.png" />
     <EmbeddedResource Include="Resources\steam-idle.exe" />
-    <None Include="Resources\Changelog.rtf" />
     <None Include="Resources\x-2x.png" />
     <None Include="Resources\cog-2x.png" />
     <None Include="Resources\check-2x.png" />
