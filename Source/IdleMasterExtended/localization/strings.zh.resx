@@ -256,25 +256,25 @@
     <value>显示数据
  
  [警告] 
- 不要泄露任何数据，这和你把密码泄露出去没什么区别</value>
+ 不要泄露任何数据给他人，不法分子（张三）可能会用它登入您的账户</value>
   </data>
   <data name="general" xml:space="preserve">
     <value>常规</value>
   </data>
   <data name="idle_individual" xml:space="preserve">
-    <value>按顺序运行</value>
+    <value>按顺序运行单独掉卡</value>
   </data>
   <data name="idle_master_settings" xml:space="preserve">
     <value>Idle Master 设置</value>
   </data>
   <data name="idle_simultaneous" xml:space="preserve">
-    <value>将所有游戏运行满2小时后再按顺序运行</value>
+    <value>将所有游戏运行满2小时后再按顺序掉卡</value>
   </data>
   <data name="idling_behavior" xml:space="preserve">
     <value>规则</value>
   </data>
   <data name="idling_order" xml:space="preserve">
-    <value>顺序</value>
+    <value>掉卡顺序</value>
   </data>
   <data name="ignore_client_status" xml:space="preserve">
     <value>忽略Steam运行状态</value>
@@ -338,5 +338,14 @@
   </data>
   <data name="idle_onethenmany" xml:space="preserve">
     <value>优先单独运行已满2小时的游戏，然后再同时挂卡</value>
+  </data>
+  <data name="add_game_whitelist" xml:space="preserve">
+    <value>添加游戏到白名单</value>
+  </data>
+  <data name="manage_whitelist" xml:space="preserve">
+    <value>管理 Idle Master 白名单</value>
+  </data>
+  <data name="whitelist" xml:space="preserve">
+    <value>白名单(&amp;W)</value>
   </data>
 </root>

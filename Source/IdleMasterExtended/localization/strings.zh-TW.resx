@@ -340,4 +340,13 @@
   <data name="idle_onethenmany" xml:space="preserve">
     <value>同時對遊戲時間超過2小時的遊戲進行掛機</value>
   </data>
+  <data name="add_game_whitelist" xml:space="preserve">
+    <value>將遊戲加到白名單</value>
+  </data>
+  <data name="manage_whitelist" xml:space="preserve">
+    <value>管理Idle Master白名單</value>
+  </data>
+  <data name="whitelist" xml:space="preserve">
+    <value>白名單(&amp;W)</value>
+  </data>
 </root>
