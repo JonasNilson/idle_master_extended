@@ -1,9 +1,9 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)[![Github All Releases](https://img.shields.io/github/downloads/JonasNilson/idle_master_extended/total.svg)](https://somsubhra.com/github-release-stats/?username=JonasNilson&repository=idle_master_extended&page=1&per_page=30)
+[![Build status](https://ci.appveyor.com/api/projects/status/96wf12emnlbmo4sj?svg=true)](https://ci.appveyor.com/project/JonasNilson/idle-master-extended)
+![Github All Releases](https://img.shields.io/github/downloads/JonasNilson/idle_master_extended/total.svg)
 
-Idle Master Extended
+🚀 Idle Master Extended
 ===========
-
-🚀 Get your [Steam Trading Cards](https://steamcommunity.com/tradingcards/) the Quickest Possible Way
+Get your [Steam Trading Cards](https://steamcommunity.com/tradingcards/) the quickest possible way
 
 ⭐️ Accepted by the official [Idle Master community](https://steamcommunity.com/groups/idlemastery/discussions/0/1485487749771924917/)
 
@@ -15,23 +15,23 @@ Idle Master Extended
 > 
 > Source: [`jshackles/idle_master`](https://github.com/jshackles/idle_master) 
 
-Download
+🔽 Download
 -------
-🔽 The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
+The latest release is always available here: https://github.com/JonasNilson/idle_master_extended/releases
 
-Features
+✨ Features
 -------
 * [GitHub Wiki > Features](https://github.com/JonasNilson/idle_master_extended/wiki/Features)
 
-Troubleshooting
+🔨 Troubleshooting
 -------
 * [GitHub Wiki > Troubleshooting](https://github.com/JonasNilson/idle_master_extended/wiki/Troubleshooting-and-common-solutions)
 
-Contribute
+🎨 Contribute
 -------
 * [GitHub Wiki > Contribute](https://github.com/JonasNilson/idle_master_extended/wiki/Contribute)
 
-Donate
+🎁 Donate
 -------
 * [GitHub Wiki > Donate](https://github.com/JonasNilson/idle_master_extended/wiki/Donate)
 
