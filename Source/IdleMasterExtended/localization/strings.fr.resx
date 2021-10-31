@@ -340,4 +340,13 @@ celles-ci peuvent être utilisées par un pirate pour se connecter à votre comp
   <data name="idle_onethenmany" xml:space="preserve">
     <value>Traiter les jeux ayant plus de 2 heures individuellement, sinon simultanément</value>
   </data>
+  <data name="add_game_whitelist" xml:space="preserve">
+    <value>Ajouter un jeu à la liste blanche</value>
+  </data>
+  <data name="manage_whitelist" xml:space="preserve">
+    <value>Gérer la liste blanche de Idle Master</value>
+  </data>
+  <data name="whitelist" xml:space="preserve">
+    <value>&amp;Liste blanche</value>
+  </data>
 </root>
