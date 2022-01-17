@@ -740,6 +740,8 @@ namespace IdleMasterExtended
             Settings.Default.sessionid = string.Empty;
             Settings.Default.steamLogin = string.Empty;
             Settings.Default.steamLoginSecure = string.Empty;
+            Settings.Default.steamMachineAuth = string.Empty;
+            Settings.Default.steamRememberLogin = string.Empty;
             Settings.Default.myProfileURL = string.Empty;
             Settings.Default.steamparental = string.Empty;
             Settings.Default.Save();
