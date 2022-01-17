@@ -29,7 +29,6 @@ namespace IdleMasterExtended
 
         private void frmBrowser_Load(object sender, EventArgs e)
         {
-            quickLoginBarVisibility(false);
             browserBarVisibility(false);
 
             // Remove any existing session state data
@@ -75,7 +74,6 @@ namespace IdleMasterExtended
                 }
 
                 browserBarVisibility(true);
-                quickLoginBarVisibility(true);
                 setRememberMeCheckbox();
                 removeUnneccessaryWebsiteElements();
             }
@@ -205,11 +203,6 @@ namespace IdleMasterExtended
             }
         }
 
-        private void quickLoginBarVisibility(bool visibility)
-        {
-            labelQuickLoginInstructions.Visible = buttonQuickLogin.Visible = visibility;
-        }
-
         // Imports the InternetGetCookieEx function from wininet.dll which allows the application to access the cookie data from the web browser control
         // Reference: http://stackoverflow.com/questions/3382498/is-it-possible-to-transfer-authentication-from-webbrowser-to-webrequest
         [DllImport("wininet.dll", SetLastError = true)]
@@ -288,7 +281,6 @@ namespace IdleMasterExtended
                 Width = Convert.ToInt32(scaleX);
 
                 browserBarVisibility(false);
-                quickLoginBarVisibility(false);
             }
             else if (url.StartsWith("https://steamcommunity.com/login/home/?goto=my/profile"))
             {
@@ -298,10 +290,8 @@ namespace IdleMasterExtended
 
         private void tmrCheck_Tick(object sender, EventArgs e)
         {
-            if (webBrowserAuthentication.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/"))
+            if (webBrowserAuthentication.Url != null && webBrowserAuthentication.Url.AbsoluteUri.StartsWith("https://steamcommunity.com/id/"))
             {
-                quickLoginBarVisibility(false);
-
                 if (webBrowserAuthentication.ReadyState.Equals(WebBrowserReadyState.Complete))
                 {
                     // The login is completed, and the profile is visible
@@ -324,15 +314,6 @@ namespace IdleMasterExtended
         {
             timerCheck.Enabled = false;
             Close();
-        }
-
-        private void buttonQuickLogin_Click(object sender, EventArgs e)
-        {
-            // Overwrite cookie functions to ignore the auto login cookie checks
-            webBrowserAuthentication.Document.InvokeScript("eval", new object[] { "function V_SetCookie() {} function V_GetCookie() {}" });
-            webBrowserAuthentication.Document.InvokeScript("LoginUsingSteamClient", new object[] { "https://steamcommunity.com/" });
-
-            buttonQuickLogin.Text = "Login script activated...";
         }
     }
 }

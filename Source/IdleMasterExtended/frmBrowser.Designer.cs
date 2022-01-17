@@ -40,8 +40,6 @@ namespace IdleMasterExtended
             this.labelWebBrowser = new System.Windows.Forms.Label();
             this.pictureBoxWebBrowserLock = new System.Windows.Forms.PictureBox();
             this.labelWebBrowserAuth = new System.Windows.Forms.Label();
-            this.buttonQuickLogin = new System.Windows.Forms.Button();
-            this.labelQuickLoginInstructions = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpinningGif)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWebBrowserLock)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +55,7 @@ namespace IdleMasterExtended
             this.webBrowserAuthentication.Name = "webBrowserAuthentication";
             this.webBrowserAuthentication.ScriptErrorsSuppressed = true;
             this.webBrowserAuthentication.ScrollBarsEnabled = false;
-            this.webBrowserAuthentication.Size = new System.Drawing.Size(604, 432);
+            this.webBrowserAuthentication.Size = new System.Drawing.Size(604, 455);
             this.webBrowserAuthentication.TabIndex = 0;
             this.webBrowserAuthentication.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbAuth_DocumentCompleted);
             this.webBrowserAuthentication.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.wbAuth_Navigating);
@@ -121,41 +119,11 @@ namespace IdleMasterExtended
             this.labelWebBrowserAuth.Text = "Verifying...";
             this.labelWebBrowserAuth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // buttonQuickLogin
-            // 
-            this.buttonQuickLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonQuickLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.buttonQuickLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(130)))), ((int)(((byte)(225)))));
-            this.buttonQuickLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonQuickLogin.ForeColor = System.Drawing.SystemColors.Control;
-            this.buttonQuickLogin.Location = new System.Drawing.Point(424, 448);
-            this.buttonQuickLogin.Name = "buttonQuickLogin";
-            this.buttonQuickLogin.Size = new System.Drawing.Size(180, 24);
-            this.buttonQuickLogin.TabIndex = 6;
-            this.buttonQuickLogin.Text = "Quick Login";
-            this.buttonQuickLogin.UseVisualStyleBackColor = false;
-            this.buttonQuickLogin.Click += new System.EventHandler(this.buttonQuickLogin_Click);
-            // 
-            // labelQuickLoginInstructions
-            // 
-            this.labelQuickLoginInstructions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelQuickLoginInstructions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
-            this.labelQuickLoginInstructions.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelQuickLoginInstructions.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelQuickLoginInstructions.Location = new System.Drawing.Point(0, 448);
-            this.labelQuickLoginInstructions.Name = "labelQuickLoginInstructions";
-            this.labelQuickLoginInstructions.Size = new System.Drawing.Size(604, 24);
-            this.labelQuickLoginInstructions.TabIndex = 7;
-            this.labelQuickLoginInstructions.Text = "To automatically log in using your Steam client credentials, press this button:";
-            this.labelQuickLoginInstructions.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // frmBrowser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(604, 472);
-            this.Controls.Add(this.buttonQuickLogin);
-            this.Controls.Add(this.labelQuickLoginInstructions);
             this.Controls.Add(this.labelWebBrowserAuth);
             this.Controls.Add(this.pictureBoxWebBrowserLock);
             this.Controls.Add(this.labelWebBrowser);
@@ -184,7 +152,5 @@ namespace IdleMasterExtended
         private Label labelWebBrowser;
         private PictureBox pictureBoxWebBrowserLock;
         private Label labelWebBrowserAuth;
-        private Button buttonQuickLogin;
-        private Label labelQuickLoginInstructions;
     }
 }
