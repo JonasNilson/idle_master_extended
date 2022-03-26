@@ -9,11 +9,14 @@ namespace IdleMasterExtended
 {
     public partial class frmBrowser : Form
     {
+        const int INTERNET_OPTION_END_BROWSER_SESSION = 42;
+        const int INTERNET_OPTION_SUPPRESS_BEHAVIOR = 81;
+        const int INTERNET_SUPPRESS_COOKIE_PERSIST = 3;
 
         public int SecondsWaiting = 300;
 
         [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern bool InternetSetOption(int hInternet, int dwOption, string lpBuffer, int dwBufferLength);
+        private static extern bool InternetSetOption(IntPtr hInternet, int dwOption, in int flag, int dwBufferLength);
 
         [DllImport("wininet.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern bool InternetSetCookie(string lpszUrlName, string lpszCookieName, string lpszCookieData);
@@ -32,7 +35,12 @@ namespace IdleMasterExtended
             browserBarVisibility(false);
 
             // Remove any existing session state data
-            InternetSetOption(0, 42, null, 0);
+            if (!InternetSetOption(IntPtr.Zero, INTERNET_OPTION_END_BROWSER_SESSION, 0, 0) 
+                || !InternetSetOption(IntPtr.Zero, INTERNET_OPTION_SUPPRESS_BEHAVIOR, INTERNET_SUPPRESS_COOKIE_PERSIST, sizeof(int)))
+            {
+                var ex = Marshal.GetExceptionForHR(Marshal.GetHRForLastWin32Error());
+                Logger.Exception(ex, "Browser session data could not be reset.");
+            }
 
             // Localize form
             this.Text = localization.strings.please_login;
@@ -45,7 +53,7 @@ namespace IdleMasterExtended
             InternetSetCookie("https://steamcommunity.com", "steamRememberLogin", ";expires=Mon, 01 Jan 0001 00:00:00 GMT");
 
             // When the form is loaded, navigate to the Steam login page using the web browser control
-            webBrowserAuthentication.Navigate("https://steamcommunity.com/login/home/?goto=my/profile", "_self", null, "User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko");
+            webBrowserAuthentication.Navigate("https://steamcommunity.com/login/home/?goto=my/profile", "_self", null, "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko");
 
             this.BackColor = Settings.Default.customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
             this.ForeColor = Settings.Default.customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
