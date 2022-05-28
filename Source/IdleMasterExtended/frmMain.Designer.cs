@@ -89,6 +89,7 @@ namespace IdleMasterExtended
             this.lblHoursPlayed = new System.Windows.Forms.Label();
             this.tmrStatistics = new System.Windows.Forms.Timer(this.components);
             this.lnkLatestRelease = new System.Windows.Forms.LinkLabel();
+            this.betaReleaseLabel = new System.Windows.Forms.LinkLabel();
             this.mnuTop.SuspendLayout();
             this.ssFooter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picReadingPage)).BeginInit();
@@ -581,13 +582,27 @@ namespace IdleMasterExtended
             // lnkLatestRelease
             // 
             this.lnkLatestRelease.AutoSize = true;
+            this.lnkLatestRelease.LinkColor = System.Drawing.Color.Red;
             this.lnkLatestRelease.Location = new System.Drawing.Point(170, 36);
             this.lnkLatestRelease.Name = "lnkLatestRelease";
             this.lnkLatestRelease.Size = new System.Drawing.Size(79, 13);
             this.lnkLatestRelease.TabIndex = 30;
             this.lnkLatestRelease.TabStop = true;
             this.lnkLatestRelease.Text = "(Latest release)";
+            this.lnkLatestRelease.Visible = false;
             this.lnkLatestRelease.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkLatestRelease_LinkClicked);
+            // 
+            // betaReleaseLabel
+            // 
+            this.betaReleaseLabel.AutoSize = true;
+            this.betaReleaseLabel.LinkColor = System.Drawing.Color.Red;
+            this.betaReleaseLabel.Location = new System.Drawing.Point(184, 36);
+            this.betaReleaseLabel.Name = "betaReleaseLabel";
+            this.betaReleaseLabel.Size = new System.Drawing.Size(105, 13);
+            this.betaReleaseLabel.TabIndex = 31;
+            this.betaReleaseLabel.TabStop = true;
+            this.betaReleaseLabel.Text = "(Current: v1.8-BETA)";
+            this.betaReleaseLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.betaReleaseLabel_LinkClicked);
             // 
             // frmMain
             // 
@@ -595,6 +610,7 @@ namespace IdleMasterExtended
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(304, 339);
+            this.Controls.Add(this.betaReleaseLabel);
             this.Controls.Add(this.lnkLatestRelease);
             this.Controls.Add(this.lblHoursPlayed);
             this.Controls.Add(this.GamesState);
@@ -699,6 +715,7 @@ namespace IdleMasterExtended
         private ToolStripMenuItem whitelistToolStripMenuItem;
         private ToolStripMenuItem donateToolStripMenuItem;
         private ToolStripMenuItem wikiToolStripMenuItem;
+        private LinkLabel betaReleaseLabel;
     }
 }
 
