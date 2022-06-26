@@ -136,7 +136,7 @@
     <value>Atualmente em jogo</value>
   </data>
   <data name="exit" xml:space="preserve">
-    <value>S&amp;Sair</value>
+    <value>&amp;Sair</value>
   </data>
   <data name="file" xml:space="preserve">
     <value>&amp;Arquivo</value>
