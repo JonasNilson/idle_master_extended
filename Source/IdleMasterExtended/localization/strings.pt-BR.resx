@@ -256,7 +256,7 @@
     <value>Exibir informações acima
 
 [WARNING]
-não compartilhe esta informação com ninguém, pois poderá ser usada por pessoas mal-intencionadas.</value>
+não compartilhe essa informação com ninguém, pois poderá ser usada por pessoas mal intencionadas.</value>
   </data>
   <data name="general" xml:space="preserve">
     <value>Geral</value>
@@ -286,7 +286,7 @@ não compartilhe esta informação com ninguém, pois poderá ser usada por pess
     <value>Gerenciar a lista negra do Idle Master</value>
   </data>
   <data name="minimize_to_tray" xml:space="preserve">
-    <value>Minimizar o Idle Master à barra de tarefas do sistema</value>
+    <value>Minimizar o Idle Master para a barra de tarefas do sistema</value>
   </data>
   <data name="ok" xml:space="preserve">
     <value>&amp;OK</value>
