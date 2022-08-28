@@ -1205,11 +1205,6 @@ namespace IdleMasterExtended
         {
             Process.Start("https://github.com/JonasNilson/idle_master_extended/releases");
         }
-
-        private void betaReleaseLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("https://github.com/JonasNilson/idle_master_extended/releases");
-        }
         #endregion
 
         #region TIMERS
