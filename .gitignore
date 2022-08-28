@@ -86,3 +86,4 @@ Desktop.ini
 # Certificate file extensions
 *.pfx
 
+*.snk

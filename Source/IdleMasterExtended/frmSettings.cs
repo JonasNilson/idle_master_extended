@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using IdleMasterExtended.Properties;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace IdleMasterExtended
 {
@@ -225,18 +226,16 @@ namespace IdleMasterExtended
             btnOK.BackColor = btnCancel.BackColor = btnAdvanced.BackColor = colorBgd;
             btnOK.ForeColor = btnCancel.ForeColor = btnAdvanced.ForeColor = colorTxt;
 
+            // Link labels
+            linkLabelSettings.LinkColor = customTheme ? Color.GhostWhite : Color.Blue;
+
             // Update the icon(s)
             runtimeWhiteIconsSettings();
-
-            // Apply to the main frame window
-            //this.Parent.Refresh();
-            // Save the settings
             Settings.Default.Save();
         }
 
         private void runtimeWhiteIconsSettings()
         {
-            // Icon images
             btnAdvanced.Image = Settings.Default.whiteIcons ? Resources.imgLock_w : Resources.imgLock;
         }
 
@@ -248,14 +247,9 @@ namespace IdleMasterExtended
 
         private void darkThemeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            Settings.Default.customTheme = darkThemeCheckBox.Checked; // Save the dark theme setting
-            runtimeCustomThemeSettings(); // JN: Apply the dark theme
-        }
-
-        private void whiteIconsCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            Settings.Default.whiteIcons = whiteIconsCheckBox.Checked; // Save the white icons setting
-            runtimeWhiteIconsSettings(); // JN: Apply white icons
+            Settings.Default.customTheme = darkThemeCheckBox.Checked;
+            Settings.Default.whiteIcons = darkThemeCheckBox.Checked;
+            runtimeCustomThemeSettings();
         }
 
         private void chkShutdown_CheckedChanged(object sender, EventArgs e)
@@ -272,6 +266,11 @@ namespace IdleMasterExtended
                     chkShutdown.Checked = false;
                 }
             }
+        }
+
+        private void linkLabelSettings_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\IdleMasterExtended");
         }
     }
 }
