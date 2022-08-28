@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
@@ -46,9 +47,9 @@ namespace IdleMasterExtended
                 this.ResponseUri = baseResponse.ResponseUri;
                 return baseResponse;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Logger.Exception(ex, "CookieClient -> WebResponse = " + base.GetWebResponse(request));
             }
             return null;
         }

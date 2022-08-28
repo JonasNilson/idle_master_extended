@@ -66,10 +66,12 @@ namespace IdleMasterExtended
             // 
             this.label3.Location = new System.Drawing.Point(16, 60);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 23);
+            this.label3.Size = new System.Drawing.Size(101, 32);
             this.label3.TabIndex = 2;
-            this.label3.Text = "steamparental:";
+            this.label3.Text = "steamparental / steamMachineAuth:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.ttHelp.SetToolTip(this.label3, "Check your browser to see if you have one of these cookies available. They are ty" +
+        "pically not required.");
             // 
             // txtSessionID
             // 

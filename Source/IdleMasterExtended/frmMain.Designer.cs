@@ -613,11 +613,11 @@ namespace IdleMasterExtended
             this.Controls.Add(this.lblSteamStatus);
             this.Controls.Add(this.lblCookieStatus);
             this.Controls.Add(this.mnuTop);
-            this.Controls.Add(this.ssFooter);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnResume);
             this.Controls.Add(this.lblGameName);
             this.Controls.Add(this.picApp);
+            this.Controls.Add(this.ssFooter);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnuTop;

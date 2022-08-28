@@ -75,6 +75,7 @@ namespace IdleMasterExtended
             else
             {
                 txtSteamParental.PasswordChar = '\0';
+                txtSteamParental.Text = "(typically not required)";
             }
 
             if (txtSessionID.Enabled && txtSteamLoginSecure.Enabled && txtSteamParental.Enabled)
@@ -127,14 +128,19 @@ namespace IdleMasterExtended
             txtSessionID.Text = "";
             txtSteamLoginSecure.Text = "";
             txtSteamParental.Text = "";
+
             txtSessionID.PasswordChar = '\0';
             txtSteamLoginSecure.PasswordChar = '\0';
             txtSteamParental.PasswordChar = '\0';
+
             txtSessionID.Enabled = true;
             txtSteamLoginSecure.Enabled = true;
             txtSteamParental.Enabled = true;
+
             txtSessionID.Focus();
+
             MessageBox.Show(localization.strings.validate_failed);
+
             btnUpdate.Enabled = true;
         }
 
@@ -144,7 +150,9 @@ namespace IdleMasterExtended
             txtSessionID.Enabled = false;
             txtSteamLoginSecure.Enabled = false;
             txtSteamParental.Enabled = false;
+
             btnUpdate.Text = localization.strings.validating;
+
             await CheckAndSave();
         }
     }

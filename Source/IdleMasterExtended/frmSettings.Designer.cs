@@ -35,9 +35,9 @@ namespace IdleMasterExtended
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.grpGeneral = new System.Windows.Forms.GroupBox();
+            this.linkLabelSettings = new System.Windows.Forms.LinkLabel();
             this.chkShutdown = new System.Windows.Forms.CheckBox();
             this.chkPreventSleep = new System.Windows.Forms.CheckBox();
-            this.whiteIconsCheckBox = new System.Windows.Forms.CheckBox();
             this.darkThemeCheckBox = new System.Windows.Forms.CheckBox();
             this.cboLanguage = new System.Windows.Forms.ComboBox();
             this.lblLanguage = new System.Windows.Forms.Label();
@@ -69,7 +69,6 @@ namespace IdleMasterExtended
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grpGeneral.Controls.Add(this.chkShutdown);
             this.grpGeneral.Controls.Add(this.chkPreventSleep);
-            this.grpGeneral.Controls.Add(this.whiteIconsCheckBox);
             this.grpGeneral.Controls.Add(this.darkThemeCheckBox);
             this.grpGeneral.Controls.Add(this.cboLanguage);
             this.grpGeneral.Controls.Add(this.lblLanguage);
@@ -83,6 +82,17 @@ namespace IdleMasterExtended
             this.grpGeneral.TabStop = false;
             this.grpGeneral.Text = "General";
             this.grpGeneral.Enter += new System.EventHandler(this.grpGeneral_Enter);
+            // 
+            // linkLabelSettings
+            // 
+            this.linkLabelSettings.AutoSize = true;
+            this.linkLabelSettings.Location = new System.Drawing.Point(48, 354);
+            this.linkLabelSettings.Name = "linkLabelSettings";
+            this.linkLabelSettings.Size = new System.Drawing.Size(149, 13);
+            this.linkLabelSettings.TabIndex = 6;
+            this.linkLabelSettings.TabStop = true;
+            this.linkLabelSettings.Text = "Browse Local ApplicationData";
+            this.linkLabelSettings.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSettings_LinkClicked);
             // 
             // chkShutdown
             // 
@@ -105,24 +115,11 @@ namespace IdleMasterExtended
             this.chkPreventSleep.Text = "Prevent Windows from Sleep";
             this.chkPreventSleep.UseVisualStyleBackColor = true;
             // 
-            // whiteIconsCheckBox
-            // 
-            this.whiteIconsCheckBox.AutoSize = true;
-            this.whiteIconsCheckBox.Checked = global::IdleMasterExtended.Properties.Settings.Default.whiteIcons;
-            this.whiteIconsCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::IdleMasterExtended.Properties.Settings.Default, "whiteIcons", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.whiteIconsCheckBox.Location = new System.Drawing.Point(305, 38);
-            this.whiteIconsCheckBox.Name = "whiteIconsCheckBox";
-            this.whiteIconsCheckBox.Size = new System.Drawing.Size(82, 17);
-            this.whiteIconsCheckBox.TabIndex = 7;
-            this.whiteIconsCheckBox.Text = "White icons";
-            this.whiteIconsCheckBox.UseVisualStyleBackColor = true;
-            this.whiteIconsCheckBox.CheckedChanged += new System.EventHandler(this.whiteIconsCheckBox_CheckedChanged);
-            // 
             // darkThemeCheckBox
             // 
             this.darkThemeCheckBox.AutoSize = true;
             this.darkThemeCheckBox.Checked = global::IdleMasterExtended.Properties.Settings.Default.customTheme;
-            this.darkThemeCheckBox.Location = new System.Drawing.Point(305, 19);
+            this.darkThemeCheckBox.Location = new System.Drawing.Point(306, 20);
             this.darkThemeCheckBox.Name = "darkThemeCheckBox";
             this.darkThemeCheckBox.Size = new System.Drawing.Size(81, 17);
             this.darkThemeCheckBox.TabIndex = 6;
@@ -159,7 +156,7 @@ namespace IdleMasterExtended
             "Thai",
             "Turkish",
             "Ukrainian"});
-            this.cboLanguage.Location = new System.Drawing.Point(261, 95);
+            this.cboLanguage.Location = new System.Drawing.Point(264, 96);
             this.cboLanguage.Name = "cboLanguage";
             this.cboLanguage.Size = new System.Drawing.Size(123, 21);
             this.cboLanguage.TabIndex = 4;
@@ -167,7 +164,7 @@ namespace IdleMasterExtended
             // lblLanguage
             // 
             this.lblLanguage.AutoSize = true;
-            this.lblLanguage.Location = new System.Drawing.Point(258, 80);
+            this.lblLanguage.Location = new System.Drawing.Point(261, 80);
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(103, 13);
             this.lblLanguage.TabIndex = 3;
@@ -367,6 +364,7 @@ namespace IdleMasterExtended
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(418, 384);
+            this.Controls.Add(this.linkLabelSettings);
             this.Controls.Add(this.grpIdlingQuantity);
             this.Controls.Add(this.btnAdvanced);
             this.Controls.Add(this.btnOK);
@@ -385,6 +383,7 @@ namespace IdleMasterExtended
             this.grpPriority.ResumeLayout(false);
             this.grpIdlingQuantity.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -414,10 +413,10 @@ namespace IdleMasterExtended
         private Label lblLanguage;
         private RadioButton radOneThenMany;
         private CheckBox darkThemeCheckBox;
-        private CheckBox whiteIconsCheckBox;
         private RadioButton radFastMode;
         private CheckBox chkPreventSleep;
         private CheckBox chkShutdown;
         private RadioButton radWhitelistMode;
+        private LinkLabel linkLabelSettings;
     }
 }

@@ -1197,7 +1197,7 @@ namespace IdleMasterExtended
 
         private void lnkSignIn_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var frm = new frmBrowser();
+            var frm = new frmSettingsAdvanced();
             frm.ShowDialog();
         }
 
