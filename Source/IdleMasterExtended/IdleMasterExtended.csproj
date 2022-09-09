@@ -166,6 +166,11 @@
     <Compile Include="frmStatistics.Designer.cs">
       <DependentUpon>frmStatistics.cs</DependentUpon>
     </Compile>
+    <Compile Include="localization\strings.hr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.hr.resx</DependentUpon>
+    </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,6 +207,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmStatistics.resx">
       <DependentUpon>frmStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="localization\strings.hr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.hr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="localization\strings.cs.resx" />
     <EmbeddedResource Include="localization\strings.de.resx" />
