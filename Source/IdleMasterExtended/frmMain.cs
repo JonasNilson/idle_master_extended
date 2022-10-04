@@ -1238,7 +1238,6 @@ namespace IdleMasterExtended
             if (!IsCookieReady || !IsSteamReady)
                 return;
 
-            // Update the form elements
             if (Settings.Default.showUsername)
             {
                 lblSignedOnAs.Text = SteamProfile.GetSignedAs();
@@ -1252,10 +1251,15 @@ namespace IdleMasterExtended
 
             tmrReadyToGo.Enabled = false;
 
-            // Call the loadBadges() function asynchronously
-            await LoadBadgesAsync();
-
-            StartIdle();
+            if (await CookieClient.IsLogined())
+            {
+                await LoadBadgesAsync();
+                StartIdle();
+            }
+            else
+            {
+                ResetClientStatus();
+            }
         }
 
         private async void tmrCardDropCheck_Tick(object sender, EventArgs e)
