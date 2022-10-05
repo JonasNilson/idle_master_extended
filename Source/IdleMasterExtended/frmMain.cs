@@ -22,17 +22,6 @@ namespace IdleMasterExtended
 {
     public partial class frmMain : Form
     {
-        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        private static extern ExecutionState SetThreadExecutionState(ExecutionState esFlags);
-        [FlagsAttribute]
-        private enum ExecutionState : uint
-        {
-            EsAwaymodeRequired = 0x00000040,
-            EsContinuous = 0x80000000,
-            EsDisplayRequired = 0x00000002,
-            EsSystemRequired = 0x00000001
-        }
-
         private Statistics statistics = new Statistics();
         public List<Badge> AllBadges { get; set; }
 
@@ -648,8 +637,8 @@ namespace IdleMasterExtended
         #endregion
 
         #region MISC
-        private static void PreventSleep() => SetThreadExecutionState(ExecutionState.EsContinuous | ExecutionState.EsSystemRequired);
-        private static void AllowSleep() => SetThreadExecutionState(ExecutionState.EsContinuous);
+        private static void PreventSleep() => NativeMethods.SetThreadExecutionState(NativeMethods.ExecutionState.EsContinuous | NativeMethods.ExecutionState.EsSystemRequired);
+        private static void AllowSleep() => NativeMethods.SetThreadExecutionState(NativeMethods.ExecutionState.EsContinuous);
 
         private static void CreateShutdownProcess(String parameters)
         {
@@ -1491,5 +1480,19 @@ namespace IdleMasterExtended
             }
         }
         #endregion
+    }
+}
+
+internal static class NativeMethods
+{
+    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+    internal static extern ExecutionState SetThreadExecutionState(ExecutionState esFlags);
+    [FlagsAttribute]
+    internal enum ExecutionState : uint
+    {
+        EsAwaymodeRequired = 0x00000040,
+        EsContinuous = 0x80000000,
+        EsDisplayRequired = 0x00000002,
+        EsSystemRequired = 0x00000001
     }
 }
