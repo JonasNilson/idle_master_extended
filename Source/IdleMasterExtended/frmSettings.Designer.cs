@@ -155,7 +155,8 @@ namespace IdleMasterExtended
             "Swedish",
             "Thai",
             "Turkish",
-            "Ukrainian"});
+            "Ukrainian",
+            "Croatian"});
             this.cboLanguage.Location = new System.Drawing.Point(264, 96);
             this.cboLanguage.Name = "cboLanguage";
             this.cboLanguage.Size = new System.Drawing.Size(123, 21);

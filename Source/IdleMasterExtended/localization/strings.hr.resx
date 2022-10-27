@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>&amp;O</value>
+  </data>
+  <data name="badge_didnt_load" xml:space="preserve">
+    <value>Stranica za značke se nije učitala, pokušavamo ponovno za __num__ sekunde</value>
+  </data>
+  <data name="blacklist" xml:space="preserve">
+    <value>&amp;Crna Lista</value>
+  </data>
+  <data name="blacklist_current_game" xml:space="preserve">
+    <value>&amp;Stavite trenutnu igru na Crnu Listu</value>
+  </data>
+  <data name="card_drops_remaining" xml:space="preserve">
+    <value>značaka za ispustiti preostalo</value>
+  </data>
+  <data name="currently_ingame" xml:space="preserve">
+    <value>Trenutno u igri</value>
+  </data>
+  <data name="exit" xml:space="preserve">
+    <value>&amp;Izlaz</value>
+  </data>
+  <data name="file" xml:space="preserve">
+    <value>&amp;Datoteka</value>
+  </data>
+  <data name="game" xml:space="preserve">
+    <value>&amp;Igra</value>
+  </data>
+  <data name="games_left_to_idle" xml:space="preserve">
+    <value>igrica preostalo za idlati</value>
+  </data>
+  <data name="help" xml:space="preserve">
+    <value>&amp;Pomoć</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>Sati</value>
+  </data>
+  <data name="hrs_on_record" xml:space="preserve">
+    <value>sati zabilježeno</value>
+  </data>
+  <data name="idle_master_connected" xml:space="preserve">
+    <value>Idle Master je spojena na Steam</value>
+  </data>
+  <data name="idle_master_notconnected" xml:space="preserve">
+    <value>Idle Master nije spojen na Steam</value>
+  </data>
+  <data name="idle_now" xml:space="preserve">
+    <value>idle sada</value>
+  </data>
+  <data name="idling_complete" xml:space="preserve">
+    <value>Idloevanje je dovršeno, nema više dostupnih karata</value>
+  </data>
+  <data name="idling_paused" xml:space="preserve">
+    <value>Idleovanje pauzirano</value>
+  </data>
+  <data name="loading_next" xml:space="preserve">
+    <value>Učitavamo sljedeću igru...</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Ime</value>
+  </data>
+  <data name="next_check" xml:space="preserve">
+    <value>Sljedeća provjera</value>
+  </data>
+  <data name="not_ingame" xml:space="preserve">
+    <value>Nije u igri</value>
+  </data>
+  <data name="official_group" xml:space="preserve">
+    <value>&amp;Službena Grupa</value>
+  </data>
+  <data name="pause_idling" xml:space="preserve">
+    <value>&amp;Pauzirajte idleovanje</value>
+  </data>
+  <data name="please_wait" xml:space="preserve">
+    <value>molimo pričekajte...</value>
+  </data>
+  <data name="reading_badge_page" xml:space="preserve">
+    <value>Čitamo stranicu znački</value>
+  </data>
+  <data name="release_notes" xml:space="preserve">
+    <value>&amp;Obavijest Izdanja</value>
+  </data>
+  <data name="resume_idling" xml:space="preserve">
+    <value>&amp;Nastavite idleovati</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>&amp;Postavke</value>
+  </data>
+  <data name="signed_in_as" xml:space="preserve">
+    <value>Prijavljeni ste kao</value>
+  </data>
+  <data name="sign_in" xml:space="preserve">
+    <value>Prijava</value>
+  </data>
+  <data name="sign_out" xml:space="preserve">
+    <value>Odjava</value>
+  </data>
+  <data name="skip_current_game" xml:space="preserve">
+    <value>&amp;Preskočite trenutnu igru</value>
+  </data>
+  <data name="sorting_results" xml:space="preserve">
+    <value>Sortiranje obzirom na Vaše postavke, molimo pričekajte...</value>
+  </data>
+  <data name="statistics" xml:space="preserve">
+    <value>&amp;Statistika</value>
+  </data>
+  <data name="steam_ignored" xml:space="preserve">
+    <value>Stanje Steama je ignorirano</value>
+  </data>
+  <data name="steam_notrunning" xml:space="preserve">
+    <value>Steam nije pokrenut</value>
+  </data>
+  <data name="steam_running" xml:space="preserve">
+    <value>Steam je pokrenut</value>
+  </data>
+  <data name="update_games_status" xml:space="preserve">
+    <value>Ažurirajte stanje igre</value>
+  </data>
+  <data name="accept" xml:space="preserve">
+    <value>&amp;Prihvati</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>&amp;Dodaj</value>
+  </data>
+  <data name="add_game_blacklist" xml:space="preserve">
+    <value>Dodaj igru na Crnu Listu</value>
+  </data>
+  <data name="advanced_auth" xml:space="preserve">
+    <value>Prikaz informacija o naprednoj provjeri autentičnosti</value>
+  </data>
+  <data name="auth_data" xml:space="preserve">
+    <value>Podaci autentičnosti Idle Mastera</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>&amp;Poništi</value>
+  </data>
+  <data name="cookie_warning" xml:space="preserve">
+    <value>Prikaz informacija iznad
+
+[UPOZORENJE]
+Ne dijelite ove podatke ni s kim,
+jer bi ga napadač potencijalno mogao koristiti za prijavu na
+vaš Steam račun.</value>
+  </data>
+  <data name="general" xml:space="preserve">
+    <value>Općenito</value>
+  </data>
+  <data name="idle_individual" xml:space="preserve">
+    <value>Idleaj svaku igru zasebno</value>
+  </data>
+  <data name="idle_master_settings" xml:space="preserve">
+    <value>Idle Master Postavke</value>
+  </data>
+  <data name="idle_simultaneous" xml:space="preserve">
+    <value>Idleajte igre istovremeno do 2 sata, onda zasebno</value>
+  </data>
+  <data name="idling_behavior" xml:space="preserve">
+    <value>Ponašanje Idleovanja</value>
+  </data>
+  <data name="idling_order" xml:space="preserve">
+    <value>Red Idleovanja</value>
+  </data>
+  <data name="ignore_client_status" xml:space="preserve">
+    <value>Ignorirajte Steam status</value>
+  </data>
+  <data name="interface_language" xml:space="preserve">
+    <value>Jezik</value>
+  </data>
+  <data name="manage_blacklist" xml:space="preserve">
+    <value>Upravljanje Idle Master Crnom Listom</value>
+  </data>
+  <data name="minimize_to_tray" xml:space="preserve">
+    <value>Minimizirajte Idle Master u sustavnu traku</value>
+  </data>
+  <data name="ok" xml:space="preserve">
+    <value>&amp;U redu</value>
+  </data>
+  <data name="order_default" xml:space="preserve">
+    <value>Uobičajeno (Abecednim redom)</value>
+  </data>
+  <data name="order_least" xml:space="preserve">
+    <value>Odredite prioritet igri s manjim brojem preostalih karata</value>
+  </data>
+  <data name="order_most" xml:space="preserve">
+    <value>Odredite prioritet igri s većim brojem preostalih karata</value>
+  </data>
+  <data name="order_value" xml:space="preserve">
+    <value>Odredite prioritet igri s većom vrijednošću karata</value>
+  </data>
+  <data name="please_login" xml:space="preserve">
+    <value>Molimo Vas prijavite se na Steam</value>
+  </data>
+  <data name="please_restart" xml:space="preserve">
+    <value>Molimo Vas ponovno pokrenite program kako bi se jezik promijenio</value>
+  </data>
+  <data name="release_notes_title" xml:space="preserve">
+    <value>Idle Master Obavijesti Izdanja</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>&amp;Spremite</value>
+  </data>
+  <data name="saving_info" xml:space="preserve">
+    <value>Idle Master sprema Vaše informacije</value>
+  </data>
+  <data name="show_username" xml:space="preserve">
+    <value>Prikažite korisničko ime prijavljenog Steam korisnika</value>
+  </data>
+  <data name="this_session" xml:space="preserve">
+    <value>Ova sesija</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>Ukupno</value>
+  </data>
+  <data name="update" xml:space="preserve">
+    <value>&amp;Ažurirajte</value>
+  </data>
+  <data name="validate_failed" xml:space="preserve">
+    <value>Podatak koji ste unjeli je neispravan. Pokušajte ponovno...</value>
+  </data>
+  <data name="validating" xml:space="preserve">
+    <value>Provjera valjanosti...</value>
+  </data>
+  <data name="idle_onethenmany" xml:space="preserve">
+    <value>Idleajte igre s više od 2 sata, zasebno, onda istovremeno</value>
+  </data>
+  <data name="add_game_whitelist" xml:space="preserve">
+    <value>Dodaj igru na Bijelu Listu</value>
+  </data>
+  <data name="manage_whitelist" xml:space="preserve">
+    <value>Upravljanje Idle Master Bijelom Listom</value>
+  </data>
+  <data name="whitelist" xml:space="preserve">
+    <value>&amp;Bijela Lista</value>
+  </data>
+</root>

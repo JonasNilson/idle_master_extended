@@ -889,6 +889,9 @@ namespace IdleMasterExtended
                     case "Ukrainian":
                         language_string = "uk";
                         break;
+                    case "Croatian":
+                        language_string = "hr";
+                        break;
                     default:
                         language_string = "en";
                         break;
