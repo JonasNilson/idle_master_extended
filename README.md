@@ -5,11 +5,9 @@
 ===========
 Get your [Steam Trading Cards](https://steamcommunity.com/tradingcards/) the quickest possible way.
 
-- Accepted by the official [Idle Master community](https://steamcommunity.com/groups/idlemastery/discussions)
-
 ❓ But what is Idle Master Extended?
 -------
-🔧 This is a fork of the original [Idle Master](https://github.com/jshackles/idle_master) project (**discontinued** in early 2017) by [jshackles](https://github.com/jshackles) (also known for [Enhanced Steam](https://github.com/jshackles/Enhanced_Steam)):
+🔧 This is a fork of the **discontinued** [Idle Master](https://github.com/jshackles/idle_master) project by [jshackles](https://github.com/jshackles) (also known for [Enhanced Steam](https://github.com/jshackles/Enhanced_Steam)):
 
 > This program will determine which of your Steam games still have Steam Trading Card drops remaining, and will go through each application to simulate you being “in-game” so that cards will drop. It will check periodically to see if the game you’re idling has card drops remaining. When only one drop remains, it will start checking more frequently. When the game you’re idling has no more cards, it’ll move on to the next game. When no more cards are available, the program will terminate. 
 > 
@@ -29,6 +27,10 @@ The latest release is always available here: https://github.com/JonasNilson/idle
 -------
 * [GitHub Wiki > Features](https://github.com/JonasNilson/idle_master_extended/wiki/Features)
 
+🔄 Frequently Asked Questions
+-------
+- [GitHub Wiki > FAQ](https://github.com/JonasNilson/idle_master_extended/wiki/FAQ)
+
 🔨 Troubleshooting
 -------
 * [GitHub Wiki > Troubleshooting](https://github.com/JonasNilson/idle_master_extended/wiki/Troubleshooting-and-common-solutions)
@@ -45,4 +47,4 @@ Credits
 -------
 Idle Master was created by [jshackles](https://github.com/jshackles), based on the original code created by Stumpokapow.
 
-Idle Master was writen in C# using Steamworks.NET and CSteamworks by Riley Labrecque (https://github.com/rlabrecque/CSteamworks), and using open source icons from Open Iconic (https://github.com/iconic/open-iconic).
+Idle Master was written in `C#` using `Steamworks.NET` and [`CSteamworks`](https://github.com/rlabrecque/CSteamworks), and using open source icons from [Open Iconic](https://github.com/iconic/open-iconic).
