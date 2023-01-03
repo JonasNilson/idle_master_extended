@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using IdleMasterExtended.Properties;
@@ -46,6 +48,9 @@ namespace IdleMasterExtended
             btnView.BackColor = btnUpdate.BackColor = this.BackColor;
             btnView.ForeColor = btnUpdate.ForeColor = this.ForeColor;
             btnView.Image = customTheme ? Resources.imgView_w : Resources.imgView;
+
+            // Links
+            linkLabelWhatIsThis.LinkColor = customTheme ? Color.GhostWhite : Color.Blue;
 
             if (!string.IsNullOrWhiteSpace(Settings.Default.sessionid))
             {
@@ -154,6 +159,11 @@ namespace IdleMasterExtended
             btnUpdate.Text = localization.strings.validating;
 
             await CheckAndSave();
+        }
+
+        private void linkLabelWhatIsThis_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/JonasNilson/idle_master_extended/wiki/Login-methods");
         }
     }
 }

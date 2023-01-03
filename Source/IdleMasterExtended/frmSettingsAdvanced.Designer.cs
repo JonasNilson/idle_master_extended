@@ -42,6 +42,7 @@ namespace IdleMasterExtended
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnView = new System.Windows.Forms.Button();
             this.ttHelp = new System.Windows.Forms.ToolTip(this.components);
+            this.linkLabelWhatIsThis = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -130,12 +131,24 @@ namespace IdleMasterExtended
             this.ttHelp.InitialDelay = 500;
             this.ttHelp.ReshowDelay = 100;
             // 
+            // linkLabelWhatIsThis
+            // 
+            this.linkLabelWhatIsThis.AutoSize = true;
+            this.linkLabelWhatIsThis.Location = new System.Drawing.Point(208, 88);
+            this.linkLabelWhatIsThis.Name = "linkLabelWhatIsThis";
+            this.linkLabelWhatIsThis.Size = new System.Drawing.Size(113, 13);
+            this.linkLabelWhatIsThis.TabIndex = 8;
+            this.linkLabelWhatIsThis.TabStop = true;
+            this.linkLabelWhatIsThis.Text = "What are those fields?";
+            this.linkLabelWhatIsThis.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWhatIsThis_LinkClicked);
+            // 
             // frmSettingsAdvanced
             // 
             this.AcceptButton = this.btnUpdate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(415, 116);
+            this.Controls.Add(this.linkLabelWhatIsThis);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.txtSteamParental);
@@ -167,5 +180,6 @@ namespace IdleMasterExtended
         private Button btnView;
         private Button btnUpdate;
         private ToolTip ttHelp;
+        private LinkLabel linkLabelWhatIsThis;
     }
 }
