@@ -116,11 +116,12 @@ namespace IdleMasterExtended
                 }
 
                 ResponseUri = baseResponse.ResponseUri;
+                
                 return baseResponse;
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex, "CookieClient -> WebResponse = " + base.GetWebResponse(request));
+                Logger.Exception(ex, "CookieClient -> WebResponse = " + request);
             }
             
             return null;
