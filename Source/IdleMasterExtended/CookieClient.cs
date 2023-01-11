@@ -69,17 +69,10 @@ namespace IdleMasterExtended
                 Logger.Exception(ex, "CookieClient -> IsLogined, for url = " + Settings.Default.myProfileURL);
             }
 
-            // The 'global_action_link' contains the Steam profile wallet ballance. Every logged in user should have it available.
-            var globalActionLink = document.DocumentNode.SelectSingleNode("//a[@class='global_action_link']");
+            // The 'notification_count' contains the Steam profile notifications count. Every logged in user should have it available.
+            var notificationCount = document.DocumentNode.SelectSingleNode("//span[@class='notification_count']");
 
-            if (globalActionLink is object && !string.IsNullOrEmpty(globalActionLink.Id))
-            {
-                return globalActionLink.Id == "header_wallet_balance";
-            }
-            else
-            {
-                return false;
-            }
+            return !string.IsNullOrEmpty(notificationCount.InnerHtml);
         }
 
         protected override WebRequest GetWebRequest(Uri address)
