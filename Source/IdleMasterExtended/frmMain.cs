@@ -1250,7 +1250,14 @@ namespace IdleMasterExtended
             }
             else
             {
-                ResetClientStatus();
+                if (string.IsNullOrEmpty(Settings.Default.myProfileURL))
+                {
+                    ResetClientStatus();
+                }
+                else
+                {
+                    await CookieClient.RefreshLoginToken();
+                }
             }
         }
 

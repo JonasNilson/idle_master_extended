@@ -75,6 +75,30 @@ namespace IdleMasterExtended
             return !string.IsNullOrEmpty(notificationCount.InnerHtml);
         }
 
+        public static async Task<bool> RefreshLoginToken()
+        {
+            var document = new HtmlDocument();
+
+            var cookies = new CookieContainer();
+            var target = new Uri("https://steamcommunity.com");
+
+            cookies.Add(new Cookie("Cookie", "steamRefresh_steam=" + Settings.Default.steamLoginSecure) { Domain = target.Host });
+
+            try
+            {
+                var response = await GetHttpAsync("https://login.steampowered.com/jwt/refresh?redir=https%3A%2F%2Fsteamcommunity.com");
+                document.LoadHtml(response);
+                
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex, "CookieClient -> RefreshToken, for url = " + Settings.Default.myProfileURL);
+            }
+
+            return false;
+        }
+
         protected override WebRequest GetWebRequest(Uri address)
         {
             var request = base.GetWebRequest(address);
