@@ -70,9 +70,18 @@ namespace IdleMasterExtended
             }
 
             // The 'notification_count' contains the Steam profile notifications count. Every logged in user should have it available.
-            var notificationCount = document.DocumentNode.SelectSingleNode("//span[@class='notification_count']");
+            var notificationCountNode = document.DocumentNode.SelectSingleNode("//span[@class='notification_count']");
 
-            return !string.IsNullOrEmpty(notificationCount.InnerHtml);
+            if (notificationCountNode is null || string.IsNullOrEmpty(notificationCountNode.InnerHtml))
+            {
+                // The user has no notification count available --> not logged in properly.
+                ClearCookies();
+                return false;
+            } 
+            else
+            {
+                return true;
+            }
         }
 
         public static async Task<bool> RefreshLoginToken()
@@ -122,14 +131,7 @@ namespace IdleMasterExtended
                 Cookie loginCookie = cookies["steamLoginSecure"];
                 if (loginCookie != null && loginCookie.Value == "deleted")
                 {
-                    Settings.Default.sessionid = string.Empty;
-                    Settings.Default.steamLogin = string.Empty;
-                    Settings.Default.steamLoginSecure = string.Empty;
-                    Settings.Default.steamparental = string.Empty;
-                    Settings.Default.steamMachineAuth = string.Empty;
-                    Settings.Default.steamRememberLogin = string.Empty;
-                    
-                    Settings.Default.Save();
+                    ClearCookies();
                 }
 
                 ResponseUri = baseResponse.ResponseUri;
@@ -142,6 +144,19 @@ namespace IdleMasterExtended
             }
             
             return null;
+        }
+
+        private static void ClearCookies()
+        {
+            Settings.Default.sessionid = string.Empty;
+            Settings.Default.steamLogin = string.Empty;
+            Settings.Default.steamLoginSecure = string.Empty;
+            Settings.Default.steamparental = string.Empty;
+            Settings.Default.steamMachineAuth = string.Empty;
+            Settings.Default.steamRememberLogin = string.Empty;
+            Settings.Default.myProfileURL = string.Empty;
+
+            Settings.Default.Save();
         }
 
         private static CookieContainer GenerateCookies()
