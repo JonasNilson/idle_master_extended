@@ -69,6 +69,8 @@ namespace IdleMasterExtended
             Settings.Default.showUsername = chkShowUsername.Checked;
             Settings.Default.NoSleep = chkPreventSleep.Checked;
             Settings.Default.ShutdownWindowsOnDone = chkShutdown.Checked;
+            Settings.Default.IdleOnlyPlayed = chkIdleOnlyPlayed.Checked;
+
             Settings.Default.Save();
 
             Close();
@@ -227,7 +229,7 @@ namespace IdleMasterExtended
             btnOK.ForeColor = btnCancel.ForeColor = btnAdvanced.ForeColor = colorTxt;
 
             // Link labels
-            linkLabelSettings.LinkColor = customTheme ? Color.GhostWhite : Color.Blue;
+            linkLabelAppData.LinkColor = lnkGitHubWiki.LinkColor = customTheme ? Color.GhostWhite : Color.Blue;
 
             // Update the icon(s)
             runtimeWhiteIconsSettings();
@@ -271,6 +273,11 @@ namespace IdleMasterExtended
         private void linkLabelSettings_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("explorer.exe", Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\IdleMasterExtended");
+        }
+
+        private void lnkGitHubWiki_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/JonasNilson/idle_master_extended/wiki");
         }
     }
 }
