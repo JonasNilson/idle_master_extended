@@ -47,7 +47,7 @@ namespace IdleMasterExtended
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(19, 13);
+            this.label1.Location = new System.Drawing.Point(19, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 23);
             this.label1.TabIndex = 0;
@@ -56,7 +56,7 @@ namespace IdleMasterExtended
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(13, 36);
+            this.label2.Location = new System.Drawing.Point(13, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 23);
             this.label2.TabIndex = 1;
@@ -65,7 +65,7 @@ namespace IdleMasterExtended
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(16, 60);
+            this.label3.Location = new System.Drawing.Point(16, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 32);
             this.label3.TabIndex = 2;
@@ -76,7 +76,7 @@ namespace IdleMasterExtended
             // 
             // txtSessionID
             // 
-            this.txtSessionID.Location = new System.Drawing.Point(123, 10);
+            this.txtSessionID.Location = new System.Drawing.Point(123, 34);
             this.txtSessionID.Name = "txtSessionID";
             this.txtSessionID.PasswordChar = '*';
             this.txtSessionID.Size = new System.Drawing.Size(280, 20);
@@ -85,7 +85,7 @@ namespace IdleMasterExtended
             // 
             // txtSteamLoginSecure
             // 
-            this.txtSteamLoginSecure.Location = new System.Drawing.Point(123, 33);
+            this.txtSteamLoginSecure.Location = new System.Drawing.Point(123, 60);
             this.txtSteamLoginSecure.Name = "txtSteamLoginSecure";
             this.txtSteamLoginSecure.PasswordChar = '*';
             this.txtSteamLoginSecure.Size = new System.Drawing.Size(280, 20);
@@ -94,7 +94,7 @@ namespace IdleMasterExtended
             // 
             // txtSteamParental
             // 
-            this.txtSteamParental.Location = new System.Drawing.Point(123, 57);
+            this.txtSteamParental.Location = new System.Drawing.Point(123, 86);
             this.txtSteamParental.Name = "txtSteamParental";
             this.txtSteamParental.PasswordChar = '*';
             this.txtSteamParental.Size = new System.Drawing.Size(280, 20);
@@ -104,7 +104,7 @@ namespace IdleMasterExtended
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.Location = new System.Drawing.Point(327, 83);
+            this.btnUpdate.Location = new System.Drawing.Point(328, 113);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 7;
@@ -114,8 +114,9 @@ namespace IdleMasterExtended
             // 
             // btnView
             // 
+            this.btnView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnView.Image = global::IdleMasterExtended.Properties.Resources.imgView;
-            this.btnView.Location = new System.Drawing.Point(123, 83);
+            this.btnView.Location = new System.Drawing.Point(123, 113);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(27, 23);
             this.btnView.TabIndex = 6;
@@ -134,12 +135,12 @@ namespace IdleMasterExtended
             // linkLabelWhatIsThis
             // 
             this.linkLabelWhatIsThis.AutoSize = true;
-            this.linkLabelWhatIsThis.Location = new System.Drawing.Point(208, 88);
+            this.linkLabelWhatIsThis.Location = new System.Drawing.Point(290, 9);
             this.linkLabelWhatIsThis.Name = "linkLabelWhatIsThis";
             this.linkLabelWhatIsThis.Size = new System.Drawing.Size(113, 13);
             this.linkLabelWhatIsThis.TabIndex = 8;
             this.linkLabelWhatIsThis.TabStop = true;
-            this.linkLabelWhatIsThis.Text = "What are those fields?";
+            this.linkLabelWhatIsThis.Text = "What are these fields?";
             this.linkLabelWhatIsThis.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWhatIsThis_LinkClicked);
             // 
             // frmSettingsAdvanced
@@ -147,7 +148,7 @@ namespace IdleMasterExtended
             this.AcceptButton = this.btnUpdate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(415, 116);
+            this.ClientSize = new System.Drawing.Size(415, 148);
             this.Controls.Add(this.linkLabelWhatIsThis);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnView);
