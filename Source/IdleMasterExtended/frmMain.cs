@@ -688,31 +688,33 @@ namespace IdleMasterExtended
                 string jsonResponseShortened = jsonResponse
                     .Substring(jsonResponse
                     .IndexOf(githubReleaseTagKey));
+                
                 string[] releaseTagKeyValue = jsonResponseShortened
                     .Substring(0, jsonResponseShortened.IndexOf(','))
-                    .Replace("\"", String.Empty)
+                    .Replace("\"", string.Empty)
                     .Split(':');
 
                 if (releaseTagKeyValue[1].StartsWith("v"))
                 {
-                    string githubReleaseTag = releaseTagKeyValue[1];        // "vX.Y-fix"
-                    string[] tagElements = githubReleaseTag.Split('-');     // "vX.Y"
-                    string versionNumber = tagElements[0].Substring(1);     // "X.Y"
-                    string[] versionElements = versionNumber.Split('.');    // [X, Y]
+                    string githubReleaseTag = releaseTagKeyValue[1];        // "vX.Y.Z-rc1"
+                    string[] tagElements = githubReleaseTag.Split('-');     // "vX.Y.Z"
+                    string versionNumber = tagElements[0].Substring(1);     // "X.Y.Z"
+                    string[] versionElements = versionNumber.Split('.');    // [X, Y, Z]
 
-                    int latestMajorVersion;
-                    int latestMinorVersion;
-                    if (int.TryParse(versionElements[0], out latestMajorVersion)
-                        && int.TryParse(versionElements[1], out latestMinorVersion))
+                    if (int.TryParse(versionElements[0], out int latestMajorVersion)
+                        && int.TryParse(versionElements[1], out int latestMinorVersion)
+                        && int.TryParse(versionElements[2], out int latestPatchVersion))
                     {
                         System.Version version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-                        if (latestMajorVersion > version.Major || latestMinorVersion > version.Minor)
+                        if (latestMajorVersion > version.Major
+                            || (latestMajorVersion == version.Major && latestMinorVersion > version.Minor)
+                            || latestMajorVersion == version.Major && latestMinorVersion == version.Minor && latestPatchVersion > version.Build)
                         {
-                            lnkLatestRelease.Text = String.Format("(Latest: v{0}.{1})", latestMajorVersion, latestMinorVersion);
+                            lnkLatestRelease.Text = string.Format("(Latest: v{0}.{1}.{2})", latestMajorVersion, latestMinorVersion, latestPatchVersion);
                         }
                         else
                         {
-                            lnkLatestRelease.Text = String.Format("(Current: v{0}.{1})", version.Major, version.Minor);
+                            lnkLatestRelease.Text = string.Format("(Current: v{0}.{1}.{2})", version.Major, version.Minor, version.Build);
                         }
                     }
                 }
