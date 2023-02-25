@@ -27,7 +27,7 @@ namespace IdleMasterExtended
 
         public IEnumerable<Badge> CanIdleBadges
         {
-            get { return AllBadges.Where(b => b.RemainingCard != 0); }
+            get { return AllBadges.Where(b => b.RemainingCard != 0).Where(b => (!Settings.Default.IdleOnlyPlayed) || (b.HoursPlayed) > 0.0); }
         }
 
         public bool IsCookieReady;
