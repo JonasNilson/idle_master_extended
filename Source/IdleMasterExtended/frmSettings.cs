@@ -180,10 +180,15 @@ namespace IdleMasterExtended
                 chkShutdown.Checked = true;
             }
 
-            runtimeCustomThemeSettings(); // JN: Apply theme colors and icons
+            if (Settings.Default.IdleOnlyPlayed)
+            {
+                chkIdleOnlyPlayed.Checked = true;
+            }
+
+            runtimeCustomThemeSettings();
         }
 
-        // JN: Change the colors of the form components to match the dark theme
+
         private void runtimeCustomThemeSettings()
         {
             // Read settings
