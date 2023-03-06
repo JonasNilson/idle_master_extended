@@ -353,7 +353,7 @@ namespace IdleMasterExtended
 
                 // Resize the form
                 var graphics = CreateGraphics();
-                var scale = graphics.DpiY * 1.9583;
+                var scale = graphics.DpiY * 2.000;
                 Height = Convert.ToInt32(scale);
 
                 // Kill the idling process
@@ -553,7 +553,7 @@ namespace IdleMasterExtended
 
             // Resize the form
             var graphics = CreateGraphics();
-            var scale = graphics.DpiY * 1.9583;
+            var scale = graphics.DpiY * 2.000;
             Height = Convert.ToInt32(scale);
 
             if (Settings.Default.ShutdownWindowsOnDone)
