@@ -19,7 +19,7 @@ namespace steam_idle
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain(appId));
+            Application.Run(new FormSteamIdle(appId));
         }
     }
 }
