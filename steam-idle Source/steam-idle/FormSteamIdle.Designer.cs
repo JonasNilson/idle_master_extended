@@ -1,6 +1,6 @@
 ﻿namespace steam_idle
 {
-    partial class frmMain
+    partial class FormSteamIdle
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSteamIdle));
             this.picApp = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picApp)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +55,7 @@
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "You\'re Now In-Game";
-            this.Load += new System.EventHandler(this.frmMain_Load);
+            this.Load += new System.EventHandler(this.FormSteamIdle_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picApp)).EndInit();
             this.ResumeLayout(false);
 

@@ -790,15 +790,6 @@ namespace IdleMasterExtended
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            if (File.Exists(Environment.CurrentDirectory + "\\steam_api.dll") == false)
-            {
-                CopyResource("IdleMasterExtended.Resources.steam_api.dll", Environment.CurrentDirectory + @"\steam_api.dll");
-            }
-            if (File.Exists(Environment.CurrentDirectory + "\\steam-idle.exe") == false)
-            {
-                CopyResource("IdleMasterExtended.Resources.steam-idle.exe", Environment.CurrentDirectory + @"\steam-idle.exe");
-            }
-
             // Update the settings, if needed.  When the application updates, settings will persist.
             if (Settings.Default.updateNeeded)
             {
