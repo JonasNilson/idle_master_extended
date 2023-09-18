@@ -334,7 +334,11 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y /d "$(SolutionDir)..\steam-idle Source\steam-idle\bin\Release\steam-idle.exe" "$(TargetDir)"
-xcopy /y /d "$(SolutionDir)..\Dependencies\steam_api64.dll" "$(TargetDir)"</PostBuildEvent>
+xcopy /y /d "$(SolutionDir)..\Dependencies\steam_api64.dll" "$(TargetDir)"
+
+mkdir "$(TargetDir)Languages"
+for /f %25%25x IN ('dir /B /AD $(TargetDir)') do move "$(TargetDir)%25%25x" "$(TargetDir)Languages"
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
