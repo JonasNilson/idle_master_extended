@@ -7,9 +7,9 @@ namespace IdleMasterExtended
 {
     public partial class frmWhitelist : Form
     {
-        frmMain mainForm;
+        FrmMain mainForm;
 
-        public frmWhitelist(frmMain parentForm)
+        public frmWhitelist(FrmMain parentForm)
         {
             this.mainForm = parentForm;
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace IdleMasterExtended
                 if (lstWhitelist.Items.Count == 1)
                 {
                     mainForm.StartSoloIdle(
-                        mainForm.AllBadges.FirstOrDefault(b => b.AppId == int.Parse(lstWhitelist.Items[0].ToString()))
+                        BadgePageHandler.AllBadges.FirstOrDefault(b => b.AppId == int.Parse(lstWhitelist.Items[0].ToString()))
                     );
                 }
                 else if (lstWhitelist.Items.Count > 1)
@@ -56,7 +56,7 @@ namespace IdleMasterExtended
                 }
 
                 mainForm.DisableCardDropCheckTimer();
-                mainForm.UpdateStateInfo();
+                mainForm.RefreshGamesAndCardsRemaining();
             }
             else
             {
