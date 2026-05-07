@@ -299,6 +299,7 @@ namespace IdleMasterExtended
             this.btnAdvanced.Name = "btnAdvanced";
             this.btnAdvanced.Size = new System.Drawing.Size(25, 23);
             this.btnAdvanced.TabIndex = 4;
+            this.btnAdvanced.Tag = "imgLock";
             this.ttHints.SetToolTip(this.btnAdvanced, "Display advanced authentication information");
             this.btnAdvanced.UseVisualStyleBackColor = true;
             this.btnAdvanced.Click += new System.EventHandler(this.btnAdvanced_Click);

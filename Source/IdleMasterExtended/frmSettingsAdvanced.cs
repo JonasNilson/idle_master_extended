@@ -29,29 +29,21 @@ namespace IdleMasterExtended
 
         private void frmSettingsAdvanced_Load(object sender, EventArgs e)
         {
-            // Localize Form
-            btnUpdate.Text = localization.strings.update;
-            this.Text = localization.strings.auth_data;
-            ttHelp.SetToolTip(btnView, localization.strings.cookie_warning);
+            LocalizeForm();
+            SetTextFields();
 
-            // Read settings
-            var customTheme = Settings.Default.customTheme;
-            var whiteIcons = Settings.Default.whiteIcons;
+            if (txtSessionID.Enabled && txtSteamLoginSecure.Enabled && txtSteamParental.Enabled)
+            {
+                btnView.Visible = false;
+            }
 
-            // Define colors
-            this.BackColor = customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
-            this.ForeColor = customTheme ? Settings.Default.colorTxt : Settings.Default.colorTxtOriginal;
+            btnUpdate.Enabled = false;
 
-            // Buttons
-            FlatStyle buttonStyle = customTheme ? FlatStyle.Flat : FlatStyle.Standard;
-            btnView.FlatStyle = btnUpdate.FlatStyle = buttonStyle;
-            btnView.BackColor = btnUpdate.BackColor = this.BackColor;
-            btnView.ForeColor = btnUpdate.ForeColor = this.ForeColor;
-            btnView.Image = customTheme ? Resources.imgView_w : Resources.imgView;
+            ThemeHandler.SetTheme(this, Settings.Default.customTheme);
+        }
 
-            // Links
-            linkLabelWhatIsThis.LinkColor = customTheme ? Color.GhostWhite : Color.Blue;
-
+        private void SetTextFields()
+        {
             if (!string.IsNullOrWhiteSpace(Settings.Default.sessionid))
             {
                 txtSessionID.Text = Settings.Default.sessionid;
@@ -82,13 +74,14 @@ namespace IdleMasterExtended
                 txtSteamParental.PasswordChar = '\0';
                 txtSteamParental.Text = "(typically not required)";
             }
+        }
 
-            if (txtSessionID.Enabled && txtSteamLoginSecure.Enabled && txtSteamParental.Enabled)
-            {
-                btnView.Visible = false;
-            }
-
-            btnUpdate.Enabled = false;
+        private void LocalizeForm()
+        {
+            // Localize Form
+            btnUpdate.Text = localization.strings.update;
+            this.Text = localization.strings.auth_data;
+            ttHelp.SetToolTip(btnView, localization.strings.cookie_warning);
         }
 
         private void txtSessionID_TextChanged(object sender, EventArgs e)

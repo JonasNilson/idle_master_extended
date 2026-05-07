@@ -34,7 +34,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -192,6 +192,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Statistics.cs" />
     <Compile Include="SteamProfile.cs" />
+    <Compile Include="ThemeHandler.cs" />
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -300,7 +301,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="logo1.ico" />
-    <None Include="Resources\select2-spinner_inverted.gif" />
+    <None Include="Resources\select2-spinner_w.gif" />
     <None Include="Resources\x-2x_w.png" />
     <None Include="Resources\trash-2x_w.png" />
     <None Include="Resources\power-standby-2x_w.png" />

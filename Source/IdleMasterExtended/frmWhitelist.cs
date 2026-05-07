@@ -32,34 +32,7 @@ namespace IdleMasterExtended
 
             lstWhitelist.Items.AddRange(Settings.Default.whitelist.Cast<string>().ToArray());
 
-            if (Settings.Default.customTheme)
-            {
-                applyTheme();
-            }
-        }
-
-        private void applyTheme()
-        {
-            System.Drawing.Color colorBgd = Settings.Default.colorBgd;
-            System.Drawing.Color colorTxt = Settings.Default.colorTxt;
-
-            this.BackColor = colorBgd;
-            this.ForeColor = colorTxt;
-
-            btnAdd.FlatStyle = btnSave.FlatStyle = btnRemove.FlatStyle = FlatStyle.Flat;
-            btnAdd.BackColor = btnSave.BackColor = btnRemove.BackColor = colorBgd;
-            btnAdd.ForeColor = btnSave.ForeColor = btnRemove.ForeColor = colorTxt;
-
-            lstWhitelist.BackColor = colorBgd;
-            lstWhitelist.ForeColor = colorTxt;
-
-            grpAdd.BackColor = colorBgd;
-            grpAdd.ForeColor = colorTxt;
-
-            txtAppid.BackColor = colorBgd;
-            txtAppid.ForeColor = colorTxt;
-
-            btnRemove.Image = Settings.Default.whiteIcons ? Resources.imgTrash_w : Resources.imgTrash;
+            ThemeHandler.SetTheme(this, Settings.Default.customTheme);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)

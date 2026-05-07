@@ -239,7 +239,8 @@ namespace IdleMasterExtended
             // 
             this.settingsToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgSettings;
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Tag = "imgSettings";
             this.settingsToolStripMenuItem.Text = "&Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -247,7 +248,8 @@ namespace IdleMasterExtended
             // 
             this.blacklistToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgBlacklist;
             this.blacklistToolStripMenuItem.Name = "blacklistToolStripMenuItem";
-            this.blacklistToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.blacklistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.blacklistToolStripMenuItem.Tag = "imgBlacklist";
             this.blacklistToolStripMenuItem.Text = "&Blacklist";
             this.blacklistToolStripMenuItem.Click += new System.EventHandler(this.blacklistToolStripMenuItem_Click);
             // 
@@ -255,20 +257,22 @@ namespace IdleMasterExtended
             // 
             this.whitelistToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgTrue;
             this.whitelistToolStripMenuItem.Name = "whitelistToolStripMenuItem";
-            this.whitelistToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.whitelistToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.whitelistToolStripMenuItem.Tag = "imgTrue";
             this.whitelistToolStripMenuItem.Text = "Whitelist";
             this.whitelistToolStripMenuItem.Click += new System.EventHandler(this.whitelistToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(117, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // donateToolStripMenuItem
             // 
             this.donateToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgView;
             this.donateToolStripMenuItem.Name = "donateToolStripMenuItem";
-            this.donateToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.donateToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.donateToolStripMenuItem.Tag = "imgView";
             this.donateToolStripMenuItem.Text = "Donate";
             this.donateToolStripMenuItem.Click += new System.EventHandler(this.donateToolStripMenuItem_Click);
             // 
@@ -276,7 +280,8 @@ namespace IdleMasterExtended
             // 
             this.exitToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgExit;
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Tag = "imgExit";
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -297,6 +302,7 @@ namespace IdleMasterExtended
             this.pauseIdlingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pauseIdlingToolStripMenuItem.Image")));
             this.pauseIdlingToolStripMenuItem.Name = "pauseIdlingToolStripMenuItem";
             this.pauseIdlingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.pauseIdlingToolStripMenuItem.Tag = "imgPause";
             this.pauseIdlingToolStripMenuItem.Text = "&Pause Idling";
             this.pauseIdlingToolStripMenuItem.Click += new System.EventHandler(this.pauseIdlingToolStripMenuItem_Click);
             // 
@@ -306,6 +312,7 @@ namespace IdleMasterExtended
             this.resumeIdlingToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("resumeIdlingToolStripMenuItem.Image")));
             this.resumeIdlingToolStripMenuItem.Name = "resumeIdlingToolStripMenuItem";
             this.resumeIdlingToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.resumeIdlingToolStripMenuItem.Tag = "imgPlay";
             this.resumeIdlingToolStripMenuItem.Text = "Resume Idling";
             this.resumeIdlingToolStripMenuItem.Click += new System.EventHandler(this.resumeIdlingToolStripMenuItem_Click);
             // 
@@ -314,6 +321,7 @@ namespace IdleMasterExtended
             this.skipGameToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("skipGameToolStripMenuItem.Image")));
             this.skipGameToolStripMenuItem.Name = "skipGameToolStripMenuItem";
             this.skipGameToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.skipGameToolStripMenuItem.Tag = "imgSkip";
             this.skipGameToolStripMenuItem.Text = "&Skip Current Game";
             this.skipGameToolStripMenuItem.Click += new System.EventHandler(this.skipGameToolStripMenuItem_Click);
             // 
@@ -327,6 +335,7 @@ namespace IdleMasterExtended
             this.blacklistCurrentGameToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgBlacklist;
             this.blacklistCurrentGameToolStripMenuItem.Name = "blacklistCurrentGameToolStripMenuItem";
             this.blacklistCurrentGameToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.blacklistCurrentGameToolStripMenuItem.Tag = "imgBlacklist";
             this.blacklistCurrentGameToolStripMenuItem.Text = "&Blacklist Current Game";
             this.blacklistCurrentGameToolStripMenuItem.Click += new System.EventHandler(this.blacklistCurrentGameToolStripMenuItem_Click);
             // 
@@ -341,13 +350,15 @@ namespace IdleMasterExtended
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Tag = "imgInfo";
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // wikiToolStripMenuItem
             // 
             this.wikiToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgInfo;
             this.wikiToolStripMenuItem.Name = "wikiToolStripMenuItem";
-            this.wikiToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.wikiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.wikiToolStripMenuItem.Tag = "imgInfo";
             this.wikiToolStripMenuItem.Text = "&Wiki Page";
             this.wikiToolStripMenuItem.Click += new System.EventHandler(this.wikiToolStripMenuItem_Click);
             // 
@@ -355,7 +366,8 @@ namespace IdleMasterExtended
             // 
             this.changelogToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgDocument;
             this.changelogToolStripMenuItem.Name = "changelogToolStripMenuItem";
-            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.changelogToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changelogToolStripMenuItem.Tag = "imgDocument";
             this.changelogToolStripMenuItem.Text = "&Release Notes";
             this.changelogToolStripMenuItem.Click += new System.EventHandler(this.changelogToolStripMenuItem_Click);
             // 
@@ -363,7 +375,8 @@ namespace IdleMasterExtended
             // 
             this.officialGroupToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgGlobe;
             this.officialGroupToolStripMenuItem.Name = "officialGroupToolStripMenuItem";
-            this.officialGroupToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.officialGroupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.officialGroupToolStripMenuItem.Tag = "imgGlobe";
             this.officialGroupToolStripMenuItem.Text = "&Official Group";
             this.officialGroupToolStripMenuItem.Click += new System.EventHandler(this.officialGroupToolStripMenuItem_Click);
             // 
@@ -371,19 +384,20 @@ namespace IdleMasterExtended
             // 
             this.statisticsToolStripMenuItem.Image = global::IdleMasterExtended.Properties.Resources.imgStatistics;
             this.statisticsToolStripMenuItem.Name = "statisticsToolStripMenuItem";
-            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.statisticsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.statisticsToolStripMenuItem.Tag = "imgStatistics";
             this.statisticsToolStripMenuItem.Text = "&Statistics";
             this.statisticsToolStripMenuItem.Click += new System.EventHandler(this.statisticsToolStripMenuItem_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(145, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(177, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -448,6 +462,7 @@ namespace IdleMasterExtended
             this.picReadingPage.Size = new System.Drawing.Size(15, 16);
             this.picReadingPage.TabIndex = 26;
             this.picReadingPage.TabStop = false;
+            this.picReadingPage.Tag = "imgSpin";
             this.picReadingPage.Visible = false;
             // 
             // btnSkip
@@ -457,6 +472,7 @@ namespace IdleMasterExtended
             this.btnSkip.Name = "btnSkip";
             this.btnSkip.Size = new System.Drawing.Size(15, 16);
             this.btnSkip.TabIndex = 23;
+            this.btnSkip.Tag = "imgSkipSmall";
             this.btnSkip.UseVisualStyleBackColor = true;
             this.btnSkip.Click += new System.EventHandler(this.btnSkip_Click);
             // 
@@ -468,23 +484,28 @@ namespace IdleMasterExtended
             this.picIdleStatus.Size = new System.Drawing.Size(15, 16);
             this.picIdleStatus.TabIndex = 15;
             this.picIdleStatus.TabStop = false;
+            this.picIdleStatus.Tag = "imgSpin";
             this.picIdleStatus.Visible = false;
             // 
             // picCookieStatus
             // 
+            this.picCookieStatus.Image = global::IdleMasterExtended.Properties.Resources.imgSpin;
             this.picCookieStatus.Location = new System.Drawing.Point(15, 57);
             this.picCookieStatus.Name = "picCookieStatus";
             this.picCookieStatus.Size = new System.Drawing.Size(15, 16);
             this.picCookieStatus.TabIndex = 8;
             this.picCookieStatus.TabStop = false;
+            this.picCookieStatus.Tag = "imgTrue";
             // 
             // picSteamStatus
             // 
+            this.picSteamStatus.Image = global::IdleMasterExtended.Properties.Resources.imgSpin;
             this.picSteamStatus.Location = new System.Drawing.Point(15, 34);
             this.picSteamStatus.Name = "picSteamStatus";
             this.picSteamStatus.Size = new System.Drawing.Size(15, 16);
             this.picSteamStatus.TabIndex = 7;
             this.picSteamStatus.TabStop = false;
+            this.picSteamStatus.Tag = "imgTrue";
             // 
             // picApp
             // 
@@ -504,6 +525,7 @@ namespace IdleMasterExtended
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(15, 16);
             this.btnPause.TabIndex = 22;
+            this.btnPause.Tag = "imgPauseSmall";
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
@@ -514,6 +536,7 @@ namespace IdleMasterExtended
             this.btnResume.Name = "btnResume";
             this.btnResume.Size = new System.Drawing.Size(15, 16);
             this.btnResume.TabIndex = 24;
+            this.btnResume.Tag = "imgPlaySmall";
             this.btnResume.UseVisualStyleBackColor = true;
             this.btnResume.Visible = false;
             this.btnResume.Click += new System.EventHandler(this.btnResume_Click);

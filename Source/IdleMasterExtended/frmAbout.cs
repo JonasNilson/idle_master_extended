@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Deployment.Application;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
 namespace IdleMasterExtended
@@ -21,31 +19,13 @@ namespace IdleMasterExtended
         private void frmAbout_Load(object sender, EventArgs e)
         {
             SetLocalization();
-            SetTheme();
             SetVersion();
+            ThemeHandler.SetTheme(this, Properties.Settings.Default.customTheme);
         }
 
         private void SetLocalization()
         {
             btnOK.Text = localization.strings.ok;
-        }
-
-        private void SetTheme()
-        {
-            var settings = Properties.Settings.Default;
-            var customTheme = settings.customTheme;
-
-            if (customTheme)
-            {
-                this.BackColor = settings.colorBgd;
-                this.ForeColor = settings.colorTxt;
-
-                btnOK.FlatStyle = FlatStyle.Flat;
-                btnOK.BackColor = this.BackColor;
-                btnOK.ForeColor = this.ForeColor;
-
-                linkLabelVersion.LinkColor = this.ForeColor;
-            }
         }
 
         private void SetVersion()

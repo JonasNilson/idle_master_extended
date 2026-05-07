@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IdleMasterExtended.Properties;
+using System;
 using System.Windows.Forms;
 
 namespace IdleMasterExtended
@@ -60,26 +61,7 @@ namespace IdleMasterExtended
             }
             lblTotalCards.Text = Properties.Settings.Default.totalCardIdled.ToString() + " cards idled";
 
-            if (Properties.Settings.Default.customTheme)
-            {
-                runtimeCustomThemeStatistics(); // JN: Apply the dark theme
-            }
-        }
-
-        // Make everything dark to match the dark theme
-        private void runtimeCustomThemeStatistics()
-        {
-            System.Drawing.Color colorBgd = Properties.Settings.Default.colorBgd; // Dark gray (from Steam)
-            System.Drawing.Color colorTxt = Properties.Settings.Default.colorTxt; // Light gray (from Steam)
-
-            // Form
-            this.BackColor = colorBgd;
-            this.ForeColor = colorTxt;
-
-            // Button
-            btnOK.FlatStyle = FlatStyle.Flat; // Flat style to customize buttons
-            btnOK.BackColor = colorBgd;
-            btnOK.ForeColor = colorTxt;
+            ThemeHandler.SetTheme(this, Settings.Default.customTheme);
         }
 
         private void btnOK_Click(object sender, EventArgs e)

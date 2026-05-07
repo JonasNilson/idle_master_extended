@@ -107,6 +107,7 @@ namespace IdleMasterExtended
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(28, 28);
             this.btnRemove.TabIndex = 2;
+            this.btnRemove.Tag = "imgTrash";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
