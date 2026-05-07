@@ -426,6 +426,8 @@ namespace IdleMasterExtended
             catch (Exception ex)
             {
                 Logger.Exception(ex, "frmMain -> StartIdle -> load pic, for id = " + CurrentBadge.AppId);
+                picApp.Image = null;
+                picApp.Visible = false;
             }
 
             // Update label controls
