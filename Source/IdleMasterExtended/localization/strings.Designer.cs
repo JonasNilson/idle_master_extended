@@ -79,6 +79,15 @@ namespace IdleMasterExtended.localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is {0} your account?.
+        /// </summary>
+        internal static string account_confirmation {
+            get {
+                return ResourceManager.GetString("account_confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Add.
         /// </summary>
         internal static string add {
@@ -111,6 +120,15 @@ namespace IdleMasterExtended.localization {
         internal static string advanced_auth {
             get {
                 return ResourceManager.GetString("advanced_auth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you have a Steam session open at {0} we will look for cookies for you, do you allow to close your browser?.
+        /// </summary>
+        internal static string allow_close_browser {
+            get {
+                return ResourceManager.GetString("allow_close_browser", resourceCulture);
             }
         }
         
@@ -165,6 +183,24 @@ namespace IdleMasterExtended.localization {
         internal static string card_drops_remaining {
             get {
                 return ResourceManager.GetString("card_drops_remaining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checking.....
+        /// </summary>
+        internal static string checking {
+            get {
+                return ResourceManager.GetString("checking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        internal static string confirmation {
+            get {
+                return ResourceManager.GetString("confirmation", resourceCulture);
             }
         }
         

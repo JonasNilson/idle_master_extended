@@ -1,9 +1,14 @@
 ﻿using System;
-using System.Diagnostics;
+using System.IO;
 using System.Drawing;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using IdleMasterExtended.Browser;
+using IdleMasterExtended.Utilities;
 using IdleMasterExtended.Properties;
+
 
 namespace IdleMasterExtended
 {
@@ -36,7 +41,7 @@ namespace IdleMasterExtended
 
             // Read settings
             var customTheme = Settings.Default.customTheme;
-            var whiteIcons = Settings.Default.whiteIcons;
+            // var whiteIcons = Settings.Default.whiteIcons;
 
             // Define colors
             this.BackColor = customTheme ? Settings.Default.colorBgd : Settings.Default.colorBgdOriginal;
@@ -153,12 +158,109 @@ namespace IdleMasterExtended
         {
             btnUpdate.Enabled = false;
             txtSessionID.Enabled = false;
+            btnQuickLogin.Enabled = false;
             txtSteamLoginSecure.Enabled = false;
             txtSteamParental.Enabled = false;
 
             btnUpdate.Text = localization.strings.validating;
 
             await CheckAndSave();
+        }
+
+        private async void btnQuickLogin_Click(object sender, EventArgs e)
+        {
+            btnUpdate.Enabled = false;
+            txtSessionID.Enabled = false;
+            btnQuickLogin.Enabled = false;
+            txtSteamParental.Enabled = false;
+            txtSteamLoginSecure.Enabled = false;
+
+            btnQuickLogin.Text = localization.strings.checking;
+
+            try
+            {
+                var accounts = Steam.GetProfiles();
+                foreach (var (key, value) in accounts)
+                {
+                    DialogResult accountConfirmation = MessageBox.Show(
+                        string.Format(localization.strings.account_confirmation, key),
+                        localization.strings.confirmation,
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (accountConfirmation == DialogResult.Yes)
+                    {
+                        BrowserType[] browsers = new BrowserType[] { BrowserType.MSEdge };
+                        foreach (BrowserType browserType in browsers)
+                        {
+                            var exePath = BrowserInfo.GetExecutablePath(browserType);
+                            var exeName = Path.GetFileNameWithoutExtension(exePath);
+
+                            var processes = Process.GetProcessesByName(exeName);
+                            if (processes.Length > 0)
+                            {
+                                DialogResult allowCloseBrowser = MessageBox.Show(
+                                    string.Format(localization.strings.allow_close_browser, BrowserInfo.ToString(browserType)),
+                                    localization.strings.confirmation,
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question
+                                );
+
+                                if (allowCloseBrowser == DialogResult.Yes)
+                                {
+                                    foreach (var process in processes)
+                                    {
+                                        process.Kill();
+                                    }
+                                }
+                            }
+
+                            var userDataDir = BrowserInfo.GetUserDataDir(browserType);
+                            BrowserInfo.GetProfilesOf(userDataDir).ForEach(profileDir =>
+                            {
+                                var chromium = new Chromium(profileDir, value.SteamID);
+                                var cookies = chromium.Extract();
+
+                                foreach (var cookie in cookies)
+                                {
+                                    if (!cookie.IsEmpty)
+                                    {
+                                        var cookieMappings = new Dictionary<string, Action<string>>
+                                        {
+                                            { "sessionid", v => txtSessionID.Text = v },
+                                            { "steamLoginSecure", v => txtSteamLoginSecure.Text = v }
+                                        };
+
+                                        if (cookieMappings.TryGetValue(cookie.Name, out var setText))
+                                        {
+                                            setText(cookie.Value);
+                                        }
+                                    }
+                                }
+
+                                chromium.Close();
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Exception(ex, "frmSettingsAdvanced -> GetCookies");
+            }
+
+            if (!string.IsNullOrEmpty(txtSteamLoginSecure.Text))
+            {
+                await CheckAndSave();
+            }
+
+            txtSessionID.Enabled = true;
+            btnQuickLogin.Enabled = true;
+            txtSteamParental.Enabled = true;
+            txtSteamLoginSecure.Enabled = true;
+
+            btnQuickLogin.Text = "Quick Login";
         }
 
         private void linkLabelWhatIsThis_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -350,4 +350,16 @@ your Steam account.</value>
   <data name="whitelist" xml:space="preserve">
     <value>&amp;Whitelist</value>
   </data>
+  <data name="checking" xml:space="preserve">
+    <value>Checking....</value>
+  </data>
+  <data name="confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="account_confirmation" xml:space="preserve">
+    <value>Is {0} your account?</value>
+  </data>
+  <data name="allow_close_browser" xml:space="preserve">
+    <value>If you have a Steam session open at {0} we will look for cookies for you, do you allow to close your browser?</value>
+  </data>
 </root>
